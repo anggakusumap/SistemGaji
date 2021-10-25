@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Login\LoginControllerr@index')->name('login');
+Route::get('/profile', 'Dashboard\DashboardController@index')->name('dashboarduser');
+
+Route::get('/Admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
+Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
+
+
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Masterdata;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Pegawai;
+use App\User;
 use Illuminate\Http\Request;
 
 class MasterpegawaiControllerr extends Controller
@@ -15,7 +16,7 @@ class MasterpegawaiControllerr extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::get();
+        $pegawai = User::get();
 
         return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai'));
     }

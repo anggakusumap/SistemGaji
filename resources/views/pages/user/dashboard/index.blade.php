@@ -40,7 +40,8 @@
                         <div class="col-6 text-right">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown no-caret mr-4 dropdown-user">
-                                    <span class="small" style="color: white"> Hello, <span>Test Nama Pegawai</span></span>
+                                    <span class="small" style="color: white"> Hello,
+                                        <span>{{$user->nama_pegawai}}</span></span>
                                     <a class="btn btn-lg btn-icon btn-transparent-dark dropdown-toggle"
                                         id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
@@ -53,17 +54,13 @@
                                             <img class="dropdown-user-img"
                                                 src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
                                             <div class="dropdown-user-details">
-                                                <div class="dropdown-user-details-name">Test Nama Pegawai</div>
-                                                <div class="dropdown-user-details-email">Test Role Pegawai</div>
+                                                <div class="dropdown-user-details-name">{{ $user->nama_pegawai }}</div>
+                                                <div class="dropdown-user-details-email">{{ $user->role }}</div>
                                             </div>
                                         </h6>
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('login') }}">
-                                            <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
-                                            Dashboard
-                                        </a>
                                         <a class="dropdown-item" href="" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
@@ -84,6 +81,7 @@
                     </div>
 
                 </div>
+
                 <div class="col-xl-11">
                     <div class="card mt-4">
                         <div class="card-body p-5">
@@ -105,72 +103,179 @@
                                     <div class="small">
                                         <div class="h2 text-primary font-weight-300 mb-0">Selamat Datang pada Dashboard!
                                         </div>
-                                        <div class="h4 mb-0 mt-2">Test Nama Pegawai Login</div>
+                                        <div class="h4 mb-0 mt-2">{{ $user->nama_pegawai }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="m-0">
+                        <div class="container">
+                            <!-- Wizard card example with navigation-->
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <!-- Wizard navigation-->
+                                    <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard"
+                                        id="cardTab" role="tablist">
+                                        <!-- Wizard navigation item 1-->
+                                        <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1"
+                                            data-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
+                                            <div class="wizard-step-text">
+                                                <div class="wizard-step-text-name">Daftar Slip Gaji</div>
+                                            </div>
+                                        </a>
+                                        <!-- Wizard navigation item 2-->
+                                        <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab"
+                                            role="tab" aria-controls="wizard2" aria-selected="true">
+                                            <div class="wizard-step-text">
+                                                <div class="wizard-step-text-name">Profil Pegawai</div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content" id="cardTabContent">
+                                        <!-- Wizard tab pane item 1-->
+                                        <div class="tab-pane py-5 py-xl-1 fade show active" id="wizard1" role="tabpanel"
+                                            aria-labelledby="wizard1-tab">
+                                            <div class="row justify-content-center">
+                                                <div class="datatable">
+                                                    <table class="table table-bordered table-hover" id="dataTable"
+                                                        width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 30px;">No</th>
+                                                                <th>Nama</th>
+                                                                <th>Bulan</th>
+                                                                <th>Tahun</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($gaji as $item)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration}}</td>
+
+                                                                <td>Slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF</td>
+                                                                <td>{{date('F', mktime(0, 0, 0, (int)substr($item->Gaji->bulan_gaji, 5, 2), 10))}}
+                                                                </td>
+                                                                <td>{{ substr($item->Gaji->bulan_gaji, 0, 4)}}</td>
+                                                                <td>
+                                                                    <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
+                                                                            class="btn btn-google" target='_blank'>
+                                                                        <i class="far fa-file-pdf"></i>Download PDF
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Wizard tab pane item 2-->
+                                        <div class="tab-pane py-5 py-xl-1 fade" id="wizard2" role="tabpanel"
+                                            aria-labelledby="wizard2-tab">
+                                            <div class="row justify-content-center">
+                                                <div class="col-xxl-6 col-xl-8">
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">Profile</div>
+                                                        <div class="card-body">
+                                                            <form>
+                                                                <!-- Form Group (username)-->
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1" for="inputUsername">Nama
+                                                                        Lengkap</label>
+                                                                    <input class="form-control" id="inputUsername"
+                                                                        type="text" value="{{ $user->nama_pegawai }}"
+                                                                        disabled />
+                                                                </div>
+                                                                <!-- Form Row-->
+                                                                <div class="form-row">
+                                                                    <!-- Form Group (first name)-->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="small mb-1"
+                                                                            for="inputFirstName">Pangkat</label>
+                                                                        <input class="form-control" id="inputFirstName"
+                                                                            type="text" value="{{ $user->pangkat }}"
+                                                                            disabled />
+                                                                    </div>
+                                                                    <!-- Form Group (last name)-->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="small mb-1"
+                                                                            for="inputLastName">Golongan</label>
+                                                                        <input class="form-control" id="inputLastName"
+                                                                            type="text" value="{{ $user->golongan }}"
+                                                                            disabled />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1"
+                                                                        for="inputUsername">NIP</label>
+                                                                    <input class="form-control" id="inputUsername"
+                                                                        type="text" value="{{ $user->nip_pegawai }}"
+                                                                        disabled />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1"
+                                                                        for="inputUsername">NPWP</label>
+                                                                    <input class="form-control" id="inputUsername"
+                                                                        type="text" value="{{ $user->npwp_pegawai }}"
+                                                                        disabled />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1" for="inputUsername">No
+                                                                        Telp</label>
+                                                                    <input class="form-control" id="inputUsername"
+                                                                        type="text" value="{{ $user->no_telp }}"
+                                                                        disabled />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1"
+                                                                        for="inputUsername">E-mail</label>
+                                                                    <input class="form-control" id="inputUsername"
+                                                                        type="text" value="{{ $user->email }}"
+                                                                        disabled />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1" for="inputUsername">Alamat
+                                                                        Lengkap</label>
+                                                                    <textarea class="form-control" id="inputUsername"
+                                                                        type="text" disabled> {{ $user->alamat }}
+                                                                    </textarea>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <hr class="m-0">
-                        <div class="card-body p-5">
-                            <nav class="nav nav-borders">
-                                <a class="nav-link active ml-0" href="account-profile.html">Profile Pegawai</a>
-                                <a class="nav-link" href="account-security.html">Data Gaji Pegawai</a>
-                            </nav>
 
-
-                        </div>
                     </div>
+
                 </div>
 
 
-
-
             </div>
+
         </div>
+
+
 
 
     </main>
 </body>
-<script>
-    // Waktu
 
-    setInterval(displayclock, 500);
 
-    function displayclock() {
-        var time = new Date()
-        var hrs = time.getHours()
-        var min = time.getMinutes()
-        var sec = time.getSeconds()
-        var en = 'AM';
-
-        if (hrs > 12) {
-            en = 'PM'
-        }
-
-        if (hrs > 12) {
-            hrs = hrs - 12;
-        }
-
-        if (hrs == 0) {
-            hrs = 12;
-        }
-
-        if (hrs < 10) {
-            hrs = '0' + hrs;
-        }
-
-        if (min < 10) {
-            min = '0' + min;
-        }
-
-        if (sec < 10) {
-            sec = '0' + sec;
-        }
-
-        document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
-    }
-
-</script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>

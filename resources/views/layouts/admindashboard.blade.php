@@ -104,17 +104,24 @@
                                 <a class="nav-link" href="{{ route('master-pegawai.index') }}">
                                     Pegawai
                                 </a>
-                                <a class="nav-link" href="">
-                                    Gaji Pokok
+                                <a class="nav-link" >
+                                    Golongan
                                 </a>
-                                <a class="nav-link" href="">
-                                    Tunjangan
+                                <a class="nav-link" >
+                                    Jabatan
                                 </a>
+                                <a class="nav-link" href="{{ route('unit-kerja.index') }}" >
+                                    Unit Kerja
+                                </a>
+                                <a class="nav-link" href="{{ route('master-ptkp.index') }}">
+                                    PTKP
+                                </a>
+                                
                             </nav>
                         </div>
                         <div class="sidenav-menu-heading">Penggajian</div>
-                        <a class="nav-link" href="">
-                            <div class="nav-link-icon"><i class="fas fa-money-bill-wave-alt"></i></div>
+                        <a class="nav-link">
+                            <div class="nav-link-icon"><i class="fas fa-calculator"></i></div>
                             Data Gaji Pegawai
                         </a>
                        <div class="sidenav-menu-heading">Logout Account</div>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Pegawai;
+use App\Model\Admin\PTKP;
 use Illuminate\Http\Request;
 
-class MasterpegawaiControllerr extends Controller
+class MasterPTKPControllerr extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::get();
+        $ptkp = PTKP::get();
 
-        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai'));
+        return view('pages.admin.masterdata.ptkp', compact('ptkp'));
     }
 
     /**
@@ -38,7 +38,13 @@ class MasterpegawaiControllerr extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ptkp = new PTKP;
+        $ptkp->kode_ptkp = $request->kode_ptkp;
+        $ptkp->nama_ptkp = $request->nama_ptkp;
+        $ptkp->besaran_ptkp = $request->besaran_ptkp;
+        $ptkp->save();
+
+        return redirect()->back()->with('messageberhasil','Data PTKP Berhasil ditambahkan');
     }
 
     /**
@@ -70,9 +76,15 @@ class MasterpegawaiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_ptkp)
     {
-        //
+        $ptkp = PTKP::find($id_ptkp);
+        $ptkp->kode_ptkp = $request->kode_ptkp;
+        $ptkp->nama_ptkp = $request->nama_ptkp;
+        $ptkp->besaran_ptkp = $request->besaran_ptkp;
+        $ptkp->update();
+
+        return redirect()->back()->with('messageberhasil','Data PTKP berhasil diubah');
     }
 
     /**
@@ -81,8 +93,11 @@ class MasterpegawaiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_ptkp)
     {
-        //
+        $ptkp = PTKP::find($id_ptkp);
+        $ptkp->delete();
+
+        return redirect()->back()->with('messagehapus','Data PTKP berhasil dihapus');
     }
 }

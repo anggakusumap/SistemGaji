@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin\Masterdata;
 
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Pegawai;
+use App\Model\Admin\Unitkerja;
 use Illuminate\Http\Request;
 
-class MasterpegawaiControllerr extends Controller
+class MasterUnitKerjaControllerr extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::get();
+        $unit = Unitkerja::get();
 
-        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai'));
+        return view('pages.admin.masterdata.unitkerja',compact('unit'));
     }
 
     /**
@@ -38,7 +38,11 @@ class MasterpegawaiControllerr extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $unit = new Unitkerja;
+        $unit->nama_unit = $request->nama_unit;
+        $unit->save();
+
+        return redirect()->back()->with('messageberhasil','Data Unit Kerja Berhasil ditambahkan');
     }
 
     /**
@@ -60,7 +64,7 @@ class MasterpegawaiControllerr extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
@@ -70,9 +74,13 @@ class MasterpegawaiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_unit_kerja)
     {
-        //
+        $unit = Unitkerja::find($id_unit_kerja);
+        $unit->nama_unit = $request->nama_unit;
+        $unit->update();
+
+        return redirect()->back()->with('messageberhasil','Data Unit Kerja Berhasil diubah');
     }
 
     /**
@@ -81,8 +89,11 @@ class MasterpegawaiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_unit_kerja)
     {
-        //
+        $unit = Unitkerja::find($id_unit_kerja);
+        $unit->delete();
+
+        return redirect()->back()->with('messagehapus','Data Unit Kerja Berhasil dihapus');
     }
 }

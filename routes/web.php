@@ -18,6 +18,6 @@ Route::get('/profile', 'Dashboard\DashboardController@index')->name('dashboardus
 
 Route::get('/Admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
 Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
-
-
+Route::resource('unit-kerja', 'Admin\MasterData\MasterunitkerjaControllerr');
+Route::resource('master-ptkp', 'Admin\MasterData\MasterPTKPControllerr');
 

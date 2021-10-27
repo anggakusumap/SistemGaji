@@ -63,8 +63,7 @@
                                             please fill in your password
                                         </div>
                                     </div>
-
-                                    {{-- @if (count($errors)>0)
+                                    @if (count($errors)>0)
                                     <div class="alert alert-danger alert-dismissible show fade">
                                         <div class="alert-body">
                                             <button class="close" data-dismiss="alert">
@@ -77,36 +76,22 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    @endif --}}
+                                    @endif
 
-                                    {{-- @if (count($errors)>0)
-                                    <div class="alert alert-danger alert-dismissible show fade">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">&times;</button>
-                                        <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                                        @foreach ($errors->all() as $e)
-                                        {{$e}}
-                                    @endforeach
-                            </div>
-                            @endif --}}
-                            <div class="form-group">
-                                <button type="button" href="{{ route('dashboardadmin') }}" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    Login
-                                </button>
-                            </div>
-                           
-                            </form>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                            Login
+                                        </button>
+                                    </div>
 
+                                </form>
+
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="simple-footer">
-                        Copyright &copy; 2021 Aplikasi KPP Pratama Pajak Gianyar
                     </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
 
     <!-- General JS Scripts -->

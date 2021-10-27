@@ -41,7 +41,7 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown no-caret mr-4 dropdown-user">
                                     <span class="small" style="color: white"> Hello,
-                                        <span>{{$user->nama_pegawai}}</span></span>
+                                        <span>{{ Auth::user()->nama_pegawai }}</span></span>
                                     <a class="btn btn-lg btn-icon btn-transparent-dark dropdown-toggle"
                                         id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
@@ -54,20 +54,20 @@
                                             <img class="dropdown-user-img"
                                                 src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
                                             <div class="dropdown-user-details">
-                                                <div class="dropdown-user-details-name">{{ $user->nama_pegawai }}</div>
-                                                <div class="dropdown-user-details-email">{{ $user->role }}</div>
+                                                <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}</div>
+                                                <div class="dropdown-user-details-email">{{ Auth::user()->role }}
                                             </div>
                                         </h6>
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
 
@@ -103,7 +103,7 @@
                                     <div class="small">
                                         <div class="h2 text-primary font-weight-300 mb-0">Selamat Datang pada Dashboard!
                                         </div>
-                                        <div class="h4 mb-0 mt-2">{{ $user->nama_pegawai }}</div>
+                                        <div class="h4 mb-0 mt-2">{{ Auth::user()->nama_pegawai }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($gaji as $item)
+                                                            {{-- @foreach ($gaji as $item)
                                                             <tr>
                                                                 <td>{{ $loop->iteration}}</td>
 
@@ -169,7 +169,7 @@
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            @endforeach
+                                                            @endforeach --}}
 
                                                         </tbody>
                                                     </table>
@@ -190,7 +190,7 @@
                                                                     <label class="small mb-1" for="inputUsername">Nama
                                                                         Lengkap</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ $user->nama_pegawai }}"
+                                                                        type="text" value="{{ Auth::user()->nama_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <!-- Form Row-->
@@ -200,7 +200,7 @@
                                                                         <label class="small mb-1"
                                                                             for="inputFirstName">Pangkat</label>
                                                                         <input class="form-control" id="inputFirstName"
-                                                                            type="text" value="{{ $user->pangkat }}"
+                                                                            type="text" value="{{ Auth::user()->pangkat }}"
                                                                             disabled />
                                                                     </div>
                                                                     <!-- Form Group (last name)-->
@@ -208,7 +208,7 @@
                                                                         <label class="small mb-1"
                                                                             for="inputLastName">Golongan</label>
                                                                         <input class="form-control" id="inputLastName"
-                                                                            type="text" value="{{ $user->golongan }}"
+                                                                            type="text" value="{{ Auth::user()->golongan }}"
                                                                             disabled />
                                                                     </div>
                                                                 </div>
@@ -217,35 +217,35 @@
                                                                     <label class="small mb-1"
                                                                         for="inputUsername">NIP</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ $user->nip_pegawai }}"
+                                                                        type="text" value="{{ Auth::user()->nip_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mb-1"
                                                                         for="inputUsername">NPWP</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ $user->npwp_pegawai }}"
+                                                                        type="text" value="{{ Auth::user()->npwp_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mb-1" for="inputUsername">No
                                                                         Telp</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ $user->no_telp }}"
+                                                                        type="text" value="{{ Auth::user()->no_telp }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mb-1"
                                                                         for="inputUsername">E-mail</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ $user->email }}"
+                                                                        type="text" value="{{ Auth::user()->email }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mb-1" for="inputUsername">Alamat
                                                                         Lengkap</label>
                                                                     <textarea class="form-control" id="inputUsername"
-                                                                        type="text" disabled> {{ $user->alamat }}
+                                                                        type="text" disabled> {{ Auth::user()->alamat }}
                                                                     </textarea>
                                                                 </div>
 

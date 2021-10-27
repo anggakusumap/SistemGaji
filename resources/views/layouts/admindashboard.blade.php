@@ -31,7 +31,7 @@
             Sistem Penggajian
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
-            data-feather="menu"></i></button>
+                data-feather="menu"></i></button>
         <div class="small">
             <i class="fa fa-cogs" aria-hidden="true"></i>
             KPP Pratama Pajak Gianyar
@@ -49,26 +49,20 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">Test Nama Pegawai</div>
-                            <div class="dropdown-user-details-email">Test Role Pegawai</div>
+                            <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}</div>
+                            <div class="dropdown-user-details-email">{{ Auth::user()->role }}</div>
                         </div>
                     </h6>
 
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('login') }}">
-                        <div class="dropdown-item-icon"><i data-feather="columns"></i></div>
-                        Dashboard
-                    </a>
-
-
-                    <a class="dropdown-item" href="" onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
                     </a>
 
-                    <form id="logout-form" action="" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
 
@@ -84,7 +78,7 @@
             <nav class="sidenav shadow-right sidenav-light">
                 <div class="sidenav-menu">
                     <div class="nav accordion" id="accordionSidenav">
-                      
+
                         <div class="sidenav-menu-heading">Dashboard</div>
                         <a class="nav-link" href="{{ route('dashboardadmin')}}">
                             <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
@@ -104,19 +98,19 @@
                                 <a class="nav-link" href="{{ route('master-pegawai.index') }}">
                                     Pegawai
                                 </a>
-                                <a class="nav-link" >
+                                <a class="nav-link">
                                     Golongan
                                 </a>
-                                <a class="nav-link" >
+                                <a class="nav-link">
                                     Jabatan
                                 </a>
-                                <a class="nav-link" href="{{ route('unit-kerja.index') }}" >
+                                <a class="nav-link" href="">
                                     Unit Kerja
                                 </a>
-                                <a class="nav-link" href="{{ route('master-ptkp.index') }}">
+                                <a class="nav-link" href="">
                                     PTKP
                                 </a>
-                                
+
                             </nav>
                         </div>
                         <div class="sidenav-menu-heading">Penggajian</div>
@@ -124,38 +118,43 @@
                             <div class="nav-link-icon"><i class="fas fa-calculator"></i></div>
                             Data Gaji Pegawai
                         </a>
-                       <div class="sidenav-menu-heading">Logout Account</div>
-                        <a class="nav-link" onclick="event.preventDefault();
+                        <div class="sidenav-menu-heading">Logout Account</div>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                             <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Logout
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </div>
 
-               
+
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Role :</div>
-                        <div class="sidenav-footer-title">Test Role</div>
+                        <div class="sidenav-footer-title">{{ Auth::user()->role }}</div>
                     </div>
                 </div>
             </nav>
         </div>
-        
+
 
 
         <div id="layoutSidenav_content" class="bg-gray-200">
 
-           
+
             @yield('content')
 
 
-           
+
             <footer class="footer mt-auto ">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 text-center text-muted">Copyright &copy; 2021 Aplikasi Penggajian KPP Pratama Pajak Gianyar</div>
+                        <div class="col-md-12 text-center text-muted">Copyright &copy; 2021 Aplikasi Penggajian KPP
+                            Pratama Pajak Gianyar</div>
                     </div>
                 </div>
             </footer>

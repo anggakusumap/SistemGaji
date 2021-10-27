@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,25 +14,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Login\LoginControllerr@index')->name('login');
-Route::get('/profile', 'Dashboard\DashboardController@index')->name('dashboarduser');
+Auth::routes();
 
-Route::get('/Admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
-Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
+// Login
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/', 'Auth\LoginController@login')->name('login');
 
-Route::prefix('pegawai')
-    ->namespace('Pegawai')
-    // ->middleware(['auth', 'pegawai'])
-    ->group(function(){
-        Route::get('/', "DashboardPegawaiController@index")->name('dashboard-admin');
-        Route::get('cetak-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@cetak")->name('cetak-slip');
+// Akses Admin
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
+        Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
+    }
+);
 
-        // Route::resource('category', 'CategoryController');
-        // Route::resource('user', 'UserController');
-        // Route::resource('sparepart', 'SparepartController');
-        // Route::resource('bengkel', 'BengkelController');
+// Akses Pegawai
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('/profile', 'Dashboard\DashboardController@index')->name('dashboarduser');
+        Route::prefix('pegawai')
+            ->namespace('Pegawai')
+            // ->middleware(['auth', 'pegawai'])
+            ->group(function () {
+                Route::get('/', "DashboardPegawaiController@index")->name('dashboard-admin');
+                Route::get('cetak-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@cetak")->name('cetak-slip');
+            });
+    }
+);
 
-        // Route::resource('keuangan', 'KeuanganController');
-    });
-
-
+Route::get('/home', 'HomeController@index')->name('home');

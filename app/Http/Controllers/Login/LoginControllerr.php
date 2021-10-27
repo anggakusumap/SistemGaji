@@ -14,7 +14,7 @@ class LoginControllerr extends Controller
      */
     public function index()
     {
-        return view('pages.login.login2');
+        return view('auth.login2');
     }
 
     /**

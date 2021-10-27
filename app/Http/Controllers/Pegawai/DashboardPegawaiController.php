@@ -34,6 +34,8 @@ class DashboardPegawaiController extends Controller
     }
     public function cetak($id)
     {
+        $data = 
+
         $download =view('pages.user.pdf');
 
         // instantiate and use the dompdf class

@@ -10,17 +10,19 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateTime;
 use Dompdf\Dompdf;
+use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardPegawaiController extends Controller
 {
     public function index()
     {
-        $user= User::first();
-        // $user = User::firstOrFail(Auth::user()->id);
+        // $user= User::first();
+        $user = User::where('id', Auth::user()->id)->first();
 
 
-        $gaji = DetailGajipegawai::with('Gaji')->get();
-        // $gaji = DetailGajipegawai::with('gaji')->where('id', Auth::user()->id)->get();
+        // $gaji = DetailGajipegawai::with('Gaji')->get();
+        $gaji = DetailGajipegawai::with('gaji')->where('id', Auth::user()->id)->get();
 
         // $gajipegawai = Gajipegawai::with('DetailPegawai')->get();
         // return $gajipegawai;
@@ -32,14 +34,58 @@ class DashboardPegawaiController extends Controller
             'gaji' => $gaji
         ]);
     }
-    public function cetak($id)
-    {
-        $data = 
 
-        $download =view('pages.user.pdf');
+    
+    public function cetak($gaji)
+
+    {
+        // $data = DetailGajipegawai::with('Gaji')->where('id', '1')->whereHas('Gaji', function ($q) {
+        //                 $q->where('bulan_gaji', '=', $q);
+        //                 })->get();
+        // $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->get();
+// "28 Juni 2020"
+        $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
+        $user = User::where('id', Auth::user()->id)->first();
+        $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->whereHas('Detailgaji', function ($q) {
+                        $q->where('id', '=', Auth::user()->id);
+                        })->first();
+        $bulan = $months[(int)substr($data->bulan_gaji, 5, 2)];
+
+    //    return $data;
+        $tanggal = Carbon::now()->isoFormat('D MMMM Y');
+        return view('pages.user.pdf', [
+            'user' => $user, 
+            'gaji' => $data,
+            'bulan'=> $bulan,
+            'tanggal' => $tanggal
+        ]);
+    }
+
+    public function download($gaji)
+    {
+        $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
+        $user = User::where('id', Auth::user()->id)->first();
+        $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->whereHas('Detailgaji', function ($q) {
+                        $q->where('id', '=', Auth::user()->id);
+                        })->first();
+        $bulan = $months[(int)substr($data->bulan_gaji, 5, 2)];
+
+    //    return $data;
+        $tanggal = Carbon::now()->isoFormat('D MMMM Y');
+        $download = view('pages.user.pdf', [
+            'user' => $user, 
+            'gaji' => $data,
+            'bulan'=> $bulan,
+            'tanggal' => $tanggal
+        ]);
+
 
         // instantiate and use the dompdf class
-        $dompdf = new Dompdf;
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+
+
         $dompdf->loadHtml($download);
 
         // (Optional) Setup the paper size and orientation
@@ -49,6 +95,6 @@ class DashboardPegawaiController extends Controller
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream('Slip-gaji'."-".$id.".pdf");
+        $dompdf->stream('Slip-gaji'."-".$gaji.".pdf");
     }
 }

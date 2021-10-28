@@ -40,6 +40,9 @@ Route::group(
             ->group(function () {
                 Route::get('/', "DashboardPegawaiController@index")->name('dashboard-admin');
                 Route::get('cetak-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@cetak")->name('cetak-slip');
+                Route::get('download-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@download")->name('download-slip');
+                Route::get('test', "DashboardPegawaiController@cetak")->name('tes-cetak');
+
             });
     }
 );

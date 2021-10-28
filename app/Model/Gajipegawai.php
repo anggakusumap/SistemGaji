@@ -31,5 +31,7 @@ class Gajipegawai extends Model
                     'tunjangan_umum','tunjangan_beras','tunjangan_pph','pembulatan','jumlah_kotor','iuran_wajib','bpjs','sewa_rumah','pph_pasal_21',
                     'jumlah_potongan','jumlah_bersih_gaji','potongan_lainnya','jumlah_potongan_lainnya');
     }
-
+    public function Detailgaji(){
+        return $this->hasMany(DetailGajipegawai::class, 'id_gaji_pegawai');
+    }
 }

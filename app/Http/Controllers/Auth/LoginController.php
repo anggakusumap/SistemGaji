@@ -38,7 +38,7 @@ class LoginController extends Controller
                 return '/admin';
                 break;
             case 'PEGAWAI':
-                return '/profile';
+                return '/pegawai';
                 break;
 
             default:

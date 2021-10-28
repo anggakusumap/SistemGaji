@@ -154,7 +154,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {{-- @foreach ($gaji as $item)
+                                                            @foreach ($gaji as $item)
                                                             <tr>
                                                                 <td>{{ $loop->iteration}}</td>
 
@@ -165,11 +165,15 @@
                                                                 <td>
                                                                     <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
                                                                             class="btn btn-google" target='_blank'>
+                                                                        <i class="far fa-file-pdf"></i>Print PDF
+                                                                    </a>
+                                                                    <a href="/pegawai/download-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
+                                                                            class="btn btn-google" target='_blank'>
                                                                         <i class="far fa-file-pdf"></i>Download PDF
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            @endforeach --}}
+                                                            @endforeach
 
                                                         </tbody>
                                                     </table>

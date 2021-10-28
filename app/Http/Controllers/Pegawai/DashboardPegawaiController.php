@@ -72,7 +72,7 @@ class DashboardPegawaiController extends Controller
 
     //    return $data;
         $tanggal = Carbon::now()->isoFormat('D MMMM Y');
-        $download = view('pages.user.pdf', [
+        return view('pages.user.download', [
             'user' => $user, 
             'gaji' => $data,
             'bulan'=> $bulan,
@@ -80,21 +80,6 @@ class DashboardPegawaiController extends Controller
         ]);
 
 
-        // instantiate and use the dompdf class
-        $options = new Options();
-        $options->set('isRemoteEnabled', true);
-        $dompdf = new Dompdf($options);
-
-
-        $dompdf->loadHtml($download);
-
-        // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to Browser
-        $dompdf->stream('Slip-gaji'."-".$gaji.".pdf");
+       
     }
 }

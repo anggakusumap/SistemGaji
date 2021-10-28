@@ -164,8 +164,8 @@
                                                                 <td>{{ substr($item->Gaji->bulan_gaji, 0, 4)}}</td>
                                                                 <td>
                                                                     <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
-                                                                            class="btn btn-google" target='_blank'>
-                                                                        <i class="far fa-file-pdf"></i>Print PDF
+                                                                            class="btn btn-facebook" target='_blank'>
+                                                                        <i class="fas fa-print"></i>Print 
                                                                     </a>
                                                                     <a href="/pegawai/download-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
                                                                             class="btn btn-google" target='_blank'>

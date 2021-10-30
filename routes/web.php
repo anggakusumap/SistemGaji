@@ -24,6 +24,8 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 Route::group(
     ['middleware' => 'auth'],
     function () {
+        Route::get('/admin/password-change', 'Account\PasswordController@edit')->name('password.change');
+        Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change');
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
     }
@@ -33,7 +35,10 @@ Route::group(
 Route::group(
     ['middleware' => 'auth'],
     function () {
+
         Route::get('/profile', 'Dashboard\DashboardController@index')->name('dashboarduser');
+        Route::get('/pegawai/password-change', 'Account\PasswordPegawaiController@edit')->name('password-pegawai.change');
+        Route::patch('/pegawai/password-change', 'Account\PasswordPegawaiController@update')->name('password-pegawai.change');
         Route::prefix('pegawai')
             ->namespace('Pegawai')
             // ->middleware(['auth', 'pegawai'])
@@ -42,7 +47,6 @@ Route::group(
                 Route::get('cetak-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@cetak")->name('cetak-slip');
                 Route::get('download-slip/slip-gaji-{id}.PDF', "DashboardPegawaiController@download")->name('download-slip');
                 Route::get('test', "DashboardPegawaiController@cetak")->name('tes-cetak');
-
             });
     }
 );

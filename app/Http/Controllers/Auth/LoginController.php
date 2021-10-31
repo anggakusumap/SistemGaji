@@ -67,7 +67,7 @@ class LoginController extends Controller
         $data = User::where('username', $request->username)->firstorFail();
 
         if (Hash::check($request->password, $data->password)) {
-            return redirect(route('dashboarduser'));
+            return redirect(route('dashboard-pegawai'));
         }
         return redirect('/')->with('message', 'Username atau password salah');
     }

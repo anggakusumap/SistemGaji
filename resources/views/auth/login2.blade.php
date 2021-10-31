@@ -50,11 +50,11 @@
                                         <div class="d-block">
                                             <label for="password" class="control-label">Password</label>
                                             <div class="float-right">
-                                                {{-- @if (Route::has('password.request')) --}}
-                                                <a href="" class="text-small">
+                                                @if (Route::has('password.request'))
+                                                <a href="{{ route('password.request') }}" class="text-small">
                                                     Lupa Password?
                                                 </a>
-                                                {{-- @endif --}}
+                                                @endif
                                             </div>
                                         </div>
                                         <input id="password" type="password" class="form-control" name="password"

@@ -72,7 +72,7 @@ class DashboardPegawaiController extends Controller
 
     //    return $data;
         $tanggal = Carbon::now()->isoFormat('D MMMM Y');
-        $download = view('pages.user.pdf', [
+        return view('pages.user.download', [
             'user' => $user, 
             'gaji' => $data,
             'bulan'=> $bulan,

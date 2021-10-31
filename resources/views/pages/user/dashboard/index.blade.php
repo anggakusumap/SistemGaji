@@ -54,20 +54,26 @@
                                             <img class="dropdown-user-img"
                                                 src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
                                             <div class="dropdown-user-details">
-                                                <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}</div>
+                                                <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}
+                                                </div>
                                                 <div class="dropdown-user-details-email">{{ Auth::user()->role }}
-                                            </div>
+                                                </div>
                                         </h6>
 
 
                                         <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('password-pegawai.change') }}">
+                                            <div class="dropdown-item-icon"><i data-feather="key"></i></div>
+                                            Ganti Password
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
                                             @csrf
                                         </form>
 
@@ -164,11 +170,11 @@
                                                                 <td>{{ substr($item->Gaji->bulan_gaji, 0, 4)}}</td>
                                                                 <td>
                                                                     <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
-                                                                            class="btn btn-google" target='_blank'>
-                                                                        <i class="far fa-file-pdf"></i>Print PDF
+                                                                        class="btn btn-facebook" target='_blank'>
+                                                                        <i class="fas fa-print"></i>Print
                                                                     </a>
                                                                     <a href="/pegawai/download-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
-                                                                            class="btn btn-google" target='_blank'>
+                                                                        class="btn btn-google" target='_blank'>
                                                                         <i class="far fa-file-pdf"></i>Download PDF
                                                                     </a>
                                                                 </td>
@@ -194,7 +200,8 @@
                                                                     <label class="small mb-1" for="inputUsername">Nama
                                                                         Lengkap</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ Auth::user()->nama_pegawai }}"
+                                                                        type="text"
+                                                                        value="{{ Auth::user()->nama_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <!-- Form Row-->
@@ -204,7 +211,8 @@
                                                                         <label class="small mb-1"
                                                                             for="inputFirstName">Pangkat</label>
                                                                         <input class="form-control" id="inputFirstName"
-                                                                            type="text" value="{{ Auth::user()->pangkat }}"
+                                                                            type="text"
+                                                                            value="{{ Auth::user()->pangkat }}"
                                                                             disabled />
                                                                     </div>
                                                                     <!-- Form Group (last name)-->
@@ -212,7 +220,8 @@
                                                                         <label class="small mb-1"
                                                                             for="inputLastName">Golongan</label>
                                                                         <input class="form-control" id="inputLastName"
-                                                                            type="text" value="{{ Auth::user()->golongan }}"
+                                                                            type="text"
+                                                                            value="{{ Auth::user()->golongan }}"
                                                                             disabled />
                                                                     </div>
                                                                 </div>
@@ -221,14 +230,16 @@
                                                                     <label class="small mb-1"
                                                                         for="inputUsername">NIP</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ Auth::user()->nip_pegawai }}"
+                                                                        type="text"
+                                                                        value="{{ Auth::user()->nip_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="small mb-1"
                                                                         for="inputUsername">NPWP</label>
                                                                     <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ Auth::user()->npwp_pegawai }}"
+                                                                        type="text"
+                                                                        value="{{ Auth::user()->npwp_pegawai }}"
                                                                         disabled />
                                                                 </div>
                                                                 <div class="form-group">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.lupa-password')
 
 @section('content')
 <div class="container">

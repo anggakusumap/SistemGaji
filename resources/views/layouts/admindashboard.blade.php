@@ -56,11 +56,16 @@
 
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('password.change') }}">
+                            <div class="dropdown-item-icon"><i data-feather="key"></i></div>
+                            Ganti Password
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                        <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                        Logout
-                    </a>
+                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                            Logout
+                        </a>
+                    </div>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -68,7 +73,7 @@
 
 
 
-                </div>
+                
             </li>
         </ul>
     </nav>
@@ -124,7 +129,7 @@
             <footer class="footer mt-auto ">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12 text-center text-muted">Copyright &copy; 2021 Aplikasi Penggajian KPP
+                        <div class="col-md-12 text-center text-muted">Copyright &copy; 2021  Penggajian KPP
                             Pratama Pajak Gianyar</div>
                     </div>
                 </div>

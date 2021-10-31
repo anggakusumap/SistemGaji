@@ -24,11 +24,11 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        Route::get('/admin/password-change', 'Account\PasswordController@edit')->name('password.change');
-        Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change');
-        Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
-        Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
-        Route::resource('gaji', 'Admin\Penggajian\GajiControllerr');
+        Route::get('/admin/password-change', 'Account\PasswordController@edit')->name('password.change')->middleware(['isAdmin']);
+        Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change')->middleware(['isAdmin']);
+        Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin')->middleware(['isAdmin']);
+        Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr')->middleware(['isAdmin']);
+        Route::resource('gaji', 'Admin\Penggajian\GajiControllerr')->middleware(['isAdmin']);
     }
 );
 
@@ -42,7 +42,6 @@ Route::group(
         Route::patch('/pegawai/password-change', 'Account\PasswordPegawaiController@update')->name('password-pegawai.change');
         Route::prefix('pegawai')
             ->namespace('Pegawai')
-            ->middleware(['isAdmin'])
             // ->middleware(['auth', 'pegawai'])
             ->group(function () {
                 Route::get('/', "DashboardPegawaiController@index")->name('dashboard-pegawai');

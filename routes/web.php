@@ -28,6 +28,8 @@ Route::group(
         Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change');
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
+        Route::resource('gaji', 'Admin\Penggajian\GajiControllerr');
+        
     }
 );
 

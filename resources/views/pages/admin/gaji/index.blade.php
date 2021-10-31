@@ -7,17 +7,15 @@
         <!-- Custom page header alternative example-->
         <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
             <div class="mr-4 mb-3 mb-sm-0">
-                <h1 class="mb-0">Master Data Pegawai</h1>
+                <h1 class="mb-0">Data Gaji Pegawai</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">{{ $today }}</span>
                     · Tanggal {{ $tanggal }} · <span id="clock">12:16 PM</span>
                 </div>
             </div>
             <div class="small">
-                <i class="fas fa-user" aria-hidden="true"></i>
-                Jumlah Pegawai
-                <span class="font-weight-500 text-primary">{{ $jumlah }} Orang</span>
-               
+
+
                 <hr>
                 </hr>
             </div>
@@ -28,8 +26,11 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Pegawai
-                    <a href="{{ route('master-pegawai.create') }}" class="btn btn-sm btn-primary">Tambah Pegawai</a>
+                <div class="card-header">List Gaji Pegawai
+                    <a href="" class="btn btn-sm btn-primary" type="button" data-toggle="modal"
+                        data-target="#Modaltambah">
+                        Tambah Data
+                    </a>
                 </div>
             </div>
             <div class="card-body">
@@ -66,40 +67,45 @@
                                                 No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 60px;">NIP</th>
+                                                style="width: 40px;">Tahun Gaji</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 150px;">Nama Pegawai</th>
+                                                style="width: 80px;">Bulan Gaji</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
-                                                style="width: 60px;">Pangkat</th>
+                                                style="width: 80px;">Jumlah Pegawai</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Age: activate to sort column ascending"
-                                                style="width: 50px;">Golongan</th>
+                                                style="width: 150px;">Grand Total</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Age: activate to sort column ascending"
+                                                style="width: 50px;">Status</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 70px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($pegawai as $item)
+                                        @forelse ($gaji as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                            <td>{{ $item->nip_pegawai }}</td>
-                                            <td>{{ $item->nama_pegawai }}</td>
-                                            <td>{{ $item->pangkat }}</td>
-                                            <td>{{ $item->golongan }}</td>
+                                            <td>{{ date('Y', strtotime($item->bulan_gaji)) }}</td>
+                                            <td>{{ date('F', strtotime($item->bulan_gaji)) }}</td>
+                                            <td>{{ $item->detailgaji_count }} Orang</td>
+                                            <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
+                                            <td>{{ $item->status_penerimaan }}</td>
                                             <td>
-                                                <a href="{{ route('master-pegawai.show', $item->id) }}"
+                                                <a href="{{ route('gaji.show', $item->id_gaji_pegawai) }}"
                                                     class="btn btn-secondary btn-datatable">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('master-pegawai.edit', $item->id) }}"
+                                                <a href="{{ route('gaji.edit', $item->id_gaji_pegawai) }}"
                                                     class="btn btn-primary btn-datatable">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalhapus-{{ $item->id_gaji_pegawai }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -118,8 +124,52 @@
     </div>
 </main>
 
-@forelse ($pegawai as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Gaji Pegawai</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                
+                <div class="modal-body">
+                    <label class="small mb-1">Tentukan Tanggal dan Tahun Bayar Gaji Pegawai</label>
+                    {{-- <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"><i
+                            class="far fa-times-circle"></i>
+                        <span class="small">Error! Terdapat Data yang Masih Kosong!</span>
+                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div> --}}
+                    <hr></hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="bulan_gaji">Bulan dan Tahun Bayar</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" id="bulan_gaji" type="month" name="bulan_gaji">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="small mb-1" for="excel">Upload File Excel</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" id="excel" type="file" name="excel" accept=".xlsx, .xls, .csv" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Selanjutnya!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@forelse ($gaji as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -128,11 +178,12 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('master-pegawai.destroy', $item->id) }}" method="POST" class="d-inline">
+            <form action="{{ route('gaji.destroy', $item->id_gaji_pegawai) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Pegawai Atas Nama
-                    <b>{{ $item->nama_pegawai }}</b>?
+                <div class="modal-body text-center">Apakah Anda Yakin Menghapus Data Gaji Pegawai pada Bulan
+                    <b>{{ date('F', strtotime($item->bulan_gaji)) }} </b> , Tahun
+                    <b>{{ date('Y', strtotime($item->bulan_gaji)) }}</b> ?
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -176,12 +227,13 @@
             min = '0' + min;
         }
 
-        if (sec <script 10) {
+        if (sec < script 10) {
             sec = '0' + sec;
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
+
 </script>
 
 @endsection

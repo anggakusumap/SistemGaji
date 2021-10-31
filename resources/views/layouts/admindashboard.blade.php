@@ -85,43 +85,14 @@
                     <div class="nav accordion" id="accordionSidenav">
 
                         <div class="sidenav-menu-heading">Dashboard</div>
-                        <a class="nav-link" href="{{ route('dashboardadmin')}}">
-                            <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sidenav-menu-heading">Master Data</div>
-                        <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                            data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Master Data
-                            <div class="sidenav-collapse-arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
-                        </a>
-                        <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
-                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                <a class="nav-link" href="{{ route('master-pegawai.index') }}">
-                                    Pegawai
-                                </a>
-                                <a class="nav-link">
-                                    Golongan
-                                </a>
-                                <a class="nav-link">
-                                    Jabatan
-                                </a>
-                                <a class="nav-link" href="">
-                                    Unit Kerja
-                                </a>
-                                <a class="nav-link" href="">
-                                    PTKP
-                                </a>
-
-                            </nav>
-                        </div>
-                        <div class="sidenav-menu-heading">Penggajian</div>
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{ route('gaji.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-calculator"></i></div>
                             Data Gaji Pegawai
+                        </a>
+                        <div class="sidenav-menu-heading">Master Data</div>
+                        <a class="nav-link" href="{{ route('master-pegawai.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-users"></i></div>
+                            Pegawai
                         </a>
                         <div class="sidenav-menu-heading">Logout Account</div>
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

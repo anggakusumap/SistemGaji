@@ -32,8 +32,10 @@ class DetailGajipegawai extends Model
         'pph_pasal_21',
         'jumlah_potongan',
         'jumlah_bersih_gaji',
-        'potongan_lainnya',
+        'tunjangan_kinerja',
         'jumlah_potongan_lainnya',
+        'penerimaan_total',
+        'nama'
     ];
 
     protected $hidden = [
@@ -47,6 +49,7 @@ class DetailGajipegawai extends Model
         return $this->belongsTo(User::class,'id','id');
     }
     
+
     public function Gaji(){
         return $this->belongsTo(Gajipegawai::class,'id_gaji_pegawai','id_gaji_pegawai');
     }

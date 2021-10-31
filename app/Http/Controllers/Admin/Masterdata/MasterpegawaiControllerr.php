@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin\Masterdata;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request\Pegawairequest;
 use App\Model\Admin\Pegawai;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MasterpegawaiControllerr extends Controller
 {
@@ -17,8 +20,11 @@ class MasterpegawaiControllerr extends Controller
     public function index()
     {
         $pegawai = User::get();
+        $jumlah = User::count();
+        $today = Carbon::now()->isoFormat('dddd');
+        $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai'));
+        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai','jumlah','today','tanggal'));
     }
 
     /**
@@ -28,7 +34,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function create()
     {
-        //
+        $pegawai = User::get();
+
+        return view('pages.admin.masterdata.pegawai.create', compact('pegawai'));
     }
 
     /**
@@ -37,9 +45,21 @@ class MasterpegawaiControllerr extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Pegawairequest $request)
     {
-        //
+        $user = new User;
+        $user->nama_pegawai = $request->nama_pegawai;
+        $user->nip_pegawai = $request->nip_pegawai;
+        $user->pangkat = $request->pangkat;
+        $user->golongan = $request->golongan;
+        $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->no_telp = $request->no_telp;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('master-pegawai.index')->with('messageberhasil', 'Data Pegawai Berhasil ditambahkan');
     }
 
     /**
@@ -50,7 +70,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('pages.admin.masterdata.pegawai.detail', compact('user'));
     }
 
     /**
@@ -61,7 +83,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('pages.admin.masterdata.pegawai.edit', compact('user'));
     }
 
     /**
@@ -73,7 +97,18 @@ class MasterpegawaiControllerr extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->nama_pegawai = $request->nama_pegawai;
+        $user->nip_pegawai = $request->nip_pegawai;
+        $user->pangkat = $request->pangkat;
+        $user->golongan = $request->golongan;
+        $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->no_telp = $request->no_telp;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
     }
 
     /**
@@ -84,6 +119,9 @@ class MasterpegawaiControllerr extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('messagehapus','Data Pegawai Berhasil Terhapus');
     }
 }

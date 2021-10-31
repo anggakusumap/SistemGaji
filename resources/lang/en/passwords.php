@@ -14,7 +14,7 @@ return [
     */
 
     'reset' => 'Kata sandi Anda telah disetel ulang!',
-    'sent' => 'Kami telah mengirim email tautan reset kata sandi Anda!',
+    'sent' => 'Kami telah mengirim email tautan reset kata sandi Anda, periksa folder Inbox atau Spam.',
     'throttled' => 'Please wait before retrying.',
     'token' => 'Token pengaturan ulang kata sandi ini tidak valid.',
     'user' => "Kami tidak dapat menemukan pengguna dengan alamat email tersebut.",

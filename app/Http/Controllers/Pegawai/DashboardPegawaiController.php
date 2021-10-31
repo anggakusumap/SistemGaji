@@ -81,7 +81,7 @@ class DashboardPegawaiController extends Controller
 
 
         // instantiate and use the dompdf class
-        $options = new Options();
+        $options = new Option();
         $options->set('isRemoteEnabled', true);
         $dompdf = new Dompdf($options);
 

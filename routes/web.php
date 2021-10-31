@@ -26,6 +26,8 @@ Route::group(
     function () {
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
+        Route::resource('gaji', 'Admin\Penggajian\GajiControllerr');
+        
     }
 );
 

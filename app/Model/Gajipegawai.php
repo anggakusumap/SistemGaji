@@ -29,7 +29,7 @@ class Gajipegawai extends Model
         return $this->belongsToMany(User::class,'tb_detail_gaji_pegawai','id_gaji_pegawai','id')
                     ->withPivot('gaji_pokok','tunjangan_istrisuami','tunjangan_anak','tunjangan_jabatan_struktural','tunjangan_jabatan_fungsional',
                     'tunjangan_umum','tunjangan_beras','tunjangan_pph','pembulatan','jumlah_kotor','iuran_wajib','bpjs','sewa_rumah','pph_pasal_21',
-                    'jumlah_potongan','jumlah_bersih_gaji','potongan_lainnya','jumlah_potongan_lainnya');
+                    'jumlah_potongan','jumlah_bersih_gaji','tunjangan_kinerja','jumlah_potongan_lainnya','penerimaan_total','nama');
     }
     public function Detailgaji(){
         return $this->hasMany(DetailGajipegawai::class, 'id_gaji_pegawai');

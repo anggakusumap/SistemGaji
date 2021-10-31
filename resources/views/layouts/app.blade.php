@@ -60,7 +60,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('password.edit') }}">
+                                <a class="dropdown-item" href="">
                                     <div class="dropdown-item-icon"><i data-feather="key"></i></div>
                                     Ganti Password
                                 </a>

@@ -184,12 +184,16 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="password">Password</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="password" name="password" type="text"
-                                                placeholder="Input Password Akun Pegawai" value="{{ $user->password }}"
-                                                class="form-control @error('password') is-invalid @enderror" required/>
-                                            @error('password')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1 mr-1" for="role">Role</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select name="role" id="role" class="form-control"
+                                                value="{{ $user->role }}"
+                                                class="form-control @error('role') is-invalid @enderror">
+                                                <option value="{{ $user->role }}">{{ $user->role }}</option>
+                                                <option disabled>----------------</option>
+                                                <option value="PEGAWAI">Pegawai</option>
+                                                <option value="ADMIN">Admin</option>
+                                            </select>
+                                            @error('role')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>

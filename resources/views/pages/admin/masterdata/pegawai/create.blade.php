@@ -35,7 +35,7 @@
                             <div class="wizard-step-text-details">Formulir Identitas Diri</div>
                         </div>
                     </a>
-                </a>
+                    </a>
                 </div>
             </div>
             {{-- CARD 1 --}}
@@ -54,15 +54,16 @@
                                     </button>
                                 </div>
                                 @endif
-                                
+
                                 <form action="{{ route('master-pegawai.store') }}" method="POST">
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-8">
-                                            <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap Pegawai</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="nama_pegawai" type="text" name="nama_pegawai"
-                                                placeholder="Input Nama Lengkap Pegawai" value="{{ old('nama_pegawai') }}"
+                                            <label class="small mb-1 mr-1" for="nama_pegawai">Nama Lengkap
+                                                Pegawai</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="nama_pegawai" type="text"
+                                                name="nama_pegawai" placeholder="Input Nama Lengkap Pegawai"
+                                                value="{{ old('nama_pegawai') }}"
                                                 class="form-control @error('nama_pegawai') is-invalid @enderror" />
                                             @error('nama_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
@@ -79,7 +80,8 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="pangkat">Pangkat</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="pangkat">Pangkat</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="pangkat" id="pangkat" class="form-control"
                                                 value="{{ old('pangkat') }}"
                                                 class="form-control @error('pangkat') is-invalid @enderror">
@@ -106,7 +108,8 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="golongan">Golongan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="golongan">Golongan</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="golongan" id="golongan" class="form-control"
                                                 value="{{ old('golongan') }}"
                                                 class="form-control @error('golongan') is-invalid @enderror">
@@ -160,36 +163,63 @@
                                     <hr>
                                     <h5 class="text-primary mt-5">Akun Pegawai</h5>
                                     <h6 class="card-title mb-2">Input Formulir Akun Pegawai</h6>
-                                    <div class="form-group">
-                                        <label class="small mb-1 mr-1" for="email">Email Pegawai</label><span
-                                            class="mr-4 mb-3" style="color: red">*</span>
-                                        <input class="form-control" id="email" type="email" name="email"
-                                            placeholder="Input Email Pegawai" value="{{ old('email') }}"
-                                            class="form-control @error('email') is-invalid @enderror" />
-                                        @error('email')<div class="text-danger small mb-1">{{ $message }}
-                                        </div> @enderror
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label class="small mb-1 mr-1" for="email">Email</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <input class="form-control" id="email" type="email" name="email"
+                                                placeholder="Input Email Pegawai" value="{{ old('email') }}"
+                                                class="form-control @error('email') is-invalid @enderror" />
+                                            @error('email')
+                                            <div class="text-danger small mb-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="username">Username</label><span
                                                 class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="username" name="username" type="text"
-                                                placeholder="Input Username Akun Pegawai" value="{{ old('username') }}"
+                                            <input class="form-control" id="username" type="text" name="username"
+                                                placeholder="Input Username Pegawai" value="{{ old('username') }}"
                                                 class="form-control @error('username') is-invalid @enderror" />
                                             @error('username')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="password">Password</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="password" name="password" type="password"
-                                                placeholder="Input Password Akun Pegawai" value="{{ old('password') }}"
-                                                class="form-control @error('password') is-invalid @enderror" />
-                                            @error('password')<div class="text-danger small mb-1">{{ $message }}
+                                            <label class="small mb-1 mr-1" for="role">Role</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select name="role" id="role" class="form-control"
+                                                value="{{ old('role') }}"
+                                                class="form-control @error('role') is-invalid @enderror">
+                                                <option value="{{ old('role')}}"> Pilih Hak Akses</option>
+                                                <option value="PEGAWAI">Pegawai</option>
+                                                <option value="ADMIN">Admin</option>
+                                            </select>
+                                            @error('role')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="password" class="d-block">Password</label>
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Input Password" name="password" required
+                                                autocomplete="new-password">
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="password-confirm" class="d-block">Password Confirmation</label>
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                placeholder="Input Konfirmasi Password" name="password_confirmation" required
+                                                autocomplete="new-password">
+                                        </div>
+                                    </div>
 
 
                                     <hr class="my-4" />

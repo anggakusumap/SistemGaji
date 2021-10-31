@@ -42,6 +42,7 @@ Route::group(
         Route::patch('/pegawai/password-change', 'Account\PasswordPegawaiController@update')->name('password-pegawai.change');
         Route::prefix('pegawai')
             ->namespace('Pegawai')
+            ->middleware(['isAdmin'])
             // ->middleware(['auth', 'pegawai'])
             ->group(function () {
                 Route::get('/', "DashboardPegawaiController@index")->name('dashboard-pegawai');

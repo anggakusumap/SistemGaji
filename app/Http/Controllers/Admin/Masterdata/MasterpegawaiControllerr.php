@@ -24,7 +24,7 @@ class MasterpegawaiControllerr extends Controller
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai','jumlah','today','tanggal'));
+        return view('pages.admin.masterdata.pegawai.pegawai', compact('pegawai', 'jumlah', 'today', 'tanggal'));
     }
 
     /**
@@ -56,7 +56,8 @@ class MasterpegawaiControllerr extends Controller
         $user->no_telp = $request->no_telp;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('master-pegawai.index')->with('messageberhasil', 'Data Pegawai Berhasil ditambahkan');
@@ -106,9 +107,8 @@ class MasterpegawaiControllerr extends Controller
         $user->no_telp = $request->no_telp;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
         $user->save();
-
     }
 
     /**
@@ -122,6 +122,6 @@ class MasterpegawaiControllerr extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->back()->with('messagehapus','Data Pegawai Berhasil Terhapus');
+        return redirect()->back()->with('messagehapus', 'Data Pegawai Berhasil Terhapus');
     }
 }

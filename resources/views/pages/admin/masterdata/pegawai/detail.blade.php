@@ -97,9 +97,9 @@
                                                 placeholder="Input Nama Lengkap Pegawai" value="{{ $user->username }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="password">Password</label>
-                                                <input class="form-control" id="nip_pegawai" type="text" name="nip_pegawai"
-                                                placeholder="Input Nama Lengkap Pegawai" value="{{ $user->password }}" readonly>
+                                            <label class="small mb-1 mr-1" for="role">Role</label>
+                                            <input class="form-control" id="role" type="text" name="role"
+                                                placeholder="Input Hak Akses" value="{{ $user->role }}" readonly>
                                         </div>
                                     </div>
                                 </form>

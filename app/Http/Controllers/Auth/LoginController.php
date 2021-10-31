@@ -27,25 +27,18 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *
-     * @var string
-     */
-    public function redirectTo()
-    {
-        $role = Auth::user()->role;
-        switch ($role) {
-            case 'ADMIN':
-                return '/gaji';
-                break;
-            case 'PEGAWAI':
-                return '/pegawai';
-                break;
+    //  *
+    //  * @var string
+    //  */
+    // public function redirectTo()
+    // {
+    //     if (Auth::user()->role == 'ADMIN') {
+    //         $this->redirectTo = route('dashboard-pegawai');
+    //     }
 
-            default:
-                return '/admin';
-                break;
-        }
-    }
+    //     $this->redirectTo = route('dashboard-pegawai');
+    //     return $this->redirectTo;
+    // }
 
     /**
      * Create a new controller instance.
@@ -64,12 +57,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $data = User::where('username', $request->username)->firstorFail();
-
-        if (Hash::check($request->password, $data->password)) {
-            return redirect(route('dashboard-pegawai'));
+        if (Auth::user()->role == 'ADMIN') {
+            return redirect('/gaji');
         }
-        return redirect('/')->with('message', 'Username atau password salah');
+
+        return redirect('/pegawai');
     }
 
     public function username()

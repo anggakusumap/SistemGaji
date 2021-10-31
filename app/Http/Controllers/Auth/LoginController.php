@@ -35,7 +35,7 @@ class LoginController extends Controller
         $role = Auth::user()->role;
         switch ($role) {
             case 'ADMIN':
-                return '/admin';
+                return '/gaji';
                 break;
             case 'PEGAWAI':
                 return '/pegawai';

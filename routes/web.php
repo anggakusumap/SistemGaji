@@ -29,7 +29,6 @@ Route::group(
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin');
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr');
         Route::resource('gaji', 'Admin\Penggajian\GajiControllerr');
-        
     }
 );
 
@@ -52,5 +51,3 @@ Route::group(
             });
     }
 );
-
-Route::get('/home', 'HomeController@index')->name('home');

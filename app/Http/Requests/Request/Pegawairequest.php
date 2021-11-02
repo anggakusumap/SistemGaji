@@ -30,9 +30,9 @@ class Pegawairequest extends FormRequest
             'pangkat' => 'required|string',
             'golongan' => 'required|string',
             'username' => 'required|unique:users,username|min:6|max:12',
-            'password' => 'required|min:6|max:12',
+            'password' => 'required|min:6|max:20',
             'email' => 'required|email|unique:users,email',
-            'role' => 'required|email',
+            'role' => 'required',
 
         ];
     }
@@ -67,6 +67,8 @@ class Pegawairequest extends FormRequest
             'email.required' => 'Error! Anda Belum Mengisi Email Pegawai',
             'email.unique' => 'Error! Email Pegawai Sudah Ada',
             'email.email' => 'Error! Harus Berisikan Character Email @',
+
+            'role' => 'Error! Anda Belum Memilih Role Pegawai'
 
         ];
     }

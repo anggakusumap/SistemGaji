@@ -133,30 +133,32 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('gaji.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('gaji.store') }}" id="form" method="POST" enctype="multipart/form-data">
                 @csrf
-                
                 <div class="modal-body">
-                    <label class="small mb-1">Tentukan Tanggal dan Tahun Bayar Gaji Pegawai</label>
-                    {{-- <div class="alert alert-danger" id="alertdatakosong" role="alert" style="display:none"><i
-                            class="far fa-times-circle"></i>
-                        <span class="small">Error! Terdapat Data yang Masih Kosong!</span>
-                        <button class="close" type="button" onclick="$(this).parent().hide()" aria-label="Close">
+                    <label class="small mb-1">Isi Formulir Berikut</label>
+
+                    @if($errors->any())
+                    <div class="alert alert-danger" role="alert"> <i class="fas fa-times"></i>
+                        {{$errors->first()}}
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
-                    </div> --}}
-                    <hr></hr>
+                    </div>
+                    @endif
+
+                    <hr>
+                    </hr>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="bulan_gaji">Bulan dan Tahun Bayar</label><span
                             class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" id="bulan_gaji" type="month" name="bulan_gaji">
+                        <input class="form-control" id="bulan_gaji" type="month" name="bulan_gaji" value="{{ old('bulan_gaji') }}" required>
                     </div>
                     <div class="form-group">
-                        <div class="form-group">
-                            <label class="small mb-1" for="excel">Upload File Excel</label><span
-                            class="mr-4 mb-3" style="color: red">*</span>
-                            <input class="form-control" id="excel" type="file" name="excel" accept=".xlsx, .xls, .csv" required>
-                        </div>
+                        <label class="small mb-1 mr-1" for="excel">Upload File Excel</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" id="excel" type="file" name="excel" accept=".xlsx, .xls, .csv"
+                            value="{{ old('excel') }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -197,7 +199,17 @@
 
 @endforelse
 
+
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+<button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
+    Modal</button>
+@endif
 <script>
+    $(document).ready(function () {
+        $('#validasierror').click();
+    });
+
     setInterval(displayclock, 500);
 
     function displayclock() {
@@ -227,12 +239,45 @@
             min = '0' + min;
         }
 
-        if (sec < script 10) {
+        if (sec <  10) {
             sec = '0' + sec;
         }
 
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
+
+    // function submit1(event) {
+    //     var _token = $('#form').find('input[name="_token"]').val()
+    //     var bulan_gaji = $('#bulan_gaji').val()
+    //     var excel = $('#excel').val()
+
+    //     var data = {
+    //         _token: _token,
+    //         bulan_gaji: bulan_gaji,
+    //         excel: excel
+    //     }
+
+    //     if (bulan_gaji == '' | bulan_gaji == 0 ) {
+    //         $('#alertbulan').show()
+    //     }else if (excel == '' | excel == 0) {
+    //         $('#alertexcel').show()
+    //     } else {
+    //         $.ajax({
+    //             method: 'post',
+    //             url: "/gaji",
+    //             data: data,
+    //             success: function (response) {
+    //                 window.location.href = '/gaji/' + response.id_gaji_pegawai + '/edit'
+    //             },
+    //             error: function (error) {
+    //                 console.log(error)
+    //                 alert(error.responseJSON.message)
+    //             }
+
+    //         });
+    //     }
+
+    // };
 
 </script>
 

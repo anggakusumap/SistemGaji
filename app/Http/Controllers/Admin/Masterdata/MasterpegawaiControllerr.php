@@ -109,6 +109,8 @@ class MasterpegawaiControllerr extends Controller
         $user->username = $request->username;
         $user->role = $request->role;
         $user->save();
+
+        return redirect()->route('master-pegawai.index')->with('messageberhasil', 'Data Pegawai Berhasil diUbah');
     }
 
     /**

@@ -56,7 +56,8 @@
                                 @endif
                                 <h3 class="text-primary">Informasi Pegawai</h3>
                                 <h5 class="card-title">Input Formulir Data Diri Pegawai</h5>
-                                <form action="{{ route('master-pegawai.store') }}" method="POST">
+                                <form action="{{ route('master-pegawai.update', $user->id) }}" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <div class="form-row">
                                         <div class="form-group col-md-8">

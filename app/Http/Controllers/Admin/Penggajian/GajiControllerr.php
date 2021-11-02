@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin\Penggajian;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request\Gajistore;
 use App\Imports\FileImport;
 use App\Model\DetailGajipegawai;
 use App\Model\Gajipegawai;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -24,10 +26,6 @@ class GajiControllerr extends Controller
 
         $gaji = Gajipegawai::withCount('Detailgaji')->get();
       
-
-       
-      
-
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
@@ -41,7 +39,7 @@ class GajiControllerr extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -50,34 +48,25 @@ class GajiControllerr extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Gajistore $request)
     {
         // return $request;
 
-        $gaji = new Gajipegawai;
-        $gaji->bulan_gaji = Carbon::create($request->bulan_gaji)->startOfMonth();
-        $gaji->save();
+        $data = Gajipegawai::where('bulan_gaji', Carbon::create($request->bulan_gaji)->startOfMonth())->first();
 
-       
-       
-
-      
-
-        if ($request->hasFile('excel')!=null) {
-            $import_file = $request->file('excel');
-        }
-
-        Excel::import(new FileImport, $import_file);
-
-
-        // $file = $request->file('file');
-        // Excel::import(new FileImport, $file);
-        // Excel::import(new FileImport, request()->file('file'));
-        // Excel::import(new FileImport, public_path('/DataPegawai/'.$namaFile));
+        if (empty($data)){
+            $gaji = new Gajipegawai;
+            $gaji->bulan_gaji = Carbon::create($request->bulan_gaji)->startOfMonth();
+            $gaji->save();
     
-
-        return back()->withStatus('Excel File Imported successfully');
-
+            if ($request->hasFile('excel')!=null) {
+                $import_file = $request->file('excel');
+            }
+            Excel::import(new FileImport, $import_file);
+            return redirect()->route('gaji.edit', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Berhasil Dilakukan');
+        }else{
+            return redirect()->back()->with('error_code', 5)->withErrors(['msg' => 'Error!Tahun dan Bulan Gaji Sudah Dibayarkan']);;
+        }
     }
 
     /**
@@ -99,7 +88,9 @@ class GajiControllerr extends Controller
      */
     public function edit($id)
     {
-        //
+        $gaji = Gajipegawai::with('Detailgaji.User')->withCount('Detailgaji')->find($id);
+
+        return view('pages.admin.gaji.create', compact('gaji'));
     }
 
     /**
@@ -109,9 +100,29 @@ class GajiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_gaji_pegawai)
     {
-        //
+        $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
+        
+        $temp = 0;
+        $data = [];
+
+        foreach($request->detailgaji as $key=>$item){
+            $temp = $temp + $item['penerimaan_total'];
+            
+            if(!$item['id']){
+                $nama = User::where('nama_pegawai', $item['nama'])->first();
+                $data[] = $nama->id;
+            }
+        }
+        $gaji->grand_total_gaji = $temp;
+        $gaji->status_penerimaan = 'Belum Diterima';
+        $gaji->save();
+
+        $gaji->Detailpegawai()->sync(array_merge($data, $request->detailgaji ?? []));
+        // $gaji->Detailpegawai()->sync($request->detailgaji);
+      
+        return $request;
     }
 
     /**
@@ -120,9 +131,10 @@ class GajiControllerr extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_gaji_pegawai)
     {
-        $gaji = Gajipegawai::find($id);
+        $gaji = Gajipegawai::find($id_gaji_pegawai);
+        DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
         $gaji->delete();
 
         return redirect()->back()->with('messagehapus','Berhasil Menghapus Data Gaji Pegawai');

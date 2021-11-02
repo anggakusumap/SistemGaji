@@ -206,18 +206,25 @@
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Input Password" name="password" required
                                                 autocomplete="new-password">
+                                                <small id="passwordHelpInline" class="text-muted">
+                                                    Must be 6-20 characters long.
+                                                  </small>
 
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
+
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="password-confirm" class="d-block">Password Confirmation</label>
                                             <input id="password-confirm" type="password" class="form-control"
                                                 placeholder="Input Konfirmasi Password" name="password_confirmation" required
                                                 autocomplete="new-password">
+                                                <small id="passwordHelpInline" class="text-muted">
+                                                    Must be same with password.
+                                                  </small>
                                         </div>
                                     </div>
 

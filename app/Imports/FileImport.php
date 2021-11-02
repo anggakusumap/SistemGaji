@@ -5,65 +5,69 @@ namespace App\Imports;
 use App\Model\DetailGajipegawai;
 use App\Model\Gajipegawai;
 use App\User;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-
-class FileImport implements  ToModel, WithHeadingRow, WithCalculatedFormulas
+class FileImport implements  
+        ToModel, 
+        WithHeadingRow, 
+        WithCalculatedFormulas, 
+        WithBatchInserts,
+        WithChunkReading
 {
   
-
-    // private $gaji;
-
-    // public function __construct()
-    // {
-    //     // $this->gaji = Gajipegawai::latest()->pluck('id_gaji_pegawai')->get();
-    //     $this->gaji = Gajipegawai::latest()->first()->id;
-       
-
-    // }
-
    /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+  
     
     public function model(array $row)
     {
         $data = Gajipegawai::latest('id_gaji_pegawai')->first();
         $tes = $data->id_gaji_pegawai;
 
-        $nama = User::where('nama',$row['nama'])->first();
-        $id_pegawai = $nama->id_pegawai;
+        $user = User::where('nama_pegawai', $row['nama'])->first();
+        
 
         return new DetailGajipegawai([
             'id_gaji_pegawai' => $tes,
-            'id' => $id_pegawai,
+            'id' => $user->id ?? null,
             'nama' => $row['nama'],
-            'gaji_pokok' => $row['gajipokok'],
-            'tunjangan_istrisuami' => $row['tunjanganistri'],
-            'tunjangan_anak' => $row['tunjangananak'],
-            'tunjangan_umum' => $row['tunjanganumum'],
-            'tunjangan_jabatan_struktural' => $row['tunjanganstruktural'],
-            'tunjangan_jabatan_fungsional' => $row['tunjanganfungsional'],
-            'pembulatan'=> $row['pembulatan'],
-            'tunjangan_beras' => $row['tunjanganberas'],
-            'tunjangan_pph' => $row['tunjanganpph'],
-            'jumlah_kotor' => $row['jumlahkotor'],
-            'iuran_wajib' => $row['iwp'],
-            'bpjs' => $row['bpjs'],
-            'pph_pasal_21' => $row['potonganpph'],
-            'sewa_rumah' => $row['potongansewarumah'],
-            'jumlah_potongan' => $row['jumlahpotongan'],
-            'jumlah_bersih_gaji' => $row['bersih'],
-            'jumlah_potongan_lainnya' => $row['penerimaanlainlain'],
-            'penerimaan_total' => $row['penerimaantotal'],
-            'tunjangan_kinerja' => $row['tunjangankinerja']
+            'gaji_pokok' => $row['gajipokok'] ?? 0,
+            'tunjangan_istrisuami' => $row['tunjanganistri'] ?? 0,
+            'tunjangan_anak' => $row['tunjangananak']?? 0,
+            'tunjangan_umum' => $row['tunjanganumum']?? 0,
+            'tunjangan_jabatan_struktural' => $row['tunjanganstruktural']?? 0,
+            'tunjangan_jabatan_fungsional' => $row['tunjanganfungsional']?? 0,
+            'pembulatan'=> $row['pembulatan']?? 0,
+            'tunjangan_beras' => $row['tunjanganberas']?? 0,
+            'tunjangan_pph' => $row['tunjanganpph']?? 0,
+            'jumlah_kotor' => $row['jumlahkotor']?? 0,
+            'iuran_wajib' => $row['iwp']?? 0,
+            'bpjs' => $row['bpjs']?? 0,
+            'pph_pasal_21' => $row['potonganpph']?? 0,
+            'sewa_rumah' => $row['potongansewarumah']?? 0,
+            'jumlah_potongan' => $row['jumlahpotongan']?? 0,
+            'jumlah_bersih_gaji' => $row['bersih']?? 0,
+            'jumlah_potongan_lainnya' => $row['penerimaanlainlain']?? 0,
+            'penerimaan_total' => $row['penerimaantotal']?? 0,
+            'tunjangan_kinerja' => $row['tunjangankinerja']?? 0
         ]);
+    }
+
+    public function batchSize(): int
+    {
+        return 200;
+    }
+
+    public function chunkSize(): int
+    {
+        return 100;
     }
 
    

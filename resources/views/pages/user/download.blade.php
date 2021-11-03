@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style media="print">
         @page {
             size: auto;
@@ -39,7 +42,8 @@
 </head>
 
 <body>
-    <center>
+    <div id="element">
+         <center>
         <table width="625" style="margin-top: 40px;">
             <tr>
                 <td><img src="{{ asset("logosurat.PNG") }}" width="105" height="105"></td>
@@ -133,9 +137,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->gaji_pokok == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->gaji_pokok,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->gaji_pokok,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -145,9 +149,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_istrisuami == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_istrisuami,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_istrisuami,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -157,9 +161,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_anak == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_anak,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_anak,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -167,11 +171,11 @@
                 <td width="220">Tunjangan Jabatan Struktural</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">
+               <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_jabatan_struktural == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_struktural,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_struktural,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -181,9 +185,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -193,9 +197,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_umum == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_umum,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_umum,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -205,9 +209,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_beras == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_beras,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_beras,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -217,9 +221,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_pph == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_pph,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_pph,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -229,9 +233,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->pembulatan == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->pembulatan,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->pembulatan,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -250,9 +254,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->jumlah_kotor == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->jumlah_kotor,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_kotor,0,',','.') }},-
                     @endif
                 </td>
         </table>
@@ -267,9 +271,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->iuran_wajib == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->iuran_wajib,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->iuran_wajib,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -279,9 +283,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->bpjs == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->bpjs,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->bpjs,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -291,9 +295,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->sewa_rumah == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->sewa_rumah,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->sewa_rumah,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -303,9 +307,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->pph_pasal_21 == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->pph_pasal_21,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->pph_pasal_21,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -324,9 +328,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->jumlah_potongan == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->jumlah_potongan,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_potongan,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -339,19 +343,18 @@
             </tr>
         </table>
 
-        @if ( $gaji->Detailgaji->first()->tunjangan_kinerja == 0 &&
-        $gaji->Detailgaji->first()->jumlah_potongan_lainnya==0)
+        @if ( $gaji->Detailgaji->first()->tunjangan_kinerja == 0 && $gaji->Detailgaji->first()->jumlah_potongan_lainnya==0)
         <table style="border-right-width: 10px; border-top-width: 0px;">
             <tr class="text2">
                 <td width="390">Jumlah Bersih Gaji :</td>
                 <td width="5"> <b>Rp.</b>
                 </td>
                 <td width="130" style="text-align: right"><b>
-                        @if ($gaji->Detailgaji->first()->jumlah_bersih_gaji == 0)
+                    @if ($gaji->Detailgaji->first()->jumlah_bersih_gaji == 0)
                         ,-
-                        @else
+                    @else
                         {{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-
-                        @endif
+                    @endif
                     </b>
                 </td>
             </tr>
@@ -371,9 +374,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->jumlah_bersih_gaji == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -384,9 +387,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->tunjangan_kinerja == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->tunjangan_kinerja,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_kinerja,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -397,9 +400,9 @@
                 </td>
                 <td width="130" style="text-align: right">
                     @if ($gaji->Detailgaji->first()->jumlah_potongan_lainnya == 0)
-                    ,-
+                        ,-
                     @else
-                    {{ number_format($gaji->Detailgaji->first()->jumlah_potongan_lainnya,0,',','.') }},-
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_potongan_lainnya,0,',','.') }},-
                     @endif
                 </td>
             </tr>
@@ -409,11 +412,11 @@
                 <td width="5"> Rp.
                 </td>
                 <td width="130" style="text-align: right"><b>
-                        @if ($gaji->Detailgaji->first()->penerimaan_total == 0)
+                    @if ($gaji->Detailgaji->first()->penerimaan_total == 0)
                         ,-
-                        @else
+                    @else
                         {{ number_format($gaji->Detailgaji->first()->penerimaan_total,0,',','.') }},-
-                        @endif
+                    @endif
                     </b>
                 </td>
             </tr>
@@ -427,6 +430,10 @@
         </table>
 
         @endif
+
+
+
+
         <br>
         <br>
         <br>
@@ -438,6 +445,8 @@
             </tr>
         </table>
     </center>
+    </div>
+
 </body>
 <script type="text/javascript">
     var element = document.getElementById("element")

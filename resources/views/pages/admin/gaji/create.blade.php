@@ -117,16 +117,13 @@
                                                     style="width: 100px;">Penerimaan Total</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                    style="width: 50px;">Edit</th>
+                                                    style="width: 100px;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($gaji->Detailgaji as $item)
                                             <tr role="row" class="odd">
-
-
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.
-                                                </th>
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
 
                                                 @if ($item->User != null)
                                                 <td>{{ $item->User->nama_pegawai }}</td>
@@ -150,6 +147,9 @@
                                                         data-target="#Modaledit-{{ $item->id_detail_gaji }}">
                                                         Edit Data
                                                     </a>
+                                                    <button class="btn-xs btn-danger" id="button_hapus-{{ $item->id_detail_gaji }}" onclick="hapusdata({{ $item->id_detail_gaji }})" type="button">
+                                                       Hapus
+                                                    </button>
 
                                                 </td>
                                             </tr>
@@ -524,8 +524,6 @@
 
                                 @endif
 
-
-
                             </div>
                             <div class="col-6">
                                 <div class="form-group row">
@@ -728,7 +726,7 @@
                         icon: 'success',
                         html: '<h5>Success!</h5>'
                     });
-                    // window.location.href = '/gaji'
+                    window.location.href = '/gaji'
 
                 },
                 error: function (response) {
@@ -744,7 +742,36 @@
 
     }
 
+    function hapusdata(id_detail_gaji) {
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            var table = $('#dataTable').DataTable()
+            var row = $(`#button_hapus-${id_detail_gaji}`).parent().parent()
+            console.log(row)
 
+            console.log(table)
+            table.row(row).remove().draw();
+            modal = $(`#Modaledit-${id_detail_gaji}`).remove()
+
+            var table = $('#dataTable').DataTable()
+            Swal.fire(
+            'Deleted!',
+            'Data Gaji Pegawai Telah Terhapus.',
+            'success'
+            )
+        }
+        })
+        
+      
+    }
 
     function tambah(event, id_detail_gaji) {
         var jumlah_kotor = $(`#jumlah_kotor-${id_detail_gaji}`).val()
@@ -764,11 +791,11 @@
             'color': 'green'
         });
 
-        console.log(nama)
-
         var valid = $(`#valid-${id_detail_gaji}`).html('Data Telah Diperbauri').css({
             'color': 'green'
         });
+        
+        
 
 
 

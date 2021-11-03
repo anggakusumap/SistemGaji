@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Sistem Gaji</title>
+    <title>Data Gaji User</title>
     <link href="{{ url('frontend/dist/css/styles.css')}}" rel="stylesheet" />
-    <link rel="shortcut icon" href="{{ asset('logodjp.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('logo-tok.png') }}">
     <link rel="stylesheet" href="{{ url('/node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
         crossorigin="anonymous" />
-    <link rel="icon" type="image/x-icon" href={{ url('logodjp.jpg')}} />
+    <link rel="icon" type="image/x-icon" href={{ url('logo-tok.png')}} />
     <script data-search-pseudo-elements defer
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous">
@@ -40,23 +40,42 @@
                         <div class="col-6 text-right">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown no-caret mr-4 dropdown-user">
-                                    <span class="small" style="color: white"> Hello,
+                                    <span class="small mr-4 text-muted"> Hello,
                                         <span>{{ Auth::user()->nama_pegawai }}</span></span>
-                                    <a class="btn btn-lg btn-icon btn-transparent-dark dropdown-toggle"
-                                        id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                            class="img-fluid"
-                                            src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
-                                    </a>
+
+                                        @if (Auth::user()->jenis_kelamin == 'Laki-Laki')
+                                        <a class="btn btn-lg btn-icon btn-transparent-dark dropdown-toggle"
+                                            id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                                class="img-fluid" style="background-color: white"
+                                                src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
+                                        </a>
+                                        @else
+                                        <a class="btn btn-lg btn-icon btn-transparent-dark dropdown-toggle"
+                                            id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                                class="img-fluid" style="background-color: white"
+                                                src="/frontend/src/assets/img/freepik/profiles/profile-5.png" />
+                                        </a>
+                                            
+                                        @endif
+                                   
                                     <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up"
                                         aria-labelledby="navbarDropdownUserImage">
                                         <h6 class="dropdown-header d-flex align-items-center">
+                                            @if (Auth::user()->jenis_kelamin == 'Laki-Laki')
                                             <img class="dropdown-user-img"
-                                                src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
+                                            src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
+                                            @else
+                                            <img class="dropdown-user-img"
+                                            src="/frontend/src/assets/img/freepik/profiles/profile-5.png" />
+                                            @endif
+
+                                        
                                             <div class="dropdown-user-details">
                                                 <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}
                                                 </div>
-                                                <div class="dropdown-user-details-email">{{ Auth::user()->role }}
+                                                <div class="dropdown-user-details-email">Role {{ Auth::user()->role }}
                                                 </div>
                                         </h6>
 
@@ -109,184 +128,76 @@
                                     <div class="small">
                                         <div class="h2 text-primary font-weight-300 mb-0">Selamat Datang pada Dashboard!
                                         </div>
-                                        <div class="h4 mb-0 mt-2">{{ Auth::user()->nama_pegawai }}</div>
+                                        <div class="h5 mb-0 mt-2">Nama Pegawai: {{ Auth::user()->nama_pegawai }}</div>
+                                        <div class="h6">Pangkat: {{ Auth::user()->pangkat }}, Golongan: {{ Auth::user()->golongan }}</div>
+                                        
+                                        <div class="small text-muted mt-3 text-right">
+                                            Petunjuk: Klik button print untuk mencetak slip gaji
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <hr class="m-0">
-                        <div class="container">
-                            <!-- Wizard card example with navigation-->
-                            <div class="card">
-                                <div class="card-header border-bottom">
-                                    <!-- Wizard navigation-->
-                                    <div class="nav nav-pills nav-justified flex-column flex-xl-row nav-wizard"
-                                        id="cardTab" role="tablist">
-                                        <!-- Wizard navigation item 1-->
-                                        <a class="nav-item nav-link active" id="wizard1-tab" href="#wizard1"
-                                            data-toggle="tab" role="tab" aria-controls="wizard1" aria-selected="true">
-                                            <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Daftar Slip Gaji</div>
-                                            </div>
-                                        </a>
-                                        <!-- Wizard navigation item 2-->
-                                        <a class="nav-item nav-link" id="wizard2-tab" href="#wizard2" data-toggle="tab"
-                                            role="tab" aria-controls="wizard2" aria-selected="true">
-                                            <div class="wizard-step-text">
-                                                <div class="wizard-step-text-name">Profil Pegawai</div>
-                                            </div>
-                                        </a>
 
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="tab-content" id="cardTabContent">
-                                        <!-- Wizard tab pane item 1-->
-                                        <div class="tab-pane py-5 py-xl-1 fade show active" id="wizard1" role="tabpanel"
-                                            aria-labelledby="wizard1-tab">
-                                            <div class="row justify-content-center">
-                                                <div class="datatable">
-                                                    <table class="table table-bordered table-hover" id="dataTable"
-                                                        width="100%" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th style="width: 30px;">No</th>
-                                                                <th>Nama</th>
-                                                                <th>Bulan</th>
-                                                                <th>Tahun</th>
-                                                                <th>Actions</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($gaji as $item)
-                                                            <tr>
-                                                                <td>{{ $loop->iteration}}</td>
 
-                                                                <td>Slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF</td>
-                                                                <td>{{date('F', mktime(0, 0, 0, (int)substr($item->Gaji->bulan_gaji, 5, 2), 10))}}
-                                                                </td>
-                                                                <td>{{ substr($item->Gaji->bulan_gaji, 0, 4)}}</td>
-                                                                <td>
-                                                                    <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
-                                                                        class="btn btn-facebook" target='_blank'>
-                                                                        <i class="fas fa-print"></i>Print
-                                                                    </a>
-                                                                    <a href="/pegawai/download-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
-                                                                        class="btn btn-google" target='_blank'>
-                                                                        <i class="far fa-file-pdf"></i>Download PDF
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
+                        <div class="card">
 
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Wizard tab pane item 2-->
-                                        <div class="tab-pane py-5 py-xl-1 fade" id="wizard2" role="tabpanel"
-                                            aria-labelledby="wizard2-tab">
-                                            <div class="row justify-content-center">
-                                                <div class="col-xxl-6 col-xl-8">
-                                                    <div class="card mb-4">
-                                                        <div class="card-header">Profile</div>
-                                                        <div class="card-body">
-                                                            <form>
-                                                                <!-- Form Group (username)-->
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1" for="inputUsername">Nama
-                                                                        Lengkap</label>
-                                                                    <input class="form-control" id="inputUsername"
-                                                                        type="text"
-                                                                        value="{{ Auth::user()->nama_pegawai }}"
-                                                                        disabled />
-                                                                </div>
-                                                                <!-- Form Row-->
-                                                                <div class="form-row">
-                                                                    <!-- Form Group (first name)-->
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="small mb-1"
-                                                                            for="inputFirstName">Pangkat</label>
-                                                                        <input class="form-control" id="inputFirstName"
-                                                                            type="text"
-                                                                            value="{{ Auth::user()->pangkat }}"
-                                                                            disabled />
-                                                                    </div>
-                                                                    <!-- Form Group (last name)-->
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="small mb-1"
-                                                                            for="inputLastName">Golongan</label>
-                                                                        <input class="form-control" id="inputLastName"
-                                                                            type="text"
-                                                                            value="{{ Auth::user()->golongan }}"
-                                                                            disabled />
-                                                                    </div>
-                                                                </div>
+                        </div>
+                        <div class="card-body mr-5 ml-5">
+                            <div class="row justify-content-center">
+                                <div class="datatable">
+                                    <table class="table table-bordered table-hover" id="dataTable" width="100%"
+                                        cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30px;">No</th>
+                                                <th>Nama</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($gaji as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration}}.</td>
 
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1"
-                                                                        for="inputUsername">NIP</label>
-                                                                    <input class="form-control" id="inputUsername"
-                                                                        type="text"
-                                                                        value="{{ Auth::user()->nip_pegawai }}"
-                                                                        disabled />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1"
-                                                                        for="inputUsername">NPWP</label>
-                                                                    <input class="form-control" id="inputUsername"
-                                                                        type="text"
-                                                                        value="{{ Auth::user()->npwp_pegawai }}"
-                                                                        disabled />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1" for="inputUsername">No
-                                                                        Telp</label>
-                                                                    <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ Auth::user()->no_telp }}"
-                                                                        disabled />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1"
-                                                                        for="inputUsername">E-mail</label>
-                                                                    <input class="form-control" id="inputUsername"
-                                                                        type="text" value="{{ Auth::user()->email }}"
-                                                                        disabled />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1" for="inputUsername">Alamat
-                                                                        Lengkap</label>
-                                                                    <textarea class="form-control" id="inputUsername"
-                                                                        type="text" disabled> {{ Auth::user()->alamat }}
-                                                                    </textarea>
-                                                                </div>
+                                                <td>Slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF</td>
+                                                <td>{{date('F', mktime(0, 0, 0, (int)substr($item->Gaji->bulan_gaji, 5, 2), 10))}}
+                                                </td>
+                                                <td>{{ substr($item->Gaji->bulan_gaji, 0, 4)}}</td>
+                                                <td>
+                                                    <a href="/pegawai/cetak-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
+                                                        class="btn btn-xs btn-facebook" target='_blank'>
+                                                        <i class="fas fa-print"></i>Print
+                                                    </a>
+                                                    <a href="/pegawai/download-slip/slip-gaji-{{ $item->Gaji->bulan_gaji }}.PDF"
+                                                        class="btn btn-xs btn-google" target='_blank'>
+                                                        <i class="far fa-file-pdf"></i>Download PDF
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
 
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
-
+                <div class="simple-footer text-muted text-right mt-4">
+                    Copyright &copy; 2021 Aplikasi Penggajian KPP Pratama Gianyar
+                </div>
             </div>
-
+            
         </div>
-
-
-
-
+        
+        {{-- <div class="h6 text-muted">
+            Aplikasi
+        </div> --}}
     </main>
 </body>
 

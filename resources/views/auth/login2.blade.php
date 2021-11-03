@@ -88,6 +88,10 @@
 
                             </div>
                         </div>
+                        <hr class="mt-4">
+                        <div class="simple-footer text-muted">
+                            Copyright &copy; 2021 Aplikasi Penggajian KPP Pratama Gianyar
+                        </div>
                     </div>
                 </div>
             </div>

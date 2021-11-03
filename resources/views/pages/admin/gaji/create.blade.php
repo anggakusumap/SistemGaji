@@ -125,15 +125,17 @@
                                             <tr role="row" class="odd">
 
 
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                                
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.
+                                                </th>
+
                                                 @if ($item->User != null)
                                                 <td>{{ $item->User->nama_pegawai }}</td>
-                                                   
+
                                                 @else
-                                                    <td style="color: red" id="nama_table-{{ $item->id_detail_gaji }}">Data Tidak Valid! Edit Data</td>
+                                                <td style="color: red" id="nama_table-{{ $item->id_detail_gaji }}">Data
+                                                    Tidak Valid! Edit Data</td>
                                                 @endif
-                                                
+
                                                 <td id="kotor_table-{{ $item->id_detail_gaji }}">
                                                     {{ number_format($item->jumlah_kotor) }}</td>
                                                 <td id="potongan_table-{{ $item->id_detail_gaji }}">
@@ -480,7 +482,7 @@
 
                         <div class="row">
                             <div class="col-6">
-                                
+
                                 @if ($item->User != null)
                                 <div class="form-group row">
                                     <label for="nama" class="col-sm-5 col-form-label col-form-label-sm"><b>Nama
@@ -489,40 +491,41 @@
                                         <span><b>:</b> </span>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-sm"
-                                            name="nama" value="{{ $item->nama ?? '-' }}">
-                                            <input type="text" class="form-control form-control-sm" style="display: none"
-                                            name="id_user" value="{{ $item->User->id }}">
+                                        <input type="text" class="form-control form-control-sm" name="nama"
+                                            value="{{ $item->User->nama_pegawai }}" readonly>
+                                        <select class="form-control form-control-sm" style="display: none"
+                                            name="id_user">
+                                            <option value="{{ $item->User->id }}">Pilih Pegawai</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 @else
 
                                 <div class="form-group row">
-                                    <label for="nama" class="col-sm-5 col-form-label col-form-label-sm text-danger">Nama
-                                            Pegawai</label>
+                                    <label for="id_user" class="col-sm-5 col-form-label col-form-label-sm"><b>
+                                            Pegawai</b></label>
                                     <div class="col-sm-1 text-center">
                                         <span><b>:</b> </span>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-sm text-danger"
-                                            id="namates-{{ $item->id_detail_gaji }}" name="nama"
-                                            value="{{ $item->nama }}">
-                                            <div class="invalid-feedback">
-                                                Data Nama Pegawai Tidak Valid.
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm" style="display: none"
-                                            name="id_user" value="{{ $item->User->id ?? '' }}">
-                                            <small id="valid-{{ $item->id_detail_gaji }}" style="color: red">
-                                                Data Pegawai Tidak Valid.
-                                            </small>
+                                        <select class="selectpicker show-menu-arrow show-tick form-control"
+                                            data-dropup-auto="false" data-size="5" data-live-search="true"
+                                            name="id_user" id="namates-{{ $item->id_detail_gaji }}">
+                                            <option>Pilih Pegawai</option>
+                                            @foreach ($pegawai as $items)
+                                            <option value="{{ $items->id }}">{{ $items->nama_pegawai }}
+                                            </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                               
+
+
                                 @endif
 
 
-                               
+
                             </div>
                             <div class="col-6">
                                 <div class="form-group row">
@@ -573,7 +576,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="button"
+                <button class="btn btn-primary" type="button" data-dismiss="modal"
                     onclick="simpandata(event, {{ $gaji->id_gaji_pegawai }})">Ya
                     Sudah!</button>
             </div>
@@ -582,6 +585,9 @@
 </div>
 
 <script>
+   
+
+
     function simpandata(event, id_gaji_pegawai) {
         event.preventDefault()
         var _token = $('#form1').find('input[name="_token"]').val()
@@ -590,9 +596,9 @@
         var datadetail = $('#gaji').children()
         for (let index = 0; index < datadetail.length; index++) {
             var form = $(datadetail[index]).children().children()
-            var nama = form.find('input[name="nama"]').val()
-            var id = form.find('input[name="id_user"]').val()
-            console.log(nama)
+            // var nama = form.find('input[name="nama"]').val()
+            var id = form.find('select[name="id_user"]').val()
+
             var gaji_pokok_element = form.find('input[name="gaji_pokok"]').val()
             var gaji_pokok = gaji_pokok_element.replace(',', '').replace(',', '').replace(',', '').trim()
 
@@ -655,57 +661,86 @@
             var penerimaan_total_element = form.find('input[name="penerimaan_total"]').val()
             var penerimaan_total = penerimaan_total_element.replace(',', '').replace(',', '').replace(',', '').trim()
 
-            if (nama == '') {
-                alert('Terdapat Nama Pegawai Kosong')
-            } else {
-                detailgaji.push({
-                    id_gaji_pegawai: id_gaji_pegawai,
-                    nama: nama,
-                    id: id,
-                    gaji_pokok: gaji_pokok,
-                    tunjangan_istrisuami: tunjangan_istrisuami,
-                    tunjangan_anak: tunjangan_anak,
-                    tunjangan_jabatan_struktural: tunjangan_jabatan_struktural,
-                    tunjangan_jabatan_fungsional: tunjangan_jabatan_fungsional,
-                    tunjangan_umum: tunjangan_umum,
-                    tunjangan_beras: tunjangan_beras,
-                    tunjangan_pph: tunjangan_pph,
-                    pembulatan: pembulatan,
-                    jumlah_kotor: jumlah_kotor,
-                    iuran_wajib: iuran_wajib,
-                    bpjs: bpjs,
-                    sewa_rumah: sewa_rumah,
-                    pph_pasal_21: pph_pasal_21,
-                    jumlah_potongan: jumlah_potongan,
-                    jumlah_bersih_gaji: jumlah_bersih_gaji,
-                    tunjangan_kinerja: tunjangan_kinerja,
-                    jumlah_potongan_lainnya: jumlah_potongan_lainnya,
-                    penerimaan_total: penerimaan_total
-                })
-            }
+
+            detailgaji.push({
+                id_gaji_pegawai: id_gaji_pegawai,
+                id: id,
+                gaji_pokok: gaji_pokok,
+                tunjangan_istrisuami: tunjangan_istrisuami,
+                tunjangan_anak: tunjangan_anak,
+                tunjangan_jabatan_struktural: tunjangan_jabatan_struktural,
+                tunjangan_jabatan_fungsional: tunjangan_jabatan_fungsional,
+                tunjangan_umum: tunjangan_umum,
+                tunjangan_beras: tunjangan_beras,
+                tunjangan_pph: tunjangan_pph,
+                pembulatan: pembulatan,
+                jumlah_kotor: jumlah_kotor,
+                iuran_wajib: iuran_wajib,
+                bpjs: bpjs,
+                sewa_rumah: sewa_rumah,
+                pph_pasal_21: pph_pasal_21,
+                jumlah_potongan: jumlah_potongan,
+                jumlah_bersih_gaji: jumlah_bersih_gaji,
+                tunjangan_kinerja: tunjangan_kinerja,
+                jumlah_potongan_lainnya: jumlah_potongan_lainnya,
+                penerimaan_total: penerimaan_total
+            })
+
         }
 
-        var data = {
-            _token: _token,
-            detailgaji: detailgaji
-        }
+        if (id == '' | id == 'Pilih Pegawai') {
+            // alert('Terdapat Data Pegawai Tidak Valid, Silahkan di Edit Terlebih Dahulu')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terdapat Data Pegawai yang Tidak Valid!',
+            })
+        } else {
 
-        console.log(data)
-
-        $.ajax({
-            method: 'put',
-            url: '/gaji/' + id_gaji_pegawai,
-            data: data,
-            success: function (response) {
-                console.log(response)
-                // window.location.href = '/gaji'
-
-            },
-            error: function (response) {
-                console.log(response)
-                alert(error.responseJSON.message)
+            var data = {
+                _token: _token,
+                detailgaji: detailgaji
             }
-        });
+
+            console.log(data)
+
+            var sweet_loader =
+                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+            $.ajax({
+                method: 'put',
+                url: '/gaji/' + id_gaji_pegawai,
+                data: data,
+                beforeSend: function () {
+                    swal.fire({
+                        title: 'Mohon Tunggu!',
+                        html: 'Data Sedang Diproses...',
+                        showConfirmButton: false,
+                        onRender: function () {
+                            // there will only ever be one sweet alert open.
+                            $('.swal2-content').prepend(sweet_loader);
+                        }
+                    });
+                },
+                success: function (response) {
+                    console.log(response)
+                    
+                    swal.fire({
+                        icon: 'success',
+                        html: '<h5>Success!</h5>'
+                    });
+                    // window.location.href = '/gaji'
+
+                },
+                error: function (response) {
+                    console.log(response)
+                    alert(error.responseJSON.message)
+                    swal.fire({
+                        icon: 'error',
+                        html: '<h5>Error!</h5>'
+                    });
+                }
+            });
+        }
 
     }
 
@@ -724,14 +759,35 @@
         var penerimaan_total = $(`#penerimaan_total-${id_detail_gaji}`).val()
         var total_table = $(`#total_table-${id_detail_gaji}`).html(penerimaan_total)
 
-        var nama = $(`#namates-${id_detail_gaji}`).val()
-        var nama_table = $(`#nama_table-${id_detail_gaji}`).html(nama).css({'color':'green'});
+        var nama = $(`#namates-${id_detail_gaji} option:selected`).text().trim()
+        var nama_table = $(`#nama_table-${id_detail_gaji}`).html(nama).css({
+            'color': 'green'
+        });
 
-        var valid = $(`#valid-${id_detail_gaji}`).html('Data Telah Diperbauri').css({'color':'green'});
-        
-    
+        console.log(nama)
 
-        alert('Berhasil Edit Data Gaji Pegawai')
+        var valid = $(`#valid-${id_detail_gaji}`).html('Data Telah Diperbauri').css({
+            'color': 'green'
+        });
+
+
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil Memvalidasi Data Pegawai'
+        })
     }
 
 

@@ -89,8 +89,9 @@ class GajiControllerr extends Controller
     public function edit($id)
     {
         $gaji = Gajipegawai::with('Detailgaji.User')->withCount('Detailgaji')->find($id);
+        $pegawai = User::all();
 
-        return view('pages.admin.gaji.create', compact('gaji'));
+        return view('pages.admin.gaji.create', compact('gaji','pegawai'));
     }
 
     /**
@@ -105,22 +106,21 @@ class GajiControllerr extends Controller
         $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
         
         $temp = 0;
-        $data = [];
+        $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
+  
 
         foreach($request->detailgaji as $key=>$item){
             $temp = $temp + $item['penerimaan_total'];
-            
-            if(!$item['id']){
-                $nama = User::where('nama_pegawai', $item['nama'])->first();
-                $data[] = $nama->id;
-            }
+            // $gaji->Detailpegawai()->wherePivot('id_gaji_pegawai', $item['id_gaji_pegawai'])
+            // ->detach($item);
+
         }
         $gaji->grand_total_gaji = $temp;
         $gaji->status_penerimaan = 'Belum Diterima';
         $gaji->save();
 
-        $gaji->Detailpegawai()->sync(array_merge($data, $request->detailgaji ?? []));
-        // $gaji->Detailpegawai()->sync($request->detailgaji);
+       
+        $gaji->Detailpegawai()->sync($request->detailgaji);
       
         return $request;
     }

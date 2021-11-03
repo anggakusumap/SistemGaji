@@ -246,38 +246,7 @@
         document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec + ' ' + en;
     }
 
-    // function submit1(event) {
-    //     var _token = $('#form').find('input[name="_token"]').val()
-    //     var bulan_gaji = $('#bulan_gaji').val()
-    //     var excel = $('#excel').val()
-
-    //     var data = {
-    //         _token: _token,
-    //         bulan_gaji: bulan_gaji,
-    //         excel: excel
-    //     }
-
-    //     if (bulan_gaji == '' | bulan_gaji == 0 ) {
-    //         $('#alertbulan').show()
-    //     }else if (excel == '' | excel == 0) {
-    //         $('#alertexcel').show()
-    //     } else {
-    //         $.ajax({
-    //             method: 'post',
-    //             url: "/gaji",
-    //             data: data,
-    //             success: function (response) {
-    //                 window.location.href = '/gaji/' + response.id_gaji_pegawai + '/edit'
-    //             },
-    //             error: function (error) {
-    //                 console.log(error)
-    //                 alert(error.responseJSON.message)
-    //             }
-
-    //         });
-    //     }
-
-    // };
+   
 
 </script>
 

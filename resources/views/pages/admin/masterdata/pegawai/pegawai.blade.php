@@ -176,7 +176,7 @@
             min = '0' + min;
         }
 
-        if (sec <script 10) {
+        if (sec < 10) {
             sec = '0' + sec;
         }
 

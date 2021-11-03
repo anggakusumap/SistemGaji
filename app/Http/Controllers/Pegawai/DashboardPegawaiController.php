@@ -46,9 +46,25 @@ class DashboardPegawaiController extends Controller
 // "28 Juni 2020"
         $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
         $user = User::where('id', Auth::user()->id)->first();
-        $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->whereHas('Detailgaji', function ($q) {
-                        $q->where('id', '=', Auth::user()->id);
-                        })->first();
+        // $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->whereHas('Detailgaji', function ($q) {
+        //                 $q->where('id', '=', '2');
+        //                 })->first();
+
+        // $data = Gajipegawai::with('Detailgaji', function ($query) {
+        //             $query->where('id', '=', '2');
+        //         })->get();
+
+        
+        $data = Gajipegawai::with(array('Detailgaji' => function($query)
+            {
+                $query->where('id', '2');
+            }))
+                ->where('bulan_gaji', $gaji)->first();
+       
+        // $data = Gajipegawai::with('Detailpegawai')->where('bulan_gaji', $gaji)->whereHas('Detailpegawai', function ($query) {
+        //             return $query->where('id', '=', 2);
+        //         })->get();
+
         $bulan = $months[(int)substr($data->bulan_gaji, 5, 2)];
 
     //    return $data;
@@ -65,9 +81,11 @@ class DashboardPegawaiController extends Controller
     {
         $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
         $user = User::where('id', Auth::user()->id)->first();
-        $data = Gajipegawai::with('Detailgaji')->where('bulan_gaji', $gaji)->whereHas('Detailgaji', function ($q) {
-                        $q->where('id', '=', Auth::user()->id);
-                        })->first();
+        $data = Gajipegawai::with(array('Detailgaji' => function($query)
+            {
+                $query->where('id', '2');
+            }))
+                ->where('bulan_gaji', $gaji)->first();
         $bulan = $months[(int)substr($data->bulan_gaji, 5, 2)];
 
     //    return $data;
@@ -80,21 +98,21 @@ class DashboardPegawaiController extends Controller
         ]);
 
 
-        // instantiate and use the dompdf class
-        $options = new Option();
-        $options->set('isRemoteEnabled', true);
-        $dompdf = new Dompdf($options);
+        // // instantiate and use the dompdf class
+        // $options = new Option();
+        // $options->set('isRemoteEnabled', true);
+        // $dompdf = new Dompdf($options);
 
 
-        $dompdf->loadHtml($download);
+        // $dompdf->loadHtml($download);
 
-        // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4');
+        // // (Optional) Setup the paper size and orientation
+        // $dompdf->setPaper('A4');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+        // // Render the HTML as PDF
+        // $dompdf->render();
 
-        // Output the generated PDF to Browser
-        $dompdf->stream('Slip-gaji'."-".$gaji.".pdf");
+        // // Output the generated PDF to Browser
+        // $dompdf->stream('Slip-gaji'."-".$gaji.".pdf");
     }
 }

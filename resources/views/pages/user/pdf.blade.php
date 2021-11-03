@@ -4,9 +4,10 @@
 <head>
     <style media="print">
         @page {
-        size: auto;
-        margin: 0;
-            }
+            size: auto;
+            margin: 0;
+        }
+
     </style>
     {{-- <title>contoh surat pengunguman</title> --}}
     <style type="text/css">
@@ -117,7 +118,8 @@
         <table width="625">
             <tr>
                 <td>
-                    <font size="2">Mempunyai Penghasilan dari Gaji Induk bulan {{ $bulan }} {{ substr($gaji->bulan_gaji, 0, 4) }} dengan perincian sebagai
+                    <font size="2">Mempunyai Penghasilan dari Gaji Induk bulan {{ $bulan }}
+                        {{ substr($gaji->bulan_gaji, 0, 4) }} dengan perincian sebagai
                         berikut :</font>
                 </td>
             </tr>
@@ -129,55 +131,109 @@
                 <td width="220">Gaji Pokok</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->gaji_pokok,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->gaji_pokok == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->gaji_pokok,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Isteri / Suami</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_istrisuami,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_istrisuami == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_istrisuami,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Anak</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_anak,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_anak == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_anak,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Jabatan Struktural</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_struktural,0,',','.') }},-</td>
+               <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_jabatan_struktural == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_struktural,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Jabatan Fungsional</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_jabatan_fungsional,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Umum</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_umum,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_umum == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_umum,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan Beras</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_beras,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_beras == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_beras,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Tunjangan PPh</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->tunjangan_pph,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_pph == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_pph,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Pembulatan</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->pembulatan,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->pembulatan == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->pembulatan,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -192,37 +248,66 @@
                 <td width="250">Jumlah Kotor :</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->jumlah_kotor,2,',','.') }},-</td>
-            </tr>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->jumlah_kotor == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_kotor,0,',','.') }},-
+                    @endif
+                </td>
         </table>
 
         <table style="border-right-width: 180px; border-bottom-width: 0px;">
             <tr class="text2">
-                <td ><b>Potongan-potongan :</b></td>
+                <td><b>Potongan-potongan :</b></td>
             </tr>
             <tr class="text2">
                 <td width="220">Iuran Wajib Pegawai/PFK 8%</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->iuran_wajib,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->iuran_wajib == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->iuran_wajib,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">BPJS</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->bpjs,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->bpjs == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->bpjs,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">Sewa Rumah</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->sewa_rumah,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->sewa_rumah == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->sewa_rumah,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr class="text2">
                 <td width="220">PPh Pasal 21</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->pph_pasal_21,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->pph_pasal_21 == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->pph_pasal_21,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -237,7 +322,13 @@
                 <td width="270">Jumlah Potongan :</td>
                 <td width="5"> Rp.
                 </td>
-                <td width="130" style="text-align: right">{{ number_format($gaji->Detailgaji->first()->jumlah_potongan,0,',','.') }},-</td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->jumlah_potongan == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_potongan,0,',','.') }},-
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -247,12 +338,83 @@
 
             </tr>
         </table>
+
+        @if ( $gaji->Detailgaji->first()->tunjangan_kinerja == 0 && $gaji->Detailgaji->first()->jumlah_potongan_lainnya==0)
         <table style="border-right-width: 10px; border-top-width: 0px;">
             <tr class="text2">
                 <td width="390">Jumlah Bersih Gaji :</td>
                 <td width="5"> <b>Rp.</b>
                 </td>
-                <td width="130" style="text-align: right"><b>{{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-</b></td>
+                <td width="130" style="text-align: right"><b>
+                    @if ($gaji->Detailgaji->first()->jumlah_bersih_gaji == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-
+                    @endif
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <hr style="margin-top: 0px; margin-bottom: 0px; height:1px; color:#333;background-color:#333;">
+                </td>
+
+            </tr>
+        </table>
+        @else
+        <table style="border-right-width: 10px; border-top-width: 0px;">
+            <tr class="text2">
+                <td width="390"><b>Jumlah Bersih :</b></td>
+                <td width="5"> Rp.
+                </td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->jumlah_bersih_gaji == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_bersih_gaji,0,',','.') }},-
+                    @endif
+                </td>
+            </tr>
+
+            <tr class="text2">
+                <td width="220">Penerimaan Tunjangan Kinerja</td>
+                <td width="5"> Rp.
+                </td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->tunjangan_kinerja == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->tunjangan_kinerja,0,',','.') }},-
+                    @endif
+                </td>
+            </tr>
+
+            <tr class="text2">
+                <td width="220">Penerimaan Lain-lain</td>
+                <td width="5"> Rp.
+                </td>
+                <td width="130" style="text-align: right">
+                    @if ($gaji->Detailgaji->first()->jumlah_potongan_lainnya == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->jumlah_potongan_lainnya,0,',','.') }},-
+                    @endif
+                </td>
+            </tr>
+
+            <tr class="text2">
+                <td width="390"><b>Jumlah Penerimaan Total :</b></td>
+                <td width="5"> Rp.
+                </td>
+                <td width="130" style="text-align: right"><b>
+                    @if ($gaji->Detailgaji->first()->penerimaan_total == 0)
+                        ,-
+                    @else
+                        {{ number_format($gaji->Detailgaji->first()->penerimaan_total,0,',','.') }},-
+                    @endif
+                    </b>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -263,22 +425,29 @@
             </tr>
         </table>
 
-        
+        @endif
+
+
+
+
         <br>
         <br>
         <br>
         <table width="625">
             <tr>
                 <td width="420"><br><br><br><br></td>
-                <td class="text" style="text-align: left">Gianyar, {{ $tanggal }}<br>Bendahara Pengeluaran<br><br><br><br>Rikko Juniardo<br>NIP 19910610 201411 1 002</td>
+                <td class="text" style="text-align: left">Gianyar, {{ $tanggal }}<br>Bendahara
+                    Pengeluaran<br><br><br><br>Rikko Juniardo<br>NIP 19910610 201411 1 002</td>
             </tr>
         </table>
     </center>
 </body>
 <script type="text/javascript">
-<!--
-window.print();
-//-->
+    <!--
+    window.print();
+    //
+
+    -->
 </script>
 
 </html>

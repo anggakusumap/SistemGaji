@@ -53,7 +53,6 @@ class MasterpegawaiControllerr extends Controller
         $user->pangkat = $request->pangkat;
         $user->golongan = $request->golongan;
         $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->no_telp = $request->no_telp;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->role = $request->role;
@@ -104,7 +103,6 @@ class MasterpegawaiControllerr extends Controller
         $user->pangkat = $request->pangkat;
         $user->golongan = $request->golongan;
         $user->jenis_kelamin = $request->jenis_kelamin;
-        $user->no_telp = $request->no_telp;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->role = $request->role;

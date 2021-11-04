@@ -77,9 +77,7 @@
                                                 placeholder="Input Nama Lengkap Pegawai" value="{{ $user->jenis_kelamin }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="no_telp">Phone number</label>
-                                                <input class="form-control" id="nip_pegawai" type="text" name="nip_pegawai"
-                                                placeholder="Input Nama Lengkap Pegawai" value="{{ $user->no_telp }}" readonly>
+                                           
                                         </div>
                                     </div>
                                     <hr>

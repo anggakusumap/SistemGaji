@@ -153,13 +153,7 @@
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="no_telp">Phone number</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
-                                            <input class="form-control" id="no_telp" name="no_telp" type="number"
-                                                placeholder="+62" value="{{ $user->no_telp }}"
-                                                class="form-control @error('no_telp') is-invalid @enderror" required/>
-                                            @error('no_telp')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
+                                          
                                         </div>
                                     </div>
                                     <hr>

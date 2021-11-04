@@ -78,9 +78,6 @@
                                                 colspan="1" aria-label="Age: activate to sort column ascending"
                                                 style="width: 150px;">Grand Total</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Age: activate to sort column ascending"
-                                                style="width: 50px;">Status</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 70px;">Actions</th>
                                         </tr>
@@ -93,7 +90,6 @@
                                             <td>{{ date('F', strtotime($item->bulan_gaji)) }}</td>
                                             <td>{{ $item->detailgaji_count }} Orang</td>
                                             <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
-                                            <td>{{ $item->status_penerimaan }}</td>
                                             <td>
                                                 <a href="{{ route('gaji.show', $item->id_gaji_pegawai) }}"
                                                     class="btn btn-secondary btn-datatable">

@@ -57,7 +57,7 @@ class DashboardPegawaiController extends Controller
         
         $data = Gajipegawai::with(array('Detailgaji' => function($query)
             {
-                $query->where('id', '2');
+                $query->where('id', Auth::user()->id);
             }))
                 ->where('bulan_gaji', $gaji)->first();
        

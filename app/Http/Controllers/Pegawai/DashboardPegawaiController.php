@@ -83,7 +83,7 @@ class DashboardPegawaiController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         $data = Gajipegawai::with(array('Detailgaji' => function($query)
             {
-                $query->where('id', '2');
+                $query->where('id', Auth::user()->id);
             }))
                 ->where('bulan_gaji', $gaji)->first();
         $bulan = $months[(int)substr($data->bulan_gaji, 5, 2)];

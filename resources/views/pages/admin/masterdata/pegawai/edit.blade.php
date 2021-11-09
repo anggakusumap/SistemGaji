@@ -139,18 +139,16 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis
-                                                Kelamin</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
-                                                value="{{ $user->jenis_kelamin }}"
-                                                class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
-                                                <option value="{{$user->jenis_kelamin }}">{{$user->jenis_kelamin}}</option>
-                                                <option disabled>----------------</option>
-                                                <option value="Laki-Laki">Laki Laki</option>
-                                                <option value="Perempuan">Perempuan</option>
+                                            <label class="small mb-1 mr-1" for="id_grade">Grade Gaji</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_grade" id="id_grade" required>
+                                                <option value="{{ $user->Grade->id_grade }}">
+                                                    {{ $user->Grade->nama_grade }}</option>
+                                                @foreach ($grade as $tes)
+                                                <option value="{{ $tes->id_grade }}">
+                                                    {{ $tes->nama_grade }}</option>
+                                                @endforeach
                                             </select>
-                                            @error('jenis_kelamin')<div class="text-danger small mb-1">{{ $message }}
-                                            </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">
                                           

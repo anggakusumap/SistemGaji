@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\MasterGrade;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nama_pegawai', 'email', 'password', 'role',
         'nip_pegawai', 'npwp_pegawai', 'jenis_kelamin', 'alamat',
-        'no_telp'
+        'no_telp','id_grade'
     ];
 
     /**
@@ -38,4 +39,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Grade(){
+        return $this->belongsTo(MasterGrade::class,'id_grade','id_grade');
+    }
+
+
 }

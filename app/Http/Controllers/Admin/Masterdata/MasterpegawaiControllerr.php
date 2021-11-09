@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Masterdata;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\Pegawairequest;
 use App\Model\Admin\Pegawai;
+use App\Model\MasterGrade;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class MasterpegawaiControllerr extends Controller
     {
         $pegawai = User::get();
         $jumlah = User::count();
+     
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
@@ -35,8 +37,9 @@ class MasterpegawaiControllerr extends Controller
     public function create()
     {
         $pegawai = User::get();
+        $grade = MasterGrade::get();
 
-        return view('pages.admin.masterdata.pegawai.create', compact('pegawai'));
+        return view('pages.admin.masterdata.pegawai.create', compact('pegawai','grade'));
     }
 
     /**
@@ -52,7 +55,7 @@ class MasterpegawaiControllerr extends Controller
         $user->nip_pegawai = $request->nip_pegawai;
         $user->pangkat = $request->pangkat;
         $user->golongan = $request->golongan;
-        $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->id_grade = $request->id_grade;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->role = $request->role;
@@ -84,8 +87,9 @@ class MasterpegawaiControllerr extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $grade = MasterGrade::get();
 
-        return view('pages.admin.masterdata.pegawai.edit', compact('user'));
+        return view('pages.admin.masterdata.pegawai.edit', compact('user','grade'));
     }
 
     /**
@@ -102,7 +106,7 @@ class MasterpegawaiControllerr extends Controller
         $user->nip_pegawai = $request->nip_pegawai;
         $user->pangkat = $request->pangkat;
         $user->golongan = $request->golongan;
-        $user->jenis_kelamin = $request->jenis_kelamin;
+        $user->id_grade = $request->id_grade;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->role = $request->role;

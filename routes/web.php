@@ -29,6 +29,7 @@ Route::group(
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin')->middleware(['isAdmin']);
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr')->middleware(['isAdmin']);
         Route::resource('gaji', 'Admin\Penggajian\GajiControllerr')->middleware(['isAdmin']);
+        Route::resource('master-grade', 'Admin\MasterData\MasterGradeController')->middleware(['isAdmin']);
     }
 );
 

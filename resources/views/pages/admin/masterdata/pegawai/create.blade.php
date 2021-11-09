@@ -70,13 +70,13 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="small mb-1 mr-1" for="nip_pegawai">NIP Pegawai</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
+                                                class="mr-4 mb-3" style="color: red">*</span>  <small id="passwordHelpInline" class="text-muted">
+                                                    Must be 18 digit.
+                                                  </small>
                                             <input class="form-control" min="18" max="18" id="nip_pegawai" type="text" name="nip_pegawai"
                                                 placeholder="Input NIP Pegawai" value="{{ old('nip_pegawai') }}"
                                                 class="form-control @error('nip_pegawai') is-invalid @enderror" />
-                                                <small id="passwordHelpInline" class="text-muted">
-                                                    Must be 18 digit number.
-                                                  </small>
+                                              
                                             @error('nip_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
@@ -141,16 +141,19 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis
-                                                Kelamin</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control"
-                                                value="{{ old('jenis_kelamin') }}"
-                                                class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                                                <option value="{{ old('jenis_kelamin')}}"> Pilih Jenis Kelamin</option>
-                                                <option value="Laki-Laki">Laki Laki</option>
-                                                <option value="Perempuan">Perempuan</option>
+                                            <label class="small mb-1 mr-1" for="id_grade">Grade Gaji</label><span
+                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_grade"
+                                                class="form-control @error('id_grade') is-invalid @enderror"
+                                                id="id_grade">
+                                                <option>Pilih Grade</option>
+                                                @foreach ($grade as $grades)
+                                                <option value="{{ $grades->id_grade }}">
+                                                    {{ $grades->nama_grade }}
+                                                </option>
+                                                @endforeach
                                             </select>
-                                            @error('jenis_kelamin')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('id_grade')<div class="text-danger small mb-1">{{ $message }}
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-6">

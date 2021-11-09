@@ -100,6 +100,10 @@
                             <div class="nav-link-icon"><i class="fas fa-users"></i></div>
                             Pegawai
                         </a>
+                        <a class="nav-link" href="{{ route('master-grade.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Grade Gaji
+                        </a>
                         <div class="sidenav-menu-heading">Logout Account</div>
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -112,7 +116,6 @@
                         </form>
                     </div>
                 </div>
-
 
                 <div class="sidenav-footer">
                     <div class="sidenav-footer-content">

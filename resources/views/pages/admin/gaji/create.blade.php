@@ -123,7 +123,8 @@
                                         <tbody>
                                             @forelse ($gaji->Detailgaji as $item)
                                             <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.
+                                                </th>
 
                                                 @if ($item->User != null)
                                                 <td>{{ $item->User->nama_pegawai }}</td>
@@ -147,8 +148,10 @@
                                                         data-target="#Modaledit-{{ $item->id_detail_gaji }}">
                                                         Edit Data
                                                     </a>
-                                                    <button class="btn-xs btn-danger" id="button_hapus-{{ $item->id_detail_gaji }}" onclick="hapusdata({{ $item->id_detail_gaji }})" type="button">
-                                                       Hapus
+                                                    <button class="btn-xs btn-danger"
+                                                        id="button_hapus-{{ $item->id_detail_gaji }}"
+                                                        onclick="hapusdata({{ $item->id_detail_gaji }})" type="button">
+                                                        Hapus
                                                     </button>
 
                                                 </td>
@@ -583,9 +586,6 @@
 </div>
 
 <script>
-   
-
-
     function simpandata(event, id_gaji_pegawai) {
         event.preventDefault()
         var _token = $('#form1').find('input[name="_token"]').val()
@@ -721,7 +721,7 @@
                 },
                 success: function (response) {
                     console.log(response)
-                    
+
                     swal.fire({
                         icon: 'success',
                         html: '<h5>Success!</h5>'
@@ -744,33 +744,33 @@
 
     function hapusdata(id_detail_gaji) {
         Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-        if (result.isConfirmed) {
-            var table = $('#dataTable').DataTable()
-            var row = $(`#button_hapus-${id_detail_gaji}`).parent().parent()
-            console.log(row)
+            if (result.isConfirmed) {
+                var table = $('#dataTable').DataTable()
+                var row = $(`#button_hapus-${id_detail_gaji}`).parent().parent()
+                console.log(row)
 
-            console.log(table)
-            table.row(row).remove().draw();
-            modal = $(`#Modaledit-${id_detail_gaji}`).remove()
+                console.log(table)
+                table.row(row).remove().draw();
+                modal = $(`#Modaledit-${id_detail_gaji}`).remove()
 
-            var table = $('#dataTable').DataTable()
-            Swal.fire(
-            'Deleted!',
-            'Data Gaji Pegawai Telah Terhapus.',
-            'success'
-            )
-        }
+                var table = $('#dataTable').DataTable()
+                Swal.fire(
+                    'Deleted!',
+                    'Data Gaji Pegawai Telah Terhapus.',
+                    'success'
+                )
+            }
         })
-        
-      
+
+
     }
 
     function tambah(event, id_detail_gaji) {
@@ -794,9 +794,6 @@
         var valid = $(`#valid-${id_detail_gaji}`).html('Data Telah Diperbauri').css({
             'color': 'green'
         });
-        
-        
-
 
 
         const Toast = Swal.mixin({

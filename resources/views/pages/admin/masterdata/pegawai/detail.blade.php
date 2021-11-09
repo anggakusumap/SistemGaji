@@ -71,10 +71,9 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="small mb-1 mr-1" for="jenis_kelamin">Jenis
-                                                Kelamin</label>
+                                            <label class="small mb-1 mr-1" for="id_grade">Grade Gaji</label>
                                             <input class="form-control" id="nip_pegawai" type="text" name="nip_pegawai"
-                                                placeholder="Input Nama Lengkap Pegawai" value="{{ $user->jenis_kelamin }}" readonly>
+                                                placeholder="Grade Gaji" value="{{ $user->Grade->nama_grade }}" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                            

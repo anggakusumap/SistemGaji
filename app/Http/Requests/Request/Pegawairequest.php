@@ -26,7 +26,7 @@ class Pegawairequest extends FormRequest
         return [
             'nama_pegawai' => 'required|unique:users,nama_pegawai|min:4|max:40',
             'nip_pegawai' => 'required|unique:users,nip_pegawai|min:18|max:18',
-            'jenis_kelamin' => 'required|string|in:Laki-Laki,Perempuan',
+            'id_grade' => 'required',
             'pangkat' => 'required|string',
             'golongan' => 'required|string',
             'username' => 'required|unique:users,username|min:6|max:12',
@@ -50,7 +50,7 @@ class Pegawairequest extends FormRequest
             'nip_pegawai.min' => 'Error! Character Minimal :min digit',
             'nip_pegawai.max' => 'Error! Character Maximal :max digit',
 
-            'jenis_kelamin.required' => 'Error! Anda Belum Mengisi Jenis Kelamin',
+            'id_grade.required' => 'Error! Anda Belum Mengisi Grade Gaji',
             'pangkat.required' => 'Error! Anda Belum Mengisi Pangkat Pegawai',
             'golongan.required' => 'Error! Anda Belum Mengisi Golongan Pegawai',
             'role.required' => 'Error! Anda Belum Mengisi Role Pegawai',
@@ -69,7 +69,6 @@ class Pegawairequest extends FormRequest
             'email.email' => 'Error! Harus Berisikan Character Email @',
 
             'role' => 'Error! Anda Belum Memilih Role Pegawai'
-
         ];
     }
 }

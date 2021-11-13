@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Admin\Penggajian;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\Gajistore;
 use App\Imports\FileImport;
+use App\Imports\UpdateImport;
 use App\Model\DetailGajipegawai;
 use App\Model\Gajipegawai;
 use App\User;
+use File;
 use Carbon\Carbon;
+use Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -69,6 +73,24 @@ class GajiControllerr extends Controller
         }
     }
 
+    public function storepenerimaanlain(Request $request, $id_gaji_pegawai)
+    {
+        $gaji = Gajipegawai::find($id_gaji_pegawai);
+        
+        $detail = Excel::toCollection(new UpdateImport(), $request->file('excelupdate'));
+        foreach($detail[0] as $tes){
+            $gajipegawai = Gajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->first();
+            $user = User::where('nama_pegawai', $tes[0] ?? '')->first();
+      
+
+             DetailGajipegawai::where('id_gaji_pegawai', $gajipegawai->id_gaji_pegawai)->where('id', $user->id ?? '' )->update([
+                'jumlah_potongan_lainnya' => $tes['penerimaanlainlain']?? 0,
+            ]);
+           
+        }
+        return redirect()->route('gaji.index');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -97,6 +119,14 @@ class GajiControllerr extends Controller
         return view('pages.admin.gaji.create', compact('gaji','pegawai'));
     }
 
+    public function edit2($id)
+    {
+        $gaji = Gajipegawai::with('Detailgaji.User')->withCount('Detailgaji')->find($id);
+        $pegawai = User::all();
+
+        return view('pages.admin.gaji.edit', compact('gaji','pegawai'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -114,9 +144,6 @@ class GajiControllerr extends Controller
 
         foreach($request->detailgaji as $key=>$item){
             $temp = $temp + $item['penerimaan_total'];
-            // $gaji->Detailpegawai()->wherePivot('id_gaji_pegawai', $item['id_gaji_pegawai'])
-            // ->detach($item);
-
         }
         $gaji->grand_total_gaji = $temp;
         $gaji->status_penerimaan = 'Belum Diterima';
@@ -141,5 +168,12 @@ class GajiControllerr extends Controller
         $gaji->delete();
 
         return redirect()->back()->with('messagehapus','Berhasil Menghapus Data Gaji Pegawai');
+    }
+
+    public function getFile(){
+      
+        $path = public_path('pdf/excel_format_penggajian.xlsx');
+        return response()->download($path);
+      
     }
 }

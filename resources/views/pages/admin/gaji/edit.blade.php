@@ -30,9 +30,8 @@
                     <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
                             src="/frontend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 17rem;">
                     </div>
-
                     <div class="col-xl-8 col-xxl-12">
-                        <h2 class="text-primary mb-3" style="font-size: 15pt">Tambah Penggajian Pegawai</h2>
+                        <h2 class="text-primary mb-3" style="font-size: 15pt">Edit Penggajian Pegawai</h2>
                         <hr>
                         <span class="font-weight-500 text-gray">Tahun </span>
                         {{ date('Y', strtotime($gaji->bulan_gaji)) }} ·
@@ -43,15 +42,15 @@
                                 class="font-weight-500 text-primary">{{ $gaji->detailgaji_count }} Orang</span> </p>
 
                         <p class="small">Petunjuk: Klik button <b>edit</b> untuk melakukan editing pada gaji
-                            masing-masing
-                            pegawai</p>
+                            masing-masing pegawai</p>
                         <div class="row">
-                            <div class="col-10">
+                            <div class="col-9">
 
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
+                                <a href="{{ route('gaji.index') }}" class="btn btn-light btn-sm" type="button">Kembali</a>
                                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
-                                    data-target="#Modalsumbit">Simpan Data</button>
+                                    data-target="#Modalsumbit">Edit Data</button>
                             </div>
                         </div>
                     </div>
@@ -111,8 +110,8 @@
                                                     style="width: 80px;">Jumlah Potongan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Age: activate to sort column ascending"
-                                                    style="width: 80px;">Tukin Dibayarkan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    style="width: 80px;">Jumlah Bersih</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Age: activate to sort column ascending"
                                                     style="width: 80px;">Jumlah Bersih</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -907,9 +906,6 @@
     @endforelse
 </div>
 
-
-
-
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1203,175 +1199,166 @@
 
         var tunjangan_kinerja_element = $(`#tunjangan_kinerja-${id_detail_gaji}`).val()
         var tunjangan_kinerja = tunjangan_kinerja_element.replace(',', '').replace(',', '').replace(',', '').trim()
-        if(tunjangan_kinerja == '' | tunjangan_kinerja == 0){
+
+        var potongan_absen_element = $(`#potongan_absen-${id_detail_gaji}`).val()
+        var potongan_absen = potongan_absen_element.replace(',', '').replace(',', '').replace(',', '').trim()
+        
+        var tunj_setelah_pot_absen_element = $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val()
+        var tunj_setelah_pot_absen = tunj_setelah_pot_absen_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_dana_punia_element = $(`#potongan_dana_punia-${id_detail_gaji}`).val()
+        var potongan_dana_punia = potongan_dana_punia_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_mushola_element = $(`#potongan_mushola-${id_detail_gaji}`).val()
+        var potongan_mushola = potongan_mushola_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_nasrani_element = $(`#potongan_nasrani-${id_detail_gaji}`).val()
+        var potongan_nasrani = potongan_nasrani_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_ar_element = $(`#potongan_ar-${id_detail_gaji}`).val()
+        var potongan_ar = potongan_ar_element.replace(',', '').replace(',', '').replace(',', '').trim()
+        
+        var potongan_bpd_element = $(`#potongan_bpd-${id_detail_gaji}`).val()
+        var potongan_bpd = potongan_bpd_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_bjb_element = $(`#potongan_bjb-${id_detail_gaji}`).val()
+        var potongan_bjb = potongan_bjb_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_cakti_buddhi_bhakti_element = $(`#potongan_cakti_buddhi_bhakti-${id_detail_gaji}`).val()
+        var potongan_cakti_buddhi_bhakti = potongan_cakti_buddhi_bhakti_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_anak_asuh_element = $(`#potongan_anak_asuh-${id_detail_gaji}`).val()
+        var potongan_anak_asuh = potongan_anak_asuh_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_futsal_element = $(`#potongan_futsal-${id_detail_gaji}`).val()
+        var potongan_futsal = potongan_futsal_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_umum_element = $(`#potongan_umum-${id_detail_gaji}`).val()
+        var potongan_umum = potongan_umum_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_paguyuban_el = $(`#potongan_paguyuban-${id_detail_gaji}`).val()
+        var potongan_paguyuban = potongan_paguyuban_el.replace(',', '').replace(',', '').replace(',', '').trim()
+    
+        var potongan_pinjaman_cbb_element = $(`#potongan_pinjaman_cbb-${id_detail_gaji}`).val()
+        var potongan_pinjaman_cbb = potongan_pinjaman_cbb_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        var potongan_kop_bali_sedana_element = $(`#potongan_kop_bali_sedana-${id_detail_gaji}`).val()
+        var potongan_kop_bali_sedana = potongan_kop_bali_sedana_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        
+
+        var rapel_tukin_element = $(`#rapel_tukin-${id_detail_gaji}`).val()
+        var rapel_tukin = rapel_tukin_element.replace(',', '').replace(',', '').replace(',', '').trim()
+
+        if (potongan_absen == '' | tunj_setelah_pot_absen == '' | potongan_dana_punia == '' | potongan_mushola == '' | potongan_nasrani == '' |
+        potongan_ar == '' | potongan_bpd == '' | potongan_bjb == '' | potongan_cakti_buddhi_bhakti == '' | potongan_anak_asuh == '' |
+        potongan_futsal == '' | potongan_umum == '' | potongan_pinjaman_cbb == '' | potongan_kop_bali_sedana == '' | rapel_tukin == '' | potongan_paguyuban == ''){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Tunjangan Kinerja Bernilai 0',
+                text: 'Terdapat Field Kosong! Isi dengan 0',
             });
         }else{
-            var potongan_absen_element = $(`#potongan_absen-${id_detail_gaji}`).val()
-            var potongan_absen = potongan_absen_element.replace(',', '').replace(',', '').replace(',', '').trim()
-            
-            var tunj_setelah_pot_absen_element = $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val()
-            var tunj_setelah_pot_absen = tunj_setelah_pot_absen_element.replace(',', '').replace(',', '').replace(',', '').trim()
 
-            var potongan_dana_punia_element = $(`#potongan_dana_punia-${id_detail_gaji}`).val()
-            var potongan_dana_punia = potongan_dana_punia_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_mushola_element = $(`#potongan_mushola-${id_detail_gaji}`).val()
-            var potongan_mushola = potongan_mushola_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_nasrani_element = $(`#potongan_nasrani-${id_detail_gaji}`).val()
-            var potongan_nasrani = potongan_nasrani_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_ar_element = $(`#potongan_ar-${id_detail_gaji}`).val()
-            var potongan_ar = potongan_ar_element.replace(',', '').replace(',', '').replace(',', '').trim()
-            
-            var potongan_bpd_element = $(`#potongan_bpd-${id_detail_gaji}`).val()
-            var potongan_bpd = potongan_bpd_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_bjb_element = $(`#potongan_bjb-${id_detail_gaji}`).val()
-            var potongan_bjb = potongan_bjb_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_cakti_buddhi_bhakti_element = $(`#potongan_cakti_buddhi_bhakti-${id_detail_gaji}`).val()
-            var potongan_cakti_buddhi_bhakti = potongan_cakti_buddhi_bhakti_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_anak_asuh_element = $(`#potongan_anak_asuh-${id_detail_gaji}`).val()
-            var potongan_anak_asuh = potongan_anak_asuh_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_futsal_element = $(`#potongan_futsal-${id_detail_gaji}`).val()
-            var potongan_futsal = potongan_futsal_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_umum_element = $(`#potongan_umum-${id_detail_gaji}`).val()
-            var potongan_umum = potongan_umum_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_paguyuban_el = $(`#potongan_paguyuban-${id_detail_gaji}`).val()
-            var potongan_paguyuban = potongan_paguyuban_el.replace(',', '').replace(',', '').replace(',', '').trim()
-        
-            var potongan_pinjaman_cbb_element = $(`#potongan_pinjaman_cbb-${id_detail_gaji}`).val()
-            var potongan_pinjaman_cbb = potongan_pinjaman_cbb_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            var potongan_kop_bali_sedana_element = $(`#potongan_kop_bali_sedana-${id_detail_gaji}`).val()
-            var potongan_kop_bali_sedana = potongan_kop_bali_sedana_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            
-
-            var rapel_tukin_element = $(`#rapel_tukin-${id_detail_gaji}`).val()
-            var rapel_tukin = rapel_tukin_element.replace(',', '').replace(',', '').replace(',', '').trim()
-
-            if (potongan_absen == '' | tunj_setelah_pot_absen == '' | potongan_dana_punia == '' | potongan_mushola == '' | potongan_nasrani == '' |
-            potongan_ar == '' | potongan_bpd == '' | potongan_bjb == '' | potongan_cakti_buddhi_bhakti == '' | potongan_anak_asuh == '' |
-            potongan_futsal == '' | potongan_umum == '' | potongan_pinjaman_cbb == '' | potongan_kop_bali_sedana == '' | rapel_tukin == '' | potongan_paguyuban == ''){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Terdapat Field Kosong! Isi dengan 0',
-                });
-            }else{
-
-                // PERHITUNGAN TUNJANGAN SETELAH POT. ABSEN
-                var perhitungan_tunj_setelah_absen = parseInt(tunjangan_kinerja) - parseInt(potongan_absen)
-                var tunjangan_setelah_potongan_absen = $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val(perhitungan_tunj_setelah_absen)
-                if (/^[0-9.,]+$/.test($(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val())) {
+            // PERHITUNGAN TUNJANGAN SETELAH POT. ABSEN
+            var perhitungan_tunj_setelah_absen = parseInt(tunjangan_kinerja) - parseInt(potongan_absen)
+            var tunjangan_setelah_potongan_absen = $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val(perhitungan_tunj_setelah_absen)
+            if (/^[0-9.,]+$/.test($(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val())) {
+            $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val(
+                parseFloat($(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            );
+            } else {
                 $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val(
-                    parseFloat($(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+                    $(`#tunj_setelah_pot_absen-${id_detail_gaji}`)
+                    .val()
+                    .substring(0, $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val().length - 1)
                 );
-                } else {
-                    $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val(
-                        $(`#tunj_setelah_pot_absen-${id_detail_gaji}`)
-                        .val()
-                        .substring(0, $(`#tunj_setelah_pot_absen-${id_detail_gaji}`).val().length - 1)
-                    );
-                }
-
-                // PERHITUNGAN JUMLAH POTONGAN
-                var perhitungan_jumlah_potongan = parseInt(potongan_absen) + parseInt(potongan_dana_punia) + parseInt(potongan_mushola) 
-                    + parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(potongan_bpd) + parseInt(potongan_bjb)
-                    + parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) + parseInt(potongan_futsal)
-                    + parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) + parseInt(potongan_kop_bali_sedana) + parseInt(potongan_paguyuban)
-                var potongan_jumlah = $(`#potongan_jumlah-${id_detail_gaji}`).val(perhitungan_jumlah_potongan)
-                if (/^[0-9.,]+$/.test($(`#potongan_jumlah-${id_detail_gaji}`).val())) {
-                $(`#potongan_jumlah-${id_detail_gaji}`).val(
-                    parseFloat($(`#potongan_jumlah-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
-                );
-                } else {
-                    $(`#potongan_jumlah-${id_detail_gaji}`).val(
-                        $(`#potongan_jumlah-${id_detail_gaji}`)
-                        .val()
-                        .substring(0, $(`#potongan_jumlah-${id_detail_gaji}`).val().length - 1)
-                    );
-                }
-
-                // TUKIN SETELAH POTONGAN
-                var perhitungan_tukin_setelah_potongan = parseInt(tunjangan_kinerja) - parseInt(perhitungan_jumlah_potongan)
-                var tukin_setelah_potongan = $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(perhitungan_tukin_setelah_potongan)
-                if (/^[0-9.,]+$/.test($(`#tukin_setelah_potongan2-${id_detail_gaji}`).val())) {
-                $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(
-                    parseFloat($(`#tukin_setelah_potongan2-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
-                );
-                } else {
-                    $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(
-                        $(`#tukin_setelah_potongan2-${id_detail_gaji}`)
-                        .val()
-                        .substring(0, $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val().length - 1)
-                    );
-                }
-
-                // TOTAL TUKIN
-                var perhitungan_total_tukin = parseInt(rapel_tukin) + parseInt(perhitungan_tukin_setelah_potongan)
-                var tukin_dibayarkan = $(`#tukin_dibayarkan-${id_detail_gaji}`).val(perhitungan_total_tukin)
-                if (/^[0-9.,]+$/.test($(`#tukin_dibayarkan-${id_detail_gaji}`).val())) {
-                $(`#tukin_dibayarkan-${id_detail_gaji}`).val(
-                    parseFloat($(`#tukin_dibayarkan-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
-                );
-                } else {
-                    $(`#tukin_dibayarkan-${id_detail_gaji}`).val(
-                        $(`#tukin_dibayarkan-${id_detail_gaji}`)
-                        .val()
-                        .substring(0, $(`#tukin_dibayarkan-${id_detail_gaji}`).val().length - 1)
-                    );
-                }
-
-                var tukin = $(`#tukin_dibayarkan-${id_detail_gaji}`).val()
-                var tukin_table = $(`#tukin_table-${id_detail_gaji}`).html(tukin)
-
-                // // TUNJANGAN KINERJA EDIT GAJI
-                // var tunjangan_kinerja_element = $(`#tunjangan_kinerja-${id_detail_gaji}`).val(perhitungan_total_tukin)
-                // if (/^[0-9.,]+$/.test($(`#tunjangan_kinerja-${id_detail_gaji}`).val())) {
-                // $(`#tunjangan_kinerja-${id_detail_gaji}`).val(
-                //     parseFloat($(`#tunjangan_kinerja-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
-                // );
-                // } else {
-                //     $(`#tunjangan_kinerja-${id_detail_gaji}`).val(
-                //         $(`#tunjangan_kinerja-${id_detail_gaji}`)
-                //         .val()
-                //         .substring(0, $(`#tunjangan_kinerja-${id_detail_gaji}`).val().length - 1)
-                //     );
-                // }
-
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Berhasil Menghitung Potongan Gaji Pegawai'
-                })
-
-
             }
-        }
 
-        
+            // PERHITUNGAN JUMLAH POTONGAN
+            var perhitungan_jumlah_potongan = parseInt(potongan_absen) + parseInt(potongan_dana_punia) + parseInt(potongan_mushola) 
+                + parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(potongan_bpd) + parseInt(potongan_bjb)
+                + parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) + parseInt(potongan_futsal)
+                + parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) + parseInt(potongan_kop_bali_sedana) + parseInt(potongan_paguyuban)
+            var potongan_jumlah = $(`#potongan_jumlah-${id_detail_gaji}`).val(perhitungan_jumlah_potongan)
+            if (/^[0-9.,]+$/.test($(`#potongan_jumlah-${id_detail_gaji}`).val())) {
+            $(`#potongan_jumlah-${id_detail_gaji}`).val(
+                parseFloat($(`#potongan_jumlah-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            );
+            } else {
+                $(`#potongan_jumlah-${id_detail_gaji}`).val(
+                    $(`#potongan_jumlah-${id_detail_gaji}`)
+                    .val()
+                    .substring(0, $(`#potongan_jumlah-${id_detail_gaji}`).val().length - 1)
+                );
+            }
+
+            // TUKIN SETELAH POTONGAN
+            var perhitungan_tukin_setelah_potongan = parseInt(tunjangan_kinerja) - parseInt(perhitungan_jumlah_potongan)
+            var tukin_setelah_potongan = $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(perhitungan_tukin_setelah_potongan)
+            if (/^[0-9.,]+$/.test($(`#tukin_setelah_potongan2-${id_detail_gaji}`).val())) {
+            $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(
+                parseFloat($(`#tukin_setelah_potongan2-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            );
+            } else {
+                $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val(
+                    $(`#tukin_setelah_potongan2-${id_detail_gaji}`)
+                    .val()
+                    .substring(0, $(`#tukin_setelah_potongan2-${id_detail_gaji}`).val().length - 1)
+                );
+            }
+
+            // TOTAL TUKIN
+            var perhitungan_total_tukin = parseInt(rapel_tukin) + parseInt(perhitungan_tukin_setelah_potongan)
+            var tukin_dibayarkan = $(`#tukin_dibayarkan-${id_detail_gaji}`).val(perhitungan_total_tukin)
+            if (/^[0-9.,]+$/.test($(`#tukin_dibayarkan-${id_detail_gaji}`).val())) {
+            $(`#tukin_dibayarkan-${id_detail_gaji}`).val(
+                parseFloat($(`#tukin_dibayarkan-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            );
+            } else {
+                $(`#tukin_dibayarkan-${id_detail_gaji}`).val(
+                    $(`#tukin_dibayarkan-${id_detail_gaji}`)
+                    .val()
+                    .substring(0, $(`#tukin_dibayarkan-${id_detail_gaji}`).val().length - 1)
+                );
+            }
+
+            var tukin = $(`#tukin_dibayarkan-${id_detail_gaji}`).val()
+            var tukin_table = $(`#tukin_table-${id_detail_gaji}`).html(tukin)
+
+            // // TUNJANGAN KINERJA EDIT GAJI
+            // var tunjangan_kinerja_element = $(`#tunjangan_kinerja-${id_detail_gaji}`).val(perhitungan_total_tukin)
+            // if (/^[0-9.,]+$/.test($(`#tunjangan_kinerja-${id_detail_gaji}`).val())) {
+            // $(`#tunjangan_kinerja-${id_detail_gaji}`).val(
+            //     parseFloat($(`#tunjangan_kinerja-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            // );
+            // } else {
+            //     $(`#tunjangan_kinerja-${id_detail_gaji}`).val(
+            //         $(`#tunjangan_kinerja-${id_detail_gaji}`)
+            //         .val()
+            //         .substring(0, $(`#tunjangan_kinerja-${id_detail_gaji}`).val().length - 1)
+            //     );
+            // }
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menghitung Potongan Gaji Pegawai'
+            })
+
+
+        }
 
     }
 
@@ -1594,7 +1581,6 @@
     });
 
 </script>
-
 
 
 @endsection

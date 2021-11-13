@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Login Payroll</title>
-    <link rel="shortcut icon" href="{{ asset('logo-tok.png') }}">
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -28,9 +28,9 @@
                     <div
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
-                            <img src="../logo-berwarna.png" alt="logo" width="100" class="">
-                            <h5 class="mt-5">Aplikasi Penggajian </h5>
-                            <h6>KPP Pratama Pajak Gianyar </h6>
+                            <img src="../logo.png" alt="logo" width="100" class="">
+                            <h5 class="mt-5">Aplikasi Petikan Gaji </h5>
+                            <h6>KPP Pratama Gianyar </h6>
                         </div>
 
                         <div class="card card-secondary">
@@ -90,7 +90,7 @@
                         </div>
                         <hr class="mt-4">
                         <div class="simple-footer text-muted">
-                            Copyright &copy; 2021 Aplikasi Penggajian KPP Pratama Gianyar
+                            Copyright &copy; 2021 Aplikasi Petikan Gaji KPP Pratama Gianyar
                         </div>
                     </div>
                 </div>

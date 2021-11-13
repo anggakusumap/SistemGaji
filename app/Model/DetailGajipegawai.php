@@ -35,7 +35,27 @@ class DetailGajipegawai extends Model
         'tunjangan_kinerja',
         'jumlah_potongan_lainnya',
         'penerimaan_total',
-        'nama'
+        'nama',
+        'potongan_absen',
+        'potongan_absen_persen',
+        'tunj_setelah_pot_absen',
+        'potongan_dana_punia',
+        'potongan_mushola',
+        'potongan_nasrani',
+        'potongan_ar',
+        'potongan_bpd',
+        'potongan_bjb',
+        'potongan_cakti_buddhi_bhakti',
+        'potongan_anak_asuh',
+        'potongan_futsal',
+        'potongan_umum',
+        'potongan_paguyuban',
+        'potongan_pinjaman_cbb',
+        'potongan_kop_bali_sedana',
+        'potongan_jumlah',
+        'tukin_setelah_potongan2',
+        'rapel_tukin',
+        'tukin_dibayarkan'
     ];
 
     protected $hidden = [

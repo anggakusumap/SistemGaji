@@ -9,12 +9,12 @@
     <meta name="author" content="" />
     <title>Sistem Gaji</title>
     <link href="{{ url('frontend/dist/css/styles.css')}}" rel="stylesheet" />
-    <link rel="shortcut icon" href="{{ asset('logo-tok.png') }}">
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
         crossorigin="anonymous" />
-    <link rel="icon" type="image/x-icon" href={{ url('logo-tok.png')}} />
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}" />
     <script data-search-pseudo-elements defer
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous">
@@ -30,13 +30,12 @@
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
         <a class="navbar-brand" href="{{ route('dashboardadmin')}}">
             <i class="fas fa-wallet mr-3"></i>
-            Sistem Penggajian
+            Sistem Petikan Gaji
         </a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
                 data-feather="menu"></i></button>
         <div class="small">
-            <i class="fa fa-cogs" aria-hidden="true"></i>
-            KPP Pratama Pajak Gianyar
+            KPP Pratama Gianyar
         </div>
         </form>
         <ul class="navbar-nav align-items-center ml-auto">
@@ -55,8 +54,6 @@
                             <div class="dropdown-user-details-email">{{ Auth::user()->role }}</div>
                         </div>
                     </h6>
-
-
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('dashboard-pegawai') }}">
                         <div class="dropdown-item-icon"><i data-feather="columns"></i></div>

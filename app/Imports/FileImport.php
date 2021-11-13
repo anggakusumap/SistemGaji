@@ -25,7 +25,6 @@ class FileImport implements
     * @return \Illuminate\Database\Eloquent\Model|null
     */
   
-    
     public function model(array $row)
     {
         $data = Gajipegawai::latest('id_gaji_pegawai')->first();
@@ -33,7 +32,6 @@ class FileImport implements
 
         $user = User::where('nama_pegawai', $row['nama'])->first();
         
-
         return new DetailGajipegawai([
             'id_gaji_pegawai' => $tes,
             'id' => $user->id ?? null,
@@ -56,7 +54,27 @@ class FileImport implements
             'jumlah_bersih_gaji' => $row['bersih']?? 0,
             'jumlah_potongan_lainnya' => $row['penerimaanlainlain']?? 0,
             'penerimaan_total' => $row['penerimaantotal']?? 0,
-            'tunjangan_kinerja' => $row['tunjangankinerja']?? 0
+            'tunjangan_kinerja' => $row['tunjangankinerja']?? 0,
+            'potongan_absen' => $row['potongan_absen']?? 0,
+            'potongan_absen_persen' => $row['potongan_absen_persen']?? 0,
+            'tunj_setelah_pot_absen' => $row['tunjangan_setelah_potongan_absen']?? 0,
+            'potongan_dana_punia' => $row['potongan_dana_punia']?? 0,
+            'potongan_mushola' => $row['potongan_mushola']?? 0,
+            'potongan_nasrani'=> $row['potongan_nasrani']?? 0,
+            'potongan_ar'=> $row['potongan_ar']?? 0,
+            'potongan_bpd'=> $row['potongan_bpd']?? 0,
+            'potongan_bjb'=> $row['potongan_bjb']?? 0,
+            'potongan_cakti_buddhi_bhakti'=> $row['potongan_cakti_buddhi_bhakti']?? 0,
+            'potongan_anak_asuh'=> $row['potongan_anak_asuh']?? 0,
+            'potongan_futsal'=> $row['potongan_futsal']?? 0,
+            'potongan_umum'=> $row['potongan_umum']?? 0,
+            'potongan_paguyuban'=> $row['potongan_paguyuban']?? 0,
+            'potongan_pinjaman_cbb'=> $row['potongan_pinjaman_cbb']?? 0,
+            'potongan_kop_bali_sedana'=> $row['potongan_kop_bali_sedana']?? 0,
+            'potongan_jumlah'=> $row['potongan_jumlah']?? 0,
+            'tukin_setelah_potongan2'=> $row['tukin_setelah_potongan2']?? 0,
+            'rapel_tukin'=> $row['rapel_tukin']?? 0,
+            'tukin_dibayarkan'=> $row['tukin_dibayarkan']?? 0,
         ]);
     }
 

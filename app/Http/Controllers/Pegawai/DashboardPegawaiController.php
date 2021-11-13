@@ -23,15 +23,14 @@ class DashboardPegawaiController extends Controller
 
         // $gaji = DetailGajipegawai::with('Gaji')->get();
         $gaji = DetailGajipegawai::with('gaji')->where('id', Auth::user()->id)->get();
-
-        // $gajipegawai = Gajipegawai::with('DetailPegawai')->get();
-        // return $gajipegawai;
+       
 
         // return $gaji;
         // return $user;
         return view('pages.user.dashboard.index', [
             'user' => $user, 
-            'gaji' => $gaji
+            'gaji' => $gaji,
+            
         ]);
     }
 

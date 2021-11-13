@@ -30,6 +30,9 @@ Route::group(
         Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr')->middleware(['isAdmin']);
         Route::resource('gaji', 'Admin\Penggajian\GajiControllerr')->middleware(['isAdmin']);
         Route::resource('master-grade', 'Admin\MasterData\MasterGradeController')->middleware(['isAdmin']);
+        Route::get('/gaji/{id}/edit2', 'Admin\Penggajian\GajiControllerr@edit2')->name('gajiedit')->middleware(['isAdmin']);
+        Route::post('/gajilain/{id}', 'Admin\Penggajian\GajiControllerr@storepenerimaanlain')->name('tambahpenerimaanlain');
+        Route::get('/download', 'Admin\Penggajian\GajiControllerr@getFile')->name('download_excel_format');
     }
 );
 

@@ -33,6 +33,9 @@ Route::group(
         Route::get('/gaji/{id}/edit2', 'Admin\Penggajian\GajiControllerr@edit2')->name('gajiedit')->middleware(['isAdmin']);
         Route::post('/gajilain/{id}', 'Admin\Penggajian\GajiControllerr@storepenerimaanlain')->name('tambahpenerimaanlain');
         Route::get('/download', 'Admin\Penggajian\GajiControllerr@getFile')->name('download_excel_format');
+        Route::get('/gaji/{id}/editpenerimaanlain', 'Admin\Penggajian\GajiControllerr@editpenerimaanlain')->name('gajieditpenerimaanlain')->middleware(['isAdmin']);
+        // Route::put('/gaji/{id}/editlain', 'Admin\Penggajian\GajiControllerr@update2')->name('editpenerimaanlain')->middleware(['isAdmin']);;
+        
     }
 );
 

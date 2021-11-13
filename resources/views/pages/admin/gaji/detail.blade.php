@@ -3,6 +3,23 @@
 @section('content')
 {{-- HEADER --}}
 <main class="mt-5">
+    @if(session('message'))
+    <div class="container-fluid">
+        <div class="alert alert-success alert-icon" id="alertsukses" role="alert">
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="alert-icon-aside">
+                <i class="fas fa-file-excel"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Import Success!</h6>
+                {{ session('message') }}
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div class="container-fluid">
         <div class="card h-100 mb-4">
             <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
@@ -804,5 +821,17 @@
 
 @endforelse
 
+
+<script>
+     $(document).ready(function () {
+
+        window.setTimeout(function () {
+            $("#alertsukses").fadeTo(1000, 0).slideUp(1000, function () {
+                $(this).remove();
+            });
+        }, 8000);
+
+    });
+</script>
 
 @endsection

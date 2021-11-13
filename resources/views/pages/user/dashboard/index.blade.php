@@ -537,7 +537,6 @@
                                                     <p class="font-italic small">Potongan-potongan :</p>
                                                 </div>
                                             </div>
-                                               
                                         </div>
                                         <div class="px-2">
                                             <div class="row">

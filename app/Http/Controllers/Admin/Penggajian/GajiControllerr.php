@@ -67,7 +67,7 @@ class GajiControllerr extends Controller
                 $import_file = $request->file('excel');
             }
             Excel::import(new FileImport, $import_file);
-            return redirect()->route('gaji.edit', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Berhasil Dilakukan');
+            return redirect()->route('gaji.show', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Berhasil Dilakukan');
         }else{
             return redirect()->back()->with('error_code', 5)->withErrors(['msg' => 'Error!Tahun dan Bulan Gaji Sudah Dibayarkan']);;
         }
@@ -99,7 +99,7 @@ class GajiControllerr extends Controller
         $gaji->grand_total_gaji = $tempgrand;
         $gaji->save();
         
-        return redirect()->route('gaji.show', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');;
+        return redirect()->route('gaji.show', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');
 
 
         // return redirect()->route('gajieditpenerimaanlain', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');
@@ -164,7 +164,6 @@ class GajiControllerr extends Controller
         $gaji->status_penerimaan = 'Belum Diterima';
         $gaji->save();
 
-       
         $gaji->Detailpegawai()->sync($request->detailgaji);
       
         return $request;

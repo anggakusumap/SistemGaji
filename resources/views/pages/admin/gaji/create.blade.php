@@ -1075,7 +1075,6 @@
             var obj = {
                 id_gaji_pegawai: id_gaji_pegawai,
                 id: id, 
-                nama: nama,
                 gaji_pokok: gaji_pokok,
                 tunjangan_istrisuami: tunjangan_istrisuami,
                 tunjangan_anak: tunjangan_anak,
@@ -1115,6 +1114,7 @@
                 potongan_jumlah: potongan_jumlah,
                 rapel_tukin: rapel_tukin,
                 tukin_dibayarkan: tukin_dibayarkan
+                nama: nama,
             }
             detailgaji.push(obj)
         }

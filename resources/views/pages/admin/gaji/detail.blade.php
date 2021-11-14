@@ -105,7 +105,11 @@
                                         @forelse ($gaji->Detailgaji as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
-                                            <td>{{ $item->User->nama_pegawai }}</td>
+                                            @if ($item->User == '')
+                                                <td>Pegawai Tidak Ditemukan</td>
+                                            @else
+                                                <td>{{ $item->User->nama_pegawai }}</td>
+                                            @endif
                                             <td>{{ number_format($item->jumlah_kotor) }}</td>
                                             <td>{{ number_format($item->jumlah_potongan) }}</td>
                                             <td>{{ number_format($item->tukin_dibayarkan) }}</td>

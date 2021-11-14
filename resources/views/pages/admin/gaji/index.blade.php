@@ -17,7 +17,6 @@
                 <i class="fas fa-file-excel" aria-hidden="true"></i>
                     Excel Format <a href="{{ route('download_excel_format') }}">Download</a>
                 <span class="font-weight-500 text-primary"></span>
-               
                 <hr>
                 </hr>
             </div>
@@ -103,14 +102,10 @@
                                                 Atur Peneriman Lain
                                                 </a>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('gaji.show', $item->id_gaji_pegawai) }}"
-                                                    class="btn btn-secondary btn-datatable">
+                                                    class="btn btn-secondary btn-datatable mr-2"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail dan Edit">
                                                     <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('gajiedit', $item->id_gaji_pegawai) }}"
-                                                    class="btn btn-primary btn-datatable">
-                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
@@ -187,6 +182,7 @@
 @empty
 
 @endforelse
+
 
 
 <div class="modal fade" id="Modaltambah" tabindex="-1" role="dialog" data-backdrop="static"

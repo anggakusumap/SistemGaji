@@ -153,7 +153,7 @@ class GajiControllerr extends Controller
         $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
         
         $temp = 0;
-        $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
+        // $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
   
 
         foreach($request->detailgaji as $key=>$item){

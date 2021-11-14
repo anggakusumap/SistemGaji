@@ -120,11 +120,11 @@ class GajiControllerr extends Controller
 
     public function showedit($id)
     {
-        $gaji = DetailGajipegawai::with('Gaji')->find($id);
+        $item = DetailGajipegawai::with('Gaji')->find($id);
 
  
 
-        return view('pages.admin.gaji.detailedit', compact('gaji'));
+        return view('pages.admin.gaji.detailedit', compact('item'));
     }
 
     /**

@@ -34,7 +34,7 @@ class FileImport implements
         $temp = 0;
 
         foreach($row as $das){
-            $temp = $temp + $das['penerimaantotal'];
+            $temp = $temp + $das->penerimaantotal;
         }
 
         $data->grand_total_gaji = $temp;

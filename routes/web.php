@@ -28,13 +28,13 @@ Route::group(
         Route::get('/admin/password-change', 'Account\PasswordController@edit')->name('password.change')->middleware(['isAdmin']);
         Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change')->middleware(['isAdmin']);
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin')->middleware(['isAdmin']);
-        Route::resource('master-pegawai', 'Admin\MasterData\MasterpegawaiControllerr')->middleware(['isAdmin']);
+        Route::resource('master-pegawai', 'MasterpegawaiControllerr')->middleware(['isAdmin']);
+        Route::resource('master-grade', 'MasterGradeController')->middleware(['isAdmin']);
         Route::resource('gaji', 'Admin\Penggajian\GajiControllerr')->middleware(['isAdmin']);
-        Route::resource('master-grade', 'Admin\MasterData\MasterGradeController')->middleware(['isAdmin']);
         Route::get('/gaji/{id}/edit2', 'Admin\Penggajian\GajiControllerr@edit2')->name('gajiedit')->middleware(['isAdmin']);
         Route::post('/gajilain/{id}', 'Admin\Penggajian\GajiControllerr@storepenerimaanlain')->name('tambahpenerimaanlain');
         Route::get('/download', 'Admin\Penggajian\GajiControllerr@getFile')->name('download_excel_format');
-        Route::get('/gaji/{id}/editpenerimaanlain', 'Admin\Penggajian\GajiControllerr@editpenerimaanlain')->name('gajieditpenerimaanlain')->middleware(['isAdmin']);
+        // Route::get('/gaji/{id}/editpenerimaanlain', 'Admin\Penggajian\GajiControllerr@editpenerimaanlain')->name('gajieditpenerimaanlain')->middleware(['isAdmin']);
         // Route::put('/gaji/{id}/editlain', 'Admin\Penggajian\GajiControllerr@update2')->name('editpenerimaanlain')->middleware(['isAdmin']);;
         
     }

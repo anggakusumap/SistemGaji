@@ -175,6 +175,28 @@
         </div>
 </main>
 
+<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-soft">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Simpan Data</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group text-center">Apakah Data yang Anda inputkan sudah benar?</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal"
+                    onclick="simpandata(event, {{ $gaji->id_gaji_pegawai }})">Ya
+                    Sudah!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="gaji">
     @forelse ($gaji->Detailgaji as $item)
     <div class="modal fade" id="Modaledit-{{ $item->id_detail_gaji }}" tabindex="-1" role="dialog"
@@ -910,27 +932,7 @@
 
 
 
-<div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success-soft">
-                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Simpan Data</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group text-center">Apakah Data yang Anda inputkan sudah benar?</div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="button" data-dismiss="modal"
-                    onclick="simpandata(event, {{ $gaji->id_gaji_pegawai }})">Ya
-                    Sudah!</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     function simpandata(event, id_gaji_pegawai) {

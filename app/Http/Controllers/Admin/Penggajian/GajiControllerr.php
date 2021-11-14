@@ -165,7 +165,7 @@ class GajiControllerr extends Controller
         $gaji->save();
 
        
-        $gaji->Detailpegawai()->attach($request->detailgaji);
+        $gaji->Detailpegawai()->sync($request->detailgaji);
       
         return $request;
     }

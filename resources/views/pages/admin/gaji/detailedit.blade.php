@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-user"></i></div>
-                            Edit Data Pegawai {{ $item->User->nama_pegawai }}
+                            Edit Data Gaji Pegawai {{ $item->User->nama_pegawai }}
                         </h1>
                     </div>
                     <div class="col-12 col-xl-auto mb-3">
@@ -387,16 +387,21 @@
                                         <div class="col-sm-1 text-center">
                                             <span><b>:</b> </span>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <input type="text" class="form-control form-control-sm number-separator"
                                                 id="penerimaan_total" name="penerimaan_total"
                                                 value="{{ number_format($item->penerimaan_total) ?? '0' }}">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button class="btn btn-sm btn-primary" type="button" onclick="hitunggaji(event)">Hitung</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {{-- TAB 2  ------------------------------------------------------------------------------------------------------------}}
                     <div class="tab-pane fade" id="example" role="tabpanel" aria-labelledby="example-tab">
                         <div class="px-2">    
                         <div class="row">
@@ -730,13 +735,30 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer small text-right">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button" onclick="simpandata(event)">Save changes</button>
+            </div>
         </div>
-        <div class="card-footer small text-right">
-            <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Close</button>
-            <button class="btn btn-sm btn-primary" type="button" onclick="hitung(event)">Save changes</button>
-        </div>
+       
     </div>
 </main>
 
+<script>
+     $(document).on('input', '.number-separator', function (e) {
+        if (/^[0-9.,]+$/.test($(this).val())) {
+            $(this).val(
+                parseFloat($(this).val().replace(/,/g, '')).toLocaleString('en')
+            );
+        } else {
+            $(this).val(
+                $(this)
+                .val()
+                .substring(0, $(this).val().length - 1)
+            );
+        }
+    });
+
+</script>
 
 @endsection

@@ -32,7 +32,13 @@ class FileImport implements
 
         $user = User::where('nama_pegawai', $row['nama'])->first();
       
+        $temp = 0;
+        foreach($row['penerimaantotal'] as $das){
+            $temp = $temp + $das;
+        }
 
+        $data->grand_total_gaji = $temp;
+        $data->save();
         
         
         return new DetailGajipegawai([
@@ -80,13 +86,7 @@ class FileImport implements
             'tukin_dibayarkan'=> $row['tukin_dibayarkan']?? 0,
         ]);
 
-        $temp = 0;
-        foreach($row['penerimaantotal'] as $das){
-            $temp = $temp + $das;
-        }
-
-        $data->grand_total_gaji = $temp;
-        $data->save();
+        
 
         
     }

@@ -32,15 +32,14 @@ class FileImport implements
 
         $user = User::where('nama_pegawai', $row['nama'])->first();
       
-        $temp = 0;
-        foreach($row['penerimaantotal'] as $das){
-            $temp = $temp + $das;
-        }
+        // $temp = 0;
+        // foreach($row['penerimaantotal'] as $das){
+        //     $temp = $temp + $das;
+        // }
 
-        $data->grand_total_gaji = $temp;
-        $data->save();
-        
-        
+        // $data->grand_total_gaji = $temp;
+        // $data->save();
+
         return new DetailGajipegawai([
             'id_gaji_pegawai' => $tes,
             'id' => $user->id ?? null,

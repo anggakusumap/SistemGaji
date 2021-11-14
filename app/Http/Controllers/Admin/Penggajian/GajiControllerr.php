@@ -122,7 +122,9 @@ class GajiControllerr extends Controller
     {
         $gaji = DetailGajipegawai::with('Gaji')->find($id);
 
-        return view('pages.admin.gaji.detailedit', compact('gaji'));
+        $sum = DetailGajipegawai::sum('penerimaan_total');
+
+        return view('pages.admin.gaji.detailedit', compact('gaji','sum'));
     }
 
     /**

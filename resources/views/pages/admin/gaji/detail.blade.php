@@ -41,6 +41,9 @@
                         <p class="font-weight-500 text-gray">Jumlah Pegawai · <span
                                 class="font-weight-500 text-primary">{{ $gaji->detailgaji_count }} Orang</span> </p>
 
+                                
+                        <p class="font-weight-500 text-gray">Total Penerimaan Keseluruhan · <span
+                            class="font-weight-500 text-primary">Rp. {{ number_format($sum) }}</span> </p>
                         <p class="small">Petunjuk: Klik button <b>detail</b> untuk melihat detail gaji
                             masing-masing
                             pegawai</p>

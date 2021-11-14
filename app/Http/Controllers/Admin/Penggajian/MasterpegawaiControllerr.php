@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Masterdata;
+namespace App\Http\Controllers\Admin\Penggajian;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\Pegawairequest;

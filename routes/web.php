@@ -28,8 +28,8 @@ Route::group(
         Route::get('/admin/password-change', 'Account\PasswordController@edit')->name('password.change')->middleware(['isAdmin']);
         Route::patch('/admin/password-change', 'Account\PasswordController@update')->name('password.change')->middleware(['isAdmin']);
         Route::get('/admin', 'Admin\DashboardAdminControllerr@index')->name('dashboardadmin')->middleware(['isAdmin']);
-        Route::resource('master-pegawai', 'MasterpegawaiControllerr')->middleware(['isAdmin']);
-        Route::resource('master-grade', 'MasterGradeController')->middleware(['isAdmin']);
+        Route::resource('master-pegawai', 'Admin\Penggajian\MasterpegawaiControllerr')->middleware(['isAdmin']);
+        Route::resource('master-grade', 'Admin\Penggajian\MasterGradeController')->middleware(['isAdmin']);
         Route::resource('gaji', 'Admin\Penggajian\GajiControllerr')->middleware(['isAdmin']);
         Route::get('/gaji/{id}/edit2', 'Admin\Penggajian\GajiControllerr@edit2')->name('gajiedit')->middleware(['isAdmin']);
         Route::post('/gajilain/{id}', 'Admin\Penggajian\GajiControllerr@storepenerimaanlain')->name('tambahpenerimaanlain');

@@ -106,7 +106,7 @@
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}.</th>
                                             @if ($item->User == '')
-                                                <td>Pegawai Tidak Ditemukan</td>
+                                                <td style="color: red" class="small">Pegawai Tidak Ditemukan!! Edit Data</td>
                                             @else
                                                 <td>{{ $item->User->nama_pegawai }}</td>
                                             @endif
@@ -116,9 +116,7 @@
                                             <td>{{ number_format($item->jumlah_bersih_gaji) }}</td>
                                             <td>{{ number_format($item->penerimaan_total) }}</td>
                                             <td>
-                                                <a href="" class="btn-xs btn-secondary  mr-2" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modaledit-{{ $item->id_detail_gaji }}">
+                                                <a href="{{ route('gajishowedit', $item->id_detail_gaji) }}" class="btn-xs btn-secondary  mr-2" type="button">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
 
@@ -138,7 +136,7 @@
     </div>
 </main>
 
-@forelse ($gaji->Detailgaji as $item)
+{{-- @forelse ($gaji->Detailgaji as $item)
 <div class="modal fade" id="Modaledit-{{ $item->id_detail_gaji }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -744,7 +742,6 @@
                                             </div>
                                         </div>
                 
-                                        {{-- POTONGAN --}}
                                         <hr>
                                         <div class="row">
                                             <div class="col-6">
@@ -823,7 +820,7 @@
 
 @empty
 
-@endforelse
+@endforelse --}}
 
 
 <script>

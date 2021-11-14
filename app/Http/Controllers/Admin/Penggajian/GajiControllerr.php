@@ -116,7 +116,13 @@ class GajiControllerr extends Controller
         $gaji = Gajipegawai::with('Detailgaji')->withCount('Detailgaji')->find($id);
 
         return view('pages.admin.gaji.detail', compact('gaji'));
+    }
 
+    public function showedit($id)
+    {
+        $gaji = DetailGajipegawai::with('Gaji')->find($id);
+
+        return view('pages.admin.gaji.detailedit', compact('gaji'));
     }
 
     /**

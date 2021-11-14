@@ -1,0 +1,1 @@
+{{ $gaji->id_detail_gaji }}

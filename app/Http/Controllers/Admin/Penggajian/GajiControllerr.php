@@ -82,27 +82,23 @@ class GajiControllerr extends Controller
         foreach($detail[0] as $tes){
             $aw = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->where('nama', $tes['nama'])->first();
             $temp = $aw->penerimaan_total - $aw->jumlah_potongan_lainnya;
-            $gas = $temp + $tes['penerimaanlainlain'];
+            $lainnya = $aw->jumlah_potongan_lainnya;
+            $gas = $temp + $lainnya + $tes['penerimaanlainlain'];
 
             DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->where('nama', $tes['nama'] )->update([
-                'jumlah_potongan_lainnya' => $tes['penerimaanlainlain']?? 0,
-                'penerimaan_total' => $temp + $tes['penerimaanlainlain'],
+                'jumlah_potongan_lainnya' => $lainnya + $tes['penerimaanlainlain']?? 0,
+                'penerimaan_total' => $temp + $lainnya + $tes['penerimaanlainlain'],
             ]);
 
             Gajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->update([
                 'grand_total_gaji' => $temp + $tes['penerimaanlainlain']
             ]);
-            
             $tempgrand = $tempgrand + $gas;
         }
 
-        
-
         $gaji->grand_total_gaji = $tempgrand;
         $gaji->save();
-
-
-
+        
         return redirect()->route('gaji.show', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');;
 
 

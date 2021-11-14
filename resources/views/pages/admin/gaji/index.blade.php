@@ -94,7 +94,11 @@
                                             <td>{{ date('Y', strtotime($item->bulan_gaji)) }}</td>
                                             <td>{{ date('F', strtotime($item->bulan_gaji)) }}</td>
                                             <td>{{ $item->detailgaji_count }} Orang</td>
-                                            <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
+                                            @if ($item->grand_total_gaji == 0)
+                                                <td>Belum Selesai Dihitung</td>
+                                            @else
+                                                <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
+                                            @endif
                                             <td class="text-center">
                                                 <a href="" class="btn-xs btn-facebook mr-2" type="button"
                                                 data-toggle="modal"

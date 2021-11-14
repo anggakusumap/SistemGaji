@@ -1411,13 +1411,15 @@
         var tunjangan_kinerja_element = $(`#tunjangan_kinerja-${id_detail_gaji}`).val()
         var tunjangan_kinerja = tunjangan_kinerja_element.replace(',', '').replace(',', '').replace(',', '').trim()
 
+        var penerimaan_lain_lain_el = $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val()
+        var jumlah_potongan_lainnya = penerimaan_lain_lain_el.replace(',', '').replace(',', '').replace(',', '').trim()
+
         var nama = $(`#namates-${id_detail_gaji} option:selected`).text().trim()
           
-
         if (gaji_pokok == '' | tunjangan_istrisuami == '' | tunjangan_anak == '' | tunjangan_jabatan_struktural == '' | tunjangan_jabatan_fungsional == '' | tunjangan_umum == '' |
         tunjangan_beras == '' | tunjangan_pph == '' | pembulatan == '' | jumlah_kotor == '' | iuran_wajib =='' |
         bpjs == '' | sewa_rumah == '' | pph_pasal_21 == '' | jumlah_potongan == '' | jumlah_bersih_gaji == '' | tunjangan_kinerja == '' |
-        penerimaan_lain_lain == '' | penerimaan_total == '' ){
+        jumlah_potongan_lainnya == '' | penerimaan_total == '' ){
                 Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -1490,22 +1492,22 @@
             }
 
             // PERHITUNGAN PENERIMAAN LAIN LAIN
-            var perhitungan_penerimaan_lain_lain = parseInt(sewa_rumah) + parseInt(perhitungan_potongan) + parseInt(perhitungan_bersih)
-            var penerimaan_lain_lain = $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(perhitungan_penerimaan_lain_lain)
-            if (/^[0-9.,]+$/.test($(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val())) {
-            $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(
-                parseFloat($(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
-            );
-            } else {
-                $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(
-                    $(`#jumlah_potongan_lainnya-${id_detail_gaji}`)
-                    .val()
-                    .substring(0, $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val().length - 1)
-                );
-            }
+            // var perhitungan_penerimaan_lain_lain = parseInt(sewa_rumah) + parseInt(perhitungan_potongan) + parseInt(perhitungan_bersih)
+            // var penerimaan_lain_lain = $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(perhitungan_penerimaan_lain_lain)
+            // if (/^[0-9.,]+$/.test($(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val())) {
+            // $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(
+            //     parseFloat($(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val().replace(/,/g, '')).toLocaleString('en')
+            // );
+            // } else {
+            //     $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val(
+            //         $(`#jumlah_potongan_lainnya-${id_detail_gaji}`)
+            //         .val()
+            //         .substring(0, $(`#jumlah_potongan_lainnya-${id_detail_gaji}`).val().length - 1)
+            //     );
+            // }
 
             // PENERIMAAN TOTAL
-            var perhitungan_grand = parseInt(perhitungan_bersih) + parseInt(tunjangan_kinerja) + parseInt(perhitungan_penerimaan_lain_lain)
+            var perhitungan_grand = parseInt(perhitungan_bersih) + parseInt(tunjangan_kinerja) + parseInt(jumlah_potongan_lainnya)
             var penerimaan_total = $(`#penerimaan_total-${id_detail_gaji}`).val(perhitungan_grand)
             if (/^[0-9.,]+$/.test($(`#penerimaan_total-${id_detail_gaji}`).val())) {
             $(`#penerimaan_total-${id_detail_gaji}`).val(
@@ -1519,10 +1521,7 @@
                 );
             }
 
-          
-
             $(`#gajibuttonclose-${id_detail_gaji}`).click();
-
 
             const Toast = Swal.mixin({
                 toast: true,

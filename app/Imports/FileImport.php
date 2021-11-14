@@ -33,8 +33,8 @@ class FileImport implements
         $user = User::where('nama_pegawai', $row['nama'])->first();
         $temp = 0;
 
-        foreach($row as $das){
-            $temp = $temp + $das->penerimaantotal;
+        foreach($row[0] as $das){
+            $temp = $temp + $das['penerimaantotal'];
         }
 
         $data->grand_total_gaji = $temp;

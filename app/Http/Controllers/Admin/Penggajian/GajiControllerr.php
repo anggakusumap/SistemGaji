@@ -114,17 +114,17 @@ class GajiControllerr extends Controller
     public function show($id)
     {
         $gaji = Gajipegawai::with('Detailgaji')->withCount('Detailgaji')->find($id);
-
-        return view('pages.admin.gaji.detail', compact('gaji'));
+        $sum = DetailGajipegawai::sum('penerimaan_total');
+        return view('pages.admin.gaji.detail', compact('gaji','sum'));
     }
 
     public function showedit($id)
     {
         $gaji = DetailGajipegawai::with('Gaji')->find($id);
 
-        $sum = DetailGajipegawai::sum('penerimaan_total');
+ 
 
-        return view('pages.admin.gaji.detailedit', compact('gaji','sum'));
+        return view('pages.admin.gaji.detailedit', compact('gaji'));
     }
 
     /**

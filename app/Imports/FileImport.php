@@ -31,6 +31,14 @@ class FileImport implements
         $tes = $data->id_gaji_pegawai;
 
         $user = User::where('nama_pegawai', $row['nama'])->first();
+        $temp = 0;
+
+        foreach($row as $tes){
+            $temp = $temp + $tes['penerimaan_total'] ?? 0;
+        }
+
+        $data->grand_total_gaji = $temp;
+        $data->save();
         
         return new DetailGajipegawai([
             'id_gaji_pegawai' => $tes,
@@ -76,6 +84,8 @@ class FileImport implements
             'rapel_tukin'=> $row['rapel_tukin']?? 0,
             'tukin_dibayarkan'=> $row['tukin_dibayarkan']?? 0,
         ]);
+
+        
     }
 
     public function batchSize(): int

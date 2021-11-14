@@ -33,7 +33,9 @@ class FileImport implements
         $user = User::where('nama_pegawai', $row['nama'])->first();
         $temp = 0;
 
-        foreach($row[0] as $das){
+        return $row['penerimaantotal'];
+
+        foreach($row as $das){
             $temp = $temp + $das['penerimaantotal'];
         }
 

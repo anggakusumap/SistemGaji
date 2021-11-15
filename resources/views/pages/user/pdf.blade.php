@@ -9,6 +9,7 @@
         }
 
     </style>
+
     {{-- <title>contoh surat pengunguman</title> --}}
     <style type="text/css">
         table {
@@ -29,6 +30,7 @@
 
         table tr td {
             font-size: 13px;
+            font-family : Arial, Helvetica, sans-serif;
         }
 
         font {

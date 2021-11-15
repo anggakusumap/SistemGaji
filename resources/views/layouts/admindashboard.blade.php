@@ -99,7 +99,7 @@
                         </a>
                         <a class="nav-link" href="{{ route('master-grade.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Grade Gaji
+                            Grade
                         </a>
                         <div class="sidenav-menu-heading">Logout Account</div>
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

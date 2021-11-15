@@ -35,7 +35,7 @@
 
 <body class="nav-fixed">
     <div class="img-container mt-5" style="text-align">
-        <img src="{{ asset('../logo-berwarna.png') }}" alt="logo" width="80" class="">
+        <img src="{{ asset('logo.png') }}" alt="logo" width="80" class="">
 
     </div>
     {{-- Side Bar Content --}}

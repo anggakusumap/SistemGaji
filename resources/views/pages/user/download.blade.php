@@ -122,7 +122,7 @@
         <table width="625">
             <tr>
                 <td>
-                    <font size="2">Mempunyai Penghasilan dari Gaji Induk bulan {{ $bulan }}
+                    <font size="2">Mempunyai Penghasilan bulan {{ $bulan }}
                         {{ substr($gaji->bulan_gaji, 0, 4) }} dengan perincian sebagai
                         berikut :</font>
                 </td>
@@ -266,7 +266,7 @@
                 <td><b>Potongan-potongan :</b></td>
             </tr>
             <tr class="text2">
-                <td width="220">Iuran Wajib Pegawai/PFK 8%</td>
+                <td width="220">Iuran Wajib</td>
                 <td width="5"> Rp.
                 </td>
                 <td width="130" style="text-align: right">

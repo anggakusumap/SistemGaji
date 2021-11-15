@@ -14,7 +14,7 @@ class Gajipegawai extends Model
     protected $fillable = [
         'bulan_gaji',
         'grand_total_gaji',
-        'status_penerimaan',
+        'status_penerimaan_lain',
     ];
 
     protected $hidden = [

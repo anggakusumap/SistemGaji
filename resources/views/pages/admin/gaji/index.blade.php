@@ -95,13 +95,21 @@
                                             @else
                                                 <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
                                             @endif --}}
+                                            @if ($item->status_penerimaan_lain == 'Belum Ditambahkan')
+                                                <td class="text-center">
+                                                    <a href="" class="btn-xs btn-facebook mr-2" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#Modalupdate-{{ $item->id_gaji_pegawai }}">
+                                                    <i class="fas fa-file-excel" aria-hidden="true"></i>
+                                                    Upload Peneriman Lain
+                                                    </a>
+                                                </td>
+                                            @else
                                             <td class="text-center">
-                                                <a href="" class="btn-xs btn-facebook mr-2" type="button"
-                                                data-toggle="modal"
-                                                data-target="#Modalupdate-{{ $item->id_gaji_pegawai }}">
-                                                Atur Peneriman Lain
-                                                </a>
+                                                <span class="badge badge-success">Telah Ditambahkan</span>
                                             </td>
+                                            @endif
+                                           
                                             <td class="text-center">
                                                 <a href="{{ route('gaji.show', $item->id_gaji_pegawai) }}"
                                                     class="btn btn-secondary btn-datatable mr-2"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail dan Edit">
@@ -128,60 +136,7 @@
     </div>
 </main>
 
-@forelse ($gaji as $item)
-    <div class="modal fade" id="Modalupdate-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog" data-backdrop="static"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-light">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Atur Penerimaan Lain-Lain</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <form action="{{ route('tambahpenerimaanlain', $item->id_gaji_pegawai) }}" id="form" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <label class="small mb-1">Upload File Excel dengan format nama dan penerimaan lain-lain</label>
 
-                        @if($errors->any())
-                        <div class="alert alert-danger" role="alert"> <i class="fas fa-times"></i>
-                            {{$errors->first()}}
-                            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        @endif
-
-                        <hr>
-                        </hr>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="bulan_gaji">Bulan dan Tahun Bayar</label>
-                                <input class="form-control" id="bulan_gaji" type="text" name="bulan_gaji" value="{{ date('F', strtotime($item->bulan_gaji)) }} {{ date('Y', strtotime($item->bulan_gaji)) }}" readonly>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="jumlah_pegawai">Jumlah Pegawai</label>
-                                <input class="form-control" id="jumlah_pegawai" type="text" name="jumlah_pegawai" value="{{ $item->detailgaji_count }} Orang" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="excelupdate">Upload File Excel Penerimaan Lainnya</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
-                            <input class="form-control" id="excelupdate" type="file" name="excelupdate" accept=".xlsx, .xls, .csv"
-                                value="{{ old('excelupdate') }}" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" type="submit">Upload!</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-@empty
-
-@endforelse
 
 
 
@@ -260,7 +215,50 @@
 
 @endforelse
 
+@forelse ($gaji as $item)
+    <div class="modal fade" id="Modalupdate-{{ $item->id_gaji_pegawai }}" tabindex="-1" role="dialog" data-backdrop="static"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Atur Penerimaan Lain-Lain</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('tambahpenerimaanlain', $item->id_gaji_pegawai) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <label class="small mb-1">Upload File Excel dengan format nama dan penerimaan lain-lain</label>
+                        <hr>
+                        </hr>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="bulan_gaji">Bulan dan Tahun Bayar</label>
+                                <input class="form-control" id="bulan_gaji" type="text" name="bulan_gaji" value="{{ date('F', strtotime($item->bulan_gaji)) }} {{ date('Y', strtotime($item->bulan_gaji)) }}" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="jumlah_pegawai">Jumlah Pegawai</label>
+                                <input class="form-control" id="jumlah_pegawai" type="text" name="jumlah_pegawai" value="{{ $item->detailgaji_count }} Orang" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="excelupdate">Upload File Excel Penerimaan Lainnya</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <input class="form-control" id="excelupdate" type="file" name="excelupdate" accept=".xlsx, .xls, .csv"
+                                value="{{ old('excelupdate') }}" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" type="submit">Upload!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@empty
 
+@endforelse
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open

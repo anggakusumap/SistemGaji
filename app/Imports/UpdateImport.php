@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UpdateImport implements ToModel, WithHeadingRow, WithCalculatedFormulas, WithBatchInserts, WithChunkReading
+class UpdateImport implements ToModel, WithHeadingRow, WithCalculatedFormulas, WithChunkReading
 {
    
     /**
@@ -26,13 +26,8 @@ class UpdateImport implements ToModel, WithHeadingRow, WithCalculatedFormulas, W
         ]);
     }
 
-    public function batchSize(): int
-    {
-        return 200;
-    }
-
     public function chunkSize(): int
     {
-        return 100;
+        return 200;
     }
 }

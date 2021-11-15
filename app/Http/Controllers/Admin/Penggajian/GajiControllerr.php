@@ -54,13 +54,13 @@ class GajiControllerr extends Controller
      */
     public function store(Gajistore $request)
     {
-        // return $request;
 
         $data = Gajipegawai::where('bulan_gaji', Carbon::create($request->bulan_gaji)->startOfMonth())->first();
 
         if (empty($data)){
             $gaji = new Gajipegawai;
             $gaji->bulan_gaji = Carbon::create($request->bulan_gaji)->startOfMonth();
+            $gaji->status_penerimaan_lain = 'Belum Ditambahkan';
             $gaji->save();
     
             if ($request->hasFile('excel')!=null) {
@@ -79,30 +79,34 @@ class GajiControllerr extends Controller
         $tempgrand = 0;
 
         $detail = Excel::toCollection(new UpdateImport(), $request->file('excelupdate'));
+       
         foreach($detail[0] as $tes){
             $aw = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->where('nama', $tes['nama'])->first();
-            $temp = $aw->penerimaan_total - $aw->jumlah_potongan_lainnya;
-            $lainnya = $aw->jumlah_potongan_lainnya;
-            $gas = $temp + $lainnya + $tes['penerimaanlainlain'];
-
-            DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->where('nama', $tes['nama'] )->update([
-                'jumlah_potongan_lainnya' => $lainnya + $tes['penerimaanlainlain']?? 0,
-                'penerimaan_total' => $temp + $lainnya + $tes['penerimaanlainlain'],
-            ]);
-
-            Gajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->update([
-                'grand_total_gaji' => $temp + $tes['penerimaanlainlain']
-            ]);
-            $tempgrand = $tempgrand + $gas;
+           
+            if (empty($aw)){
+                continue;
+            }else{
+                $temp = $aw->penerimaan_total - $aw->jumlah_potongan_lainnya;
+                $lainnya = $aw->jumlah_potongan_lainnya;
+                $gas = $temp + $lainnya + $tes['penerimaanlainlain']?? 0;
+    
+                DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->where('nama', $tes['nama'] )->update([
+                    'jumlah_potongan_lainnya' => $lainnya + $tes['penerimaanlainlain']?? 0,
+                    'penerimaan_total' => $temp + $lainnya + $tes['penerimaanlainlain'] ?? 0,
+                ]);
+    
+                Gajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->update([
+                    'grand_total_gaji' => $temp + $tes['penerimaanlainlain']?? 0,
+                ]);
+                $tempgrand = $tempgrand + $gas;
+            } 
         }
 
         $gaji->grand_total_gaji = $tempgrand;
+        // $gaji->status_penerimaan_lain = 'Sudah Ditambahkan';
         $gaji->save();
         
         return redirect()->route('gaji.show', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');
-
-
-        // return redirect()->route('gajieditpenerimaanlain', $gaji->id_gaji_pegawai)->with('message', ' Import File Excel Penerimaan Lain-Lain Berhasil Dilakukan');
     }
 
     /**

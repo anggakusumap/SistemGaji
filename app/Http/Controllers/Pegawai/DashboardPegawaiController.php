@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Model\DetailGajipegawai;
+use App\Model\Detailpotonganutama;
 use App\Model\Gajipegawai;
 use App\User;
 use Illuminate\Http\Request;
@@ -53,11 +54,11 @@ class DashboardPegawaiController extends Controller
         //         })->get();
 
         
-        $data = Gajipegawai::with(array('Detailgaji' => function($query)
-            {
+        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Detailgaji' => function($query){
                 $query->where('id', Auth::user()->id);
-            }))
-                ->where('bulan_gaji', $gaji)->first();
+            }))->where('bulan_gaji', $gaji)->first();
+        // return $data;
+     
        
         // $data = Gajipegawai::with('Detailpegawai')->where('bulan_gaji', $gaji)->whereHas('Detailpegawai', function ($query) {
         //             return $query->where('id', '=', 2);
@@ -79,7 +80,7 @@ class DashboardPegawaiController extends Controller
     {
         $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
         $user = User::where('id', Auth::user()->id)->first();
-        $data = Gajipegawai::with(array('Detailgaji' => function($query)
+        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Detailgaji' => function($query)
             {
                 $query->where('id', Auth::user()->id);
             }))

@@ -314,6 +314,19 @@
                     @endif
                 </td>
             </tr>
+            @forelse ($gaji->Detailgaji->first()->Detailpotonganutama as $tes)
+            <tr class="text2">
+                <td width="220">{{ $tes->nama_potongan_utama }}</td>
+                <td width="5"> Rp.
+                </td>
+                <td width="130" style="text-align: right">
+                    {{ number_format($tes->jumlah_potongan_utama,0,',','.') }},-
+                </td>
+            </tr>
+            @empty
+                
+            @endforelse
+
             <tr>
                 <td></td>
                 <td colspan="2">

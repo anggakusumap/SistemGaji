@@ -269,6 +269,10 @@ class GajiControllerr extends Controller
     public function destroy($id_gaji_pegawai)
     {
         $gaji = Gajipegawai::find($id_gaji_pegawai);
+
+        $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->first();
+        Detailpotongan::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
+        Detailpotonganutama::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
         DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
         $gaji->delete();
 
@@ -278,6 +282,8 @@ class GajiControllerr extends Controller
     public function deletedetail($id_detail_gaji)
     {
         $tes = DetailGajipegawai::find($id_detail_gaji);
+        Detailpotongan::where('id_detail_gaji', $id_detail_gaji)->delete();
+        Detailpotonganutama::where('id_detail_gaji', $id_detail_gaji)->delete();
         $tes->delete();
 
         return redirect()->back()->with('messagehapus','Berhasil Menghapus Data Gaji Pegawai');

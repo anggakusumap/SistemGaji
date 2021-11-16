@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Model;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Detailpotonganutama extends Model
+{
+    protected $table = "tb_detail_potongan_utama";
+
+    protected $primaryKey = 'id_detail_potongan_utama';
+
+    protected $fillable = [
+        'id_detail_gaji',
+        'nama_potongan',
+        'jumlah_potongan',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public $timestamps = true;
+
+    public function Detailgaji(){
+        return $this->belongsTo(DetailGajipegawai::class, 'id_detail_gaji','id_detail_gaji');
+    }
+}

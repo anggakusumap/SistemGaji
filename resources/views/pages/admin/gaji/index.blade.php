@@ -23,6 +23,22 @@
         </div>
     </div>
 
+    @if(session('messagegagal'))
+    <div class="container-fluid">
+        <div class="alert alert-danger alert-icon" id="alertgagal" role="alert">
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="alert-icon-aside">
+                <i class="fas fa-file-excel"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Import Gagal!</h6>
+                {{ session('messagegagal') }}
+            </div>
+        </div>
+    </div>
+    @endif
 
     <div class="container-fluid">
         <div class="card mb-4">
@@ -90,24 +106,19 @@
                                             <td>{{ date('Y', strtotime($item->bulan_gaji)) }}</td>
                                             <td>{{ date('F', strtotime($item->bulan_gaji)) }}</td>
                                             <td>{{ $item->detailgaji_count }} Orang</td>
-                                            {{-- @if ($item->grand_total_gaji == 0)
-                                                <td>Belum Selesai Dihitung</td>
-                                            @else
-                                                <td>Rp. {{ number_format($item->grand_total_gaji,2,',','.') }}</td>
-                                            @endif --}}
+                                     
                                             @if ($item->status_penerimaan_lain == 'Belum Ditambahkan')
                                                 <td class="text-center">
                                                     <a href="" class="btn-xs btn-facebook mr-2" type="button"
                                                     data-toggle="modal"
                                                     data-target="#Modalupdate-{{ $item->id_gaji_pegawai }}">
-                                                    <i class="fas fa-file-excel" aria-hidden="true"></i>
                                                     Upload Peneriman Lain
                                                     </a>
                                                 </td>
                                             @else
-                                            <td class="text-center">
-                                                <span class="badge badge-success">Telah Ditambahkan</span>
-                                            </td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-success">Telah Ditambahkan</span>
+                                                </td>
                                             @endif
                                            
                                             <td class="text-center">

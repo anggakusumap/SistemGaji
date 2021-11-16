@@ -69,8 +69,15 @@ class DetailGajipegawai extends Model
         return $this->belongsTo(User::class,'id','id');
     }
     
-
     public function Gaji(){
         return $this->belongsTo(Gajipegawai::class,'id_gaji_pegawai','id_gaji_pegawai');
+    }
+
+    public function Detailpotongan(){
+        return $this->hasMany(Detailpotongan::class, 'id_detail_gaji');
+    }
+
+    public function Detailpotonganutama(){
+        return $this->hasMany(Detailpotonganutama::class, 'id_detail_gaji');
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\Request\Gajistore;
 use App\Imports\FileImport;
 use App\Imports\UpdateImport;
 use App\Model\DetailGajipegawai;
+use App\Model\Detailpotongan;
+use App\Model\Detailpotonganutama;
 use App\Model\Gajipegawai;
 use App\User;
 use File;
@@ -132,10 +134,13 @@ class GajiControllerr extends Controller
 
     public function showedit($id)
     {
-        $item = DetailGajipegawai::with('Gaji','Detailpotongan','Detailpotonganutama')->find($id);
+        $item = DetailGajipegawai::with('Gaji','Detailpotongantukin','Detailpotonganutama')->find($id);
+        $sumpotonganutama = Detailpotonganutama::where('id_detail_gaji', $id)->sum('jumlah_potongan_utama');
+        $sumpotongantukin = Detailpotongan::where('id_detail_gaji', $id)->sum('jumlah_potongan_tukin');
+
         $pegawai = User::get();
 
-        return view('pages.admin.gaji.detailedit', compact('item','pegawai'));
+        return view('pages.admin.gaji.detailedit', compact('item','pegawai','sumpotonganutama','sumpotongantukin'));
     }
 
     public function showupdate(Request $request, $id_detail_gaji)
@@ -183,6 +188,9 @@ class GajiControllerr extends Controller
         $gaji->rapel_tukin = $request->rapel_tukin;
         $gaji->tukin_dibayarkan = $request->tukin_dibayarkan;
         $gaji->save();
+
+        $gaji->detailpotongantukin()->insert($request->potongantukin);
+        $gaji->detailpotonganutama()->insert($request->potonganutama);
 
         return $request;
 

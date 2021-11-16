@@ -73,7 +73,7 @@ class DetailGajipegawai extends Model
         return $this->belongsTo(Gajipegawai::class,'id_gaji_pegawai','id_gaji_pegawai');
     }
 
-    public function Detailpotongan(){
+    public function Detailpotongantukin(){
         return $this->hasMany(Detailpotongan::class, 'id_detail_gaji');
     }
 

@@ -846,91 +846,7 @@
     </div>
 </main>
 
-<div class="modal fade" id="Modaltambahpotongan2" tabindex="-1" role="dialog" 
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Potongan</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{ route('gaji.store') }}" id="formpotongan" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label class="small mb-1 mr-1" for="nama_potongan">Nama Potongan</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input class="form-control" id="nama_potongan" type="text" name="nama_potongan"
-                                    value="{{ old('nama_potongan') }}" placeholder="input Nama Potongan" required>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label class="small mb-1 mr-1" for="jumlah_potongan">Jumlah Potongan (IDR)</label><span
-                                    class="mr-4 mb-3" style="color: red">*</span>
-                                <input class="form-control number-separator" id="jumlah_potongan" type="text"
-                                    name="jumlah_potongan" placeholder="Input Jumlah Potongan" value="{{ old('jumlah_potongan') }}" required>
-                                    
-                            </div>
-                        </div>
-                        <div class="col-4 mt-4 p-2">
-                            <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotongan(event)" type="button"><i class="fas fa-plus"></i></button>
-                            <a class="small text-info">Tambah Pot.</a>
-                        </div>
-                    </div>
-                    <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="jumlahpotonganterhitung">0</span></p>
-                    <hr class="mt-4">
-                    <div class="datatable">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTablePotongan"
-                                        width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                        style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending"
-                                                    style="width: 10px;">
-                                                    No</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 140px;">Nama Potongan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 150px;">Jumlah Potongan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                    style="width: 70px;">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tambahpotongan1">
-                                            @forelse ($item->Detailpotongan as $tes)
-                                            <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">
-                                                    {{ $loop->iteration}}.</th>
-                                                <td>{{ $tes->nama_potongan }}</td>
-                                                <td>{{ number_format($tes->jumlah_potongan) }}</td>
-                                                <td></td>
-                                            </tr>
-                                            @empty
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+{{-- POTONGAN GAJI UTAMA --}}
 <div class="modal fade" id="Modaltambahpotongan1" tabindex="-1" role="dialog" 
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -966,7 +882,7 @@
                                 </button>
                                 <a class="small text-info">Tambah Pot.</a>
                         </div>
-                        <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="jumlahpotonganutamaterhitung">0</span></p>
+                        <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="jumlahpotonganutamaterhitung">{{ number_format($sumpotonganutama)?? 0 }}</span></p>
 
                     </div>
                     <hr class="mt-4">
@@ -995,7 +911,7 @@
                                                     style="width: 70px;">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tambahpotongan2">
+                                        <tbody id="tablepotonganutama">
                                             @forelse ($item->Detailpotonganutama as $tes)
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">
@@ -1017,6 +933,94 @@
         </div>
     </div>
 </div>
+
+{{-- POTONGAN TUKIN --}}
+<div class="modal fade" id="Modaltambahpotongan2" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Data Potongan Tukin</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji.store') }}" id="formpotongantukin" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="small mb-1 mr-1" for="nama_potongan">Nama Potongan</label><span class="mr-4 mb-3"
+                                    style="color: red">*</span>
+                                <input class="form-control" id="nama_potongan" type="text" name="nama_potongan"
+                                    value="{{ old('nama_potongan') }}" placeholder="input Nama Potongan" required>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="small mb-1 mr-1" for="jumlah_potongan">Jumlah Potongan (IDR)</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <input class="form-control number-separator" id="jumlah_potongan" type="text"
+                                    name="jumlah_potongan" placeholder="Input Jumlah Potongan" value="{{ old('jumlah_potongan') }}" required>
+                                    
+                            </div>
+                        </div>
+                        <div class="col-4 mt-4 p-2">
+                            <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotongantukin(event)" type="button"><i class="fas fa-plus"></i></button>
+                            <a class="small text-info">Tambah Pot.</a>
+                        </div>
+                    </div>
+                    <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="potongantotaltukin">{{ number_format($sumpotongantukin)?? 0 }}</span></p>
+                    <hr class="mt-4">
+                    <div class="datatable">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-hover dataTable" id="dataTablePotongan"
+                                        width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending"
+                                                    style="width: 10px;">
+                                                    No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 140px;">Nama Potongan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 150px;">Jumlah Potongan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                    style="width: 70px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablepotongantukin">
+                                            @forelse ($item->Detailpotongantukin as $tes)
+                                            <tr role="row" class="odd">
+                                                <th scope="row" class="small" class="sorting_1">
+                                                    {{ $loop->iteration}}.</th>
+                                                <td>{{ $tes->nama_potongan_tukin }}</td>
+                                                <td>{{ number_format($tes->jumlah_potongan_tukin) }}</td>
+                                                <td></td>
+                                            </tr>
+                                            @empty
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 
 <div class="modal fade" id="Modalsumbit" data-backdrop="static" tabindex="-1" role="dialog"
@@ -1048,7 +1052,7 @@
 </template>
 
 <template id="template_delete_button_potongan">
-    <button class="btn btn-danger btn-datatable" onclick="hapuspotongan(this)" type="button">
+    <button class="btn btn-danger btn-datatable" onclick="hapuspotongantukin(this)" type="button">
         <i class="fas fa-trash"></i>
     </button>
 </template>
@@ -1277,16 +1281,193 @@
             })
     }
 
+    function tambahpotongantukin (event){
+        var form = $('#formpotongantukin')
+        var nama_potongan = form.find('input[name="nama_potongan"]').val()
+        var jumlah_potongan_el = form.find('input[name="jumlah_potongan"]').val()
+        var jumlah_potongan = jumlah_potongan_el.replace(',', '').replace(',', '').replace(',', '')
+            .trim()
+    
+        if (nama_potongan == 0 | nama_potongan == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Field Nama Potongan Kosong',
+            })
+        }else if(jumlah_potongan == '' | jumlah_potongan == 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Field Jumlah Potongan Kosong',
+            })
+        } else {
+
+            $('#dataTablePotongan').DataTable().row.add([
+                nama_potongan, nama_potongan, jumlah_potongan_el, nama_potongan
+            ]).draw();
+
+            var nama_potongan_null = form.find('input[name="nama_potongan"]').val(null)
+            var jumlah_potongan_null = form.find('input[name="jumlah_potongan"]').val(null)
+
+            // TOTAL POTONGAN TUKIN HTML MODAL
+            var potongantotaltukin_el = $('#potongantotaltukin').html()
+            var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
+            .trim()
+            var perhitunganpotongantotaltukin = parseInt(jumlah_potongan) + parseInt(potongantotaltukin)
+            $('#potongantotaltukin').html(perhitunganpotongantotaltukin)
+            if (/^[0-9.,]+$/.test($('#potongantotaltukin').html())) {
+                $('#potongantotaltukin').html(
+                    parseFloat($('#potongantotaltukin').html().replace(/,/g, '')).toLocaleString('en')
+                );
+            } else {
+                $('#potongantotaltukin').html(
+                    $('#potongantotaltukin')
+                    .html()
+                    .substring(0, $('#potongantotaltukin').html().length - 1)
+                );
+            }
+
+            // PERTAMBAHAN TOTAL POTONGAN JUMLAH
+            var potongan_jumlah_el = $('#potongan_jumlah').val()
+            var potongan_jumlah = potongan_jumlah_el.replace(',', '').replace(',', '').replace(',', '').trim()
+            var perhitungan_potongan_jumlah = parseInt(potongan_jumlah) + parseInt(jumlah_potongan)
+            $('#potongan_jumlah').val(perhitungan_potongan_jumlah)
+            if (/^[0-9.,]+$/.test($('#potongan_jumlah').val())) {
+                $('#potongan_jumlah').val(
+                    parseFloat($('#potongan_jumlah').val().replace(/,/g, '')).toLocaleString('en')
+                );
+            } else {
+                $('#potongan_jumlah').val(
+                    $('#potongan_jumlah')
+                    .val()
+                    .substring(0, $('#potongan_jumlah').val().length - 1)
+                );
+            }
+
+            // PERTAMBAHAN TUKIN DIBAYARKAN
+            var tukin_dibayarkan_el = $('#tukin_dibayarkan').val()
+            var tukin_dibayarkan = tukin_dibayarkan_el.replace(',', '').replace(',', '').replace(',', '').trim()
+            var perhitungan_tukin_dibayarkan = parseInt(tukin_dibayarkan) - parseInt(jumlah_potongan)
+            $('#tukin_dibayarkan').val(perhitungan_tukin_dibayarkan)
+            if (/^[0-9.,]+$/.test($('#tukin_dibayarkan').val())) {
+                $('#tukin_dibayarkan').val(
+                    parseFloat($('#tukin_dibayarkan').val().replace(/,/g, '')).toLocaleString('en')
+                );
+            } else {
+                $('#tukin_dibayarkan').val(
+                    $('#tukin_dibayarkan')
+                    .val()
+                    .substring(0, $('#tukin_dibayarkan').val().length - 1)
+                );
+            }
+
+            const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menambah Data Potongan Tukin'
+            })
+            
 
 
+        }
+    }
 
+    function hapuspotongantukin (element){
+        var table = $('#dataTablePotongan').DataTable()
+        var row = $(element).parent().parent()
+        table.row(row).remove().draw();
 
+        var jumlah = $(row.children()[2]).text()
+        var jumlah_potongan = jumlah.replace(',', '').replace(',', '').replace(',', '').trim()
 
+        // POTONGAN TOTAL TUKIN HTML MODAL
+        var potongantotaltukin_el = $('#potongantotaltukin').html()
+        var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
+        .trim()
+        var perhitunganpotongantotaltukin = parseInt(potongantotaltukin) - parseInt(jumlah_potongan)
+        $('#potongantotaltukin').html(perhitunganpotongantotaltukin)
+        if (/^[0-9.,]+$/.test($('#potongantotaltukin').html())) {
+            $('#potongantotaltukin').html(
+                parseFloat($('#potongantotaltukin').html().replace(/,/g, '')).toLocaleString('en')
+            );
+        } else {
+            $('#potongantotaltukin').html(
+                $('#potongantotaltukin')
+                .html()
+                .substring(0, $('#potongantotaltukin').html().length - 1)
+            );
+        }
+
+        // JUMLAH POTONGAN VALUE
+        var potongan_jumlah_el = $('#potongan_jumlah').val()
+        var potongan_jumlah = potongan_jumlah_el.replace(',', '').replace(',', '').replace(',', '').trim()
+        var perhitungan_potongan_jumlah = parseInt(potongan_jumlah) - parseInt(jumlah_potongan)
+        $('#potongan_jumlah').val(perhitungan_potongan_jumlah)
+        if (/^[0-9.,]+$/.test($('#potongan_jumlah').val())) {
+            $('#potongan_jumlah').val(
+                parseFloat($('#potongan_jumlah').val().replace(/,/g, '')).toLocaleString('en')
+            );
+        } else {
+            $('#potongan_jumlah').val(
+                $('#potongan_jumlah')
+                .val()
+                .substring(0, $('#potongan_jumlah').val().length - 1)
+            );
+        }
+
+        // TOTAL TUKIN DIBAYARKAN
+        var tukin_dibayarkan_el = $('#tukin_dibayarkan').val()
+        var tukin_dibayarkan = tukin_dibayarkan_el.replace(',', '').replace(',', '').replace(',', '').trim()
+        var perhitungan_tukin_dibayarkan = parseInt(tukin_dibayarkan) + parseInt(jumlah_potongan)
+        $('#tukin_dibayarkan').val(perhitungan_tukin_dibayarkan)
+        if (/^[0-9.,]+$/.test($('#tukin_dibayarkan').val())) {
+            $('#tukin_dibayarkan').val(
+                parseFloat($('#tukin_dibayarkan').val().replace(/,/g, '')).toLocaleString('en')
+            );
+        } else {
+            $('#tukin_dibayarkan').val(
+                $('#tukin_dibayarkan')
+                .val()
+                .substring(0, $('#tukin_dibayarkan').val().length - 1)
+            );
+        }
+        const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menghapus Data Potongan Tukin'
+            })
+            
+
+    }
 
     function simpandata(event, id_detail_gaji, id_gaji_pegawai) {
         event.preventDefault()
         var _token = $('#form1').find('input[name="_token"]').val()
         var form = $('#form1')
+        var datapotonganutama = []
+        var datapotongantukin = []
 
         var id = form.find('select[name="id_user"]').val()
         var nama = form.find('select[name="id_user"] option:selected').text()
@@ -1446,6 +1627,42 @@
         var tukin_dibayarkan_el = form.find('input[name="tukin_dibayarkan"]').val()
         var tukin_dibayarkan = tukin_dibayarkan_el.replace(',', '').replace(',', '').replace(',', '').trim()
 
+        var potongan = $('#tablepotonganutama').children()
+        for (let index = 0; index < potongan.length; index++) {
+            var children = $(potongan[index]).children()
+
+            var td_nama_potongan = children[1]
+            var nama_potongan_utama = $(td_nama_potongan).html()
+            
+            var td_jumlah_potongan = children[2]
+            var jumlah_potongan_1 = $(td_jumlah_potongan).html()
+            var jumlah_potongan_utama = jumlah_potongan_1.replace(',', '').replace(',', '').replace(',', '').trim()
+            
+            datapotonganutama.push({
+                id_detail_gaji: id_detail_gaji,
+                nama_potongan_utama: nama_potongan_utama,
+                jumlah_potongan_utama: jumlah_potongan_utama,
+            })
+        }
+
+        var potongan_tukin = $('#tablepotongantukin').children()
+        for (let index = 0; index < potongan_tukin.length; index++) {
+            var children_tukin = $(potongan_tukin[index]).children()
+
+            var td_nama_potongan_tukin = children_tukin[1]
+            var nama_potongan_tukin = $(td_nama_potongan_tukin).html()
+            
+            var td_jumlah_potongan_tukin = children_tukin[2]
+            var jumlah_potongan_tukin_x = $(td_jumlah_potongan_tukin).html()
+            var jumlah_potongan_tukin = jumlah_potongan_tukin_x.replace(',', '').replace(',', '').replace(',', '').trim()
+            
+            datapotongantukin.push({
+                id_detail_gaji: id_detail_gaji,
+                nama_potongan_tukin: nama_potongan_tukin,
+                jumlah_potongan_tukin: jumlah_potongan_tukin,
+            })
+        }
+
         if (gaji_pokok == '' | tunjangan_istrisuami == '' | tunjangan_anak == '' |
             tunjangan_jabatan_struktural == '' | tunjangan_jabatan_fungsional == '' | tunjangan_umum == '' |
             tunjangan_beras == '' | tunjangan_pph == '' | pembulatan == '' | jumlah_kotor == '' |
@@ -1522,6 +1739,8 @@
                 rapel_tukin: rapel_tukin,
                 tukin_dibayarkan: tukin_dibayarkan,
                 nama: nama,
+                potonganutama: datapotonganutama,
+                potongantukin: datapotongantukin
             }
 
             $.ajax({
@@ -1561,8 +1780,6 @@
 
 
     }
-
-
 
     function hitunggaji(event) {
         var gaji_pokok_element = $('#gaji_pokok').val()
@@ -1857,6 +2074,10 @@
                             .replace(',',
                                 '')
                             .trim()
+                        
+                        var potongantotaltukin_el = $('#potongantotaltukin').html()
+                        var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
+                            .trim()
 
                         if (potongan_absen == '' | tunj_setelah_pot_absen == '' |
                             potongan_dana_punia ==
@@ -1911,7 +2132,7 @@
                                 parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) +
                                 parseInt(
                                     potongan_kop_bali_sedana) +
-                                parseInt(potongan_paguyuban)
+                                parseInt(potongan_paguyuban) + parseInt(potongantotaltukin)
                             var potongan_jumlah = $('#potongan_jumlah').val(
                                 perhitungan_jumlah_potongan)
                             if (/^[0-9.,]+$/.test($('#potongan_jumlah').val())) {
@@ -1989,14 +2210,6 @@
         }
 
     }
-
-
-
-
-
-
-
-
 
     function hitungpotongan(event) {
         var tunjangan_kinerja_element = $('#tunjangan_kinerja').val()
@@ -2093,6 +2306,10 @@
             var rapel_tukin = rapel_tukin_element.replace(',', '').replace(',', '').replace(',', '')
                 .trim()
 
+            var potongantotaltukin_el = $('#potongantotaltukin').html()
+            var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
+                .trim()
+
             if (potongan_absen == '' | tunj_setelah_pot_absen == '' | potongan_dana_punia == '' |
                 potongan_mushola ==
                 '' | potongan_nasrani == '' |
@@ -2130,18 +2347,11 @@
                 }
 
                 // PERHITUNGAN JUMLAH POTONGAN
-                var perhitungan_jumlah_potongan = parseInt(potongan_absen) + parseInt(
-                        potongan_dana_punia) +
-                    parseInt(
-                        potongan_mushola) +
-                    parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(potongan_bpd) +
-                    parseInt(
-                        potongan_bjb) +
-                    parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) + parseInt(
-                        potongan_futsal) +
-                    parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) + parseInt(
-                        potongan_kop_bali_sedana) +
-                    parseInt(potongan_paguyuban)
+                var perhitungan_jumlah_potongan = parseInt(potongan_absen) + parseInt(potongan_dana_punia) +
+                    parseInt(potongan_mushola) + parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(potongan_bpd) +
+                    parseInt(potongan_bjb) + parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) + 
+                    parseInt(potongan_futsal) + parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) + 
+                    parseInt(potongan_kop_bali_sedana) + parseInt(potongan_paguyuban) + parseInt(potongantotaltukin)
                 var potongan_jumlah = $('#potongan_jumlah').val(perhitungan_jumlah_potongan)
                 if (/^[0-9.,]+$/.test($('#potongan_jumlah').val())) {
                     $('#potongan_jumlah').val(

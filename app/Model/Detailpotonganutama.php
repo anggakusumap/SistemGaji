@@ -8,12 +8,12 @@ class Detailpotonganutama extends Model
 {
     protected $table = "tb_detail_potongan_utama";
 
-    protected $primaryKey = 'id_detail_potongan_utama';
+    protected $primaryKey = 'id_potongan_utama';
 
     protected $fillable = [
         'id_detail_gaji',
-        'nama_potongan',
-        'jumlah_potongan',
+        'nama_potongan_utama',
+        'jumlah_potongan_utama',
     ];
 
     protected $hidden = [

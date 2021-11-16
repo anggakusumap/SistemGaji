@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Detailpotongan extends Model
 {
-    protected $table = "tb_detail_potongan";
+    protected $table = "tb_detail_potongan_tukin";
 
-    protected $primaryKey = 'id_potongan';
+    protected $primaryKey = 'id_potongan_tukin';
 
     protected $fillable = [
         'id_detail_gaji',
-        'nama_potongan_utama',
-        'jumlah_potongan_utama',
+        'nama_potongan_tukin',
+        'jumlah_potongan=_tukin',
     ];
 
     protected $hidden = [

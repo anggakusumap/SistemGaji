@@ -847,8 +847,8 @@
 </main>
 
 {{-- POTONGAN GAJI UTAMA --}}
-<div class="modal fade" id="Modaltambahpotongan1" tabindex="-1" role="dialog" 
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Modaltambahpotongan1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
@@ -862,27 +862,31 @@
                     <div class="row mb-2">
                         <div class="col-4">
                             <div class="form-group">
-                                <label class="small mb-1 mr-1" for="nama_potongan_utama">Nama Potongan</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input class="form-control" id="nama_potongan_utama" type="text" name="nama_potongan_utama"
-                                    value="{{ old('nama_potongan_utama') }}" placeholder="input Nama Potongan" required>
+                                <label class="small mb-1 mr-1" for="nama_potongan_utama">Nama Potongan</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <input class="form-control" id="nama_potongan_utama" type="text"
+                                    name="nama_potongan_utama" value="{{ old('nama_potongan_utama') }}"
+                                    placeholder="input Nama Potongan" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label class="small mb-1 mr-1" for="jumlah_potongan_utama">Jumlah Potongan (IDR)</label><span
-                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <label class="small mb-1 mr-1" for="jumlah_potongan_utama">Jumlah Potongan
+                                    (IDR)</label><span class="mr-4 mb-3" style="color: red">*</span>
                                 <input class="form-control number-separator" id="jumlah_potongan_utama" type="text"
-                                    name="jumlah_potongan_utama" placeholder="Input Jumlah Potongan" value="{{ old('jumlah_potongan_utama') }}" required>  
+                                    name="jumlah_potongan_utama" placeholder="Input Jumlah Potongan"
+                                    value="{{ old('jumlah_potongan_utama') }}" required>
                             </div>
                         </div>
                         <div class="col-4 mt-4 p-2">
-                                <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotonganutama(event)" type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                                <a class="small text-info">Tambah Pot.</a>
+                            <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotonganutama(event)"
+                                type="button">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <a class="small text-info">Tambah Pot.</a>
                         </div>
-                        <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="jumlahpotonganutamaterhitung">{{ number_format($sumpotonganutama)?? 0 }}</span></p>
+                        <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary"
+                                id="jumlahpotonganutamaterhitung">{{ number_format($sumpotonganutama)?? 0 }}</span></p>
 
                     </div>
                     <hr class="mt-4">
@@ -935,8 +939,8 @@
 </div>
 
 {{-- POTONGAN TUKIN --}}
-<div class="modal fade" id="Modaltambahpotongan2" tabindex="-1" role="dialog" 
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="Modaltambahpotongan2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
@@ -950,8 +954,8 @@
                     <div class="row mb-2">
                         <div class="col-4">
                             <div class="form-group">
-                                <label class="small mb-1 mr-1" for="nama_potongan">Nama Potongan</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
+                                <label class="small mb-1 mr-1" for="nama_potongan">Nama Potongan</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
                                 <input class="form-control" id="nama_potongan" type="text" name="nama_potongan"
                                     value="{{ old('nama_potongan') }}" placeholder="input Nama Potongan" required>
                             </div>
@@ -961,16 +965,19 @@
                                 <label class="small mb-1 mr-1" for="jumlah_potongan">Jumlah Potongan (IDR)</label><span
                                     class="mr-4 mb-3" style="color: red">*</span>
                                 <input class="form-control number-separator" id="jumlah_potongan" type="text"
-                                    name="jumlah_potongan" placeholder="Input Jumlah Potongan" value="{{ old('jumlah_potongan') }}" required>
-                                    
+                                    name="jumlah_potongan" placeholder="Input Jumlah Potongan"
+                                    value="{{ old('jumlah_potongan') }}" required>
+
                             </div>
                         </div>
                         <div class="col-4 mt-4 p-2">
-                            <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotongantukin(event)" type="button"><i class="fas fa-plus"></i></button>
+                            <button class="btn btn-xs btn-cyan btn-icon" onclick="tambahpotongantukin(event)"
+                                type="button"><i class="fas fa-plus"></i></button>
                             <a class="small text-info">Tambah Pot.</a>
                         </div>
                     </div>
-                    <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary" id="potongantotaltukin">{{ number_format($sumpotongantukin)?? 0 }}</span></p>
+                    <p class="small ml-4">Jumlah Potongan Terhitung: <span class="text-primary"
+                            id="potongantotaltukin">{{ number_format($sumpotongantukin)?? 0 }}</span></p>
                     <hr class="mt-4">
                     <div class="datatable">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -1058,20 +1065,20 @@
 </template>
 
 <script>
-    function tambahpotonganutama(event){
+    function tambahpotonganutama(event) {
         var form = $('#formpotonganutama')
         var nama_potongan_utama = form.find('input[name="nama_potongan_utama"]').val()
         var jumlah_potongan_utama_el = form.find('input[name="jumlah_potongan_utama"]').val()
         var jumlah_potongan_utama = jumlah_potongan_utama_el.replace(',', '').replace(',', '').replace(',', '')
             .trim()
-    
+
         if (nama_potongan_utama == 0 | nama_potongan_utama == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Field Nama Potongan Kosong',
             })
-        }else if(jumlah_potongan_utama == '' | jumlah_potongan_utama == 0){
+        } else if (jumlah_potongan_utama == '' | jumlah_potongan_utama == 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -1084,11 +1091,11 @@
 
             var nama_potongan_utama = form.find('input[name="nama_potongan_utama"]').val(null)
             var jumlah_potongan_utama_el = form.find('input[name="jumlah_potongan_utama"]').val(null)
-            
+
             // JUMLAH POTONGAN
             var jumlah_potongan_el = $('#jumlah_potongan').val()
             var jumlah_potongan = jumlah_potongan_el.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+                .trim()
             var perhitungan_potongan = parseInt(jumlah_potongan) + parseInt(jumlah_potongan_utama)
             $('#jumlah_potongan').val(perhitungan_potongan)
             if (/^[0-9.,]+$/.test($('#jumlah_potongan').val())) {
@@ -1105,8 +1112,9 @@
 
             // HTML JUMLAH POTONGAN
             var jumlahpotonganutamaterhitung_el = $('#jumlahpotonganutamaterhitung').html()
-            var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+            var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '')
+                .replace(',', '')
+                .trim()
 
             var perhitungan = parseInt(jumlahpotonganutamaterhitung) + parseInt(jumlah_potongan_utama)
             $('#jumlahpotonganutamaterhitung').html(perhitungan)
@@ -1125,10 +1133,10 @@
             // PENAMBAHAN GAJI BERSIH
             var jumlah_kotor_el = $('#jumlah_kotor').val()
             var jumlah_kotor = jumlah_kotor_el.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+                .trim()
             var jumlah_potongan_1 = $('#jumlah_potongan').val()
             var jumlah_potongan_1_el = jumlah_potongan_1.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+                .trim()
             var perhitungan_bersih = parseInt(jumlah_kotor) - parseInt(jumlah_potongan_1_el)
             var jumlah_bersih_gaji = $('#jumlah_bersih_gaji').val(perhitungan_bersih)
             if (/^[0-9.,]+$/.test($('#jumlah_bersih_gaji').val())) {
@@ -1146,7 +1154,7 @@
             // PENAMBAHAN PENERIMAAN TOTAL
             var penerimaan_total_el = $('#penerimaan_total').val()
             var penerimaan_total = penerimaan_total_el.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+                .trim()
             var perhitungan_penerimaan_total = parseInt(penerimaan_total) - parseInt(jumlah_potongan_utama)
             $('#penerimaan_total').val(perhitungan_penerimaan_total)
             if (/^[0-9.,]+$/.test($('#penerimaan_total').val())) {
@@ -1162,16 +1170,16 @@
             }
 
             const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
             Toast.fire({
                 icon: 'success',
@@ -1180,7 +1188,7 @@
         }
     }
 
-    function hapuspotonganutama(element){
+    function hapuspotonganutama(element) {
         var table = $('#dataTableUtama').DataTable()
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
@@ -1188,11 +1196,12 @@
         var jumlah = $(row.children()[2]).text()
         var splitjumlah = jumlah.replace(',', '').replace(',', '').replace(',', '')
             .trim()
-       
-        var jumlahpotonganutamaterhitung_el = $('#jumlahpotonganutamaterhitung').html()
-        var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '').replace(',', '').trim()
 
-        var pengurangan =  parseInt(jumlahpotonganutamaterhitung) - parseInt(splitjumlah)
+        var jumlahpotonganutamaterhitung_el = $('#jumlahpotonganutamaterhitung').html()
+        var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '').replace(
+            ',', '').trim()
+
+        var pengurangan = parseInt(jumlahpotonganutamaterhitung) - parseInt(splitjumlah)
         $('#jumlahpotonganutamaterhitung').html(pengurangan)
         if (/^[0-9.,]+$/.test($('#jumlahpotonganutamaterhitung').html())) {
             $('#jumlahpotonganutamaterhitung').html(
@@ -1229,7 +1238,7 @@
 
         var jumlah_potongan_1 = $('#jumlah_potongan').val()
         var jumlah_potongan_1_el = jumlah_potongan_1.replace(',', '').replace(',', '').replace(',', '')
-        .trim()
+            .trim()
         var perhitungan_bersih = parseInt(jumlah_bersih_1) + parseInt(splitjumlah)
         console.log(perhitungan_bersih, jumlah_bersih_1, jumlahpotonganutamaterhitung)
 
@@ -1264,37 +1273,37 @@
         }
 
         const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Berhasil Menghapus Potongan'
-            })
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil Menghapus Potongan'
+        })
     }
 
-    function tambahpotongantukin (event){
+    function tambahpotongantukin(event) {
         var form = $('#formpotongantukin')
         var nama_potongan = form.find('input[name="nama_potongan"]').val()
         var jumlah_potongan_el = form.find('input[name="jumlah_potongan"]').val()
         var jumlah_potongan = jumlah_potongan_el.replace(',', '').replace(',', '').replace(',', '')
             .trim()
-    
+
         if (nama_potongan == 0 | nama_potongan == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Field Nama Potongan Kosong',
             })
-        }else if(jumlah_potongan == '' | jumlah_potongan == 0){
+        } else if (jumlah_potongan == '' | jumlah_potongan == 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -1312,7 +1321,7 @@
             // TOTAL POTONGAN TUKIN HTML MODAL
             var potongantotaltukin_el = $('#potongantotaltukin').html()
             var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
-            .trim()
+                .trim()
             var perhitunganpotongantotaltukin = parseInt(jumlah_potongan) + parseInt(potongantotaltukin)
             $('#potongantotaltukin').html(perhitunganpotongantotaltukin)
             if (/^[0-9.,]+$/.test($('#potongantotaltukin').html())) {
@@ -1362,28 +1371,28 @@
             }
 
             const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
             Toast.fire({
                 icon: 'success',
                 title: 'Berhasil Menambah Data Potongan Tukin'
             })
-            
+
 
 
         }
     }
 
-    function hapuspotongantukin (element){
+    function hapuspotongantukin(element) {
         var table = $('#dataTablePotongan').DataTable()
         var row = $(element).parent().parent()
         table.row(row).remove().draw();
@@ -1394,7 +1403,7 @@
         // POTONGAN TOTAL TUKIN HTML MODAL
         var potongantotaltukin_el = $('#potongantotaltukin').html()
         var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
-        .trim()
+            .trim()
         var perhitunganpotongantotaltukin = parseInt(potongantotaltukin) - parseInt(jumlah_potongan)
         $('#potongantotaltukin').html(perhitunganpotongantotaltukin)
         if (/^[0-9.,]+$/.test($('#potongantotaltukin').html())) {
@@ -1443,22 +1452,22 @@
             );
         }
         const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'Berhasil Menghapus Data Potongan Tukin'
-            })
-            
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil Menghapus Data Potongan Tukin'
+        })
+
 
     }
 
@@ -1633,11 +1642,17 @@
 
             var td_nama_potongan = children[1]
             var nama_potongan_utama = $(td_nama_potongan).html()
-            
+
             var td_jumlah_potongan = children[2]
             var jumlah_potongan_1 = $(td_jumlah_potongan).html()
-            var jumlah_potongan_utama = jumlah_potongan_1.replace(',', '').replace(',', '').replace(',', '').trim()
-            
+
+            if (jumlah_potongan_1 == '' | jumlah_potongan_1 == null | jumlah_potongan_1 == undefined) {
+                continue;
+            } else {
+                var jumlah_potongan_utama = jumlah_potongan_1.replace(',', '').replace(',', '').replace(',', '').trim()
+            }
+
+
             datapotonganutama.push({
                 id_detail_gaji: id_detail_gaji,
                 nama_potongan_utama: nama_potongan_utama,
@@ -1651,11 +1666,18 @@
 
             var td_nama_potongan_tukin = children_tukin[1]
             var nama_potongan_tukin = $(td_nama_potongan_tukin).html()
-            
+
             var td_jumlah_potongan_tukin = children_tukin[2]
             var jumlah_potongan_tukin_x = $(td_jumlah_potongan_tukin).html()
-            var jumlah_potongan_tukin = jumlah_potongan_tukin_x.replace(',', '').replace(',', '').replace(',', '').trim()
-            
+            if (jumlah_potongan_tukin_x == '' | jumlah_potongan_tukin_x == null | jumlah_potongan_tukin_x ==
+                undefined) {
+                continue;
+            } else {
+                var jumlah_potongan_tukin = jumlah_potongan_tukin_x.replace(',', '').replace(',', '').replace(',', '')
+                    .trim()
+            }
+
+
             datapotongantukin.push({
                 id_detail_gaji: id_detail_gaji,
                 nama_potongan_tukin: nama_potongan_tukin,
@@ -1692,6 +1714,7 @@
                 title: 'Oops...',
                 text: 'Anda Belum Memilih Pegawai',
             })
+        
         } else {
             var sweet_loader =
                 '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
@@ -1742,6 +1765,8 @@
                 potonganutama: datapotonganutama,
                 potongantukin: datapotongantukin
             }
+
+            console.log(data)
 
             $.ajax({
                 method: 'put',
@@ -1844,8 +1869,9 @@
         var nama = $('#namates option:selected').text().trim()
 
         var jumlahpotonganutamaterhitung_el = $('#jumlahpotonganutamaterhitung').html()
-        var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '').replace(',', '')
-        .trim()
+        var jumlahpotonganutamaterhitung = jumlahpotonganutamaterhitung_el.replace(',', '').replace(',', '').replace(
+                ',', '')
+            .trim()
 
         if (gaji_pokok == '' | tunjangan_istrisuami == '' | tunjangan_anak == '' |
             tunjangan_jabatan_struktural ==
@@ -2074,9 +2100,10 @@
                             .replace(',',
                                 '')
                             .trim()
-                        
+
                         var potongantotaltukin_el = $('#potongantotaltukin').html()
-                        var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '').replace(',', '')
+                        var potongantotaltukin = potongantotaltukin_el.replace(',', '').replace(',', '')
+                            .replace(',', '')
                             .trim()
 
                         if (potongan_absen == '' | tunj_setelah_pot_absen == '' |
@@ -2348,9 +2375,10 @@
 
                 // PERHITUNGAN JUMLAH POTONGAN
                 var perhitungan_jumlah_potongan = parseInt(potongan_absen) + parseInt(potongan_dana_punia) +
-                    parseInt(potongan_mushola) + parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(potongan_bpd) +
-                    parseInt(potongan_bjb) + parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) + 
-                    parseInt(potongan_futsal) + parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) + 
+                    parseInt(potongan_mushola) + parseInt(potongan_nasrani) + parseInt(potongan_ar) + parseInt(
+                        potongan_bpd) +
+                    parseInt(potongan_bjb) + parseInt(potongan_cakti_buddhi_bhakti) + parseInt(potongan_anak_asuh) +
+                    parseInt(potongan_futsal) + parseInt(potongan_umum) + parseInt(potongan_pinjaman_cbb) +
                     parseInt(potongan_kop_bali_sedana) + parseInt(potongan_paguyuban) + parseInt(potongantotaltukin)
                 var potongan_jumlah = $('#potongan_jumlah').val(perhitungan_jumlah_potongan)
                 if (/^[0-9.,]+$/.test($('#potongan_jumlah').val())) {

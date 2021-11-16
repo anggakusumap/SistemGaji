@@ -204,7 +204,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="gaji_pokok" class="col-sm-5 col-form-label col-form-label-sm">1. Gaji
+                                                    <label for="gaji_pokok" class="col-sm-5 col-form-label col-form-label-sm"> Gaji
                                                         Pokok</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -219,7 +219,7 @@
                                             <div class="col-6">
                                                 <div class="form-group row">
                                                     <label for="tunjangan_istrisuami"
-                                                        class="col-sm-5 col-form-label col-form-label-sm">2.
+                                                        class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan
                                                         Istri/Suami</label>
                                                     <div class="col-sm-1 text-center">
@@ -238,7 +238,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="tunjangan_anak" class="col-sm-5 col-form-label col-form-label-sm">3.
+                                                    <label for="tunjangan_anak" class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan
                                                         Anak</label>
                                                     <div class="col-sm-1 text-center">
@@ -254,7 +254,7 @@
                                             <div class="col-6">
                                                 <div class="form-group row">
                                                     <label for="tunjangan_jabatan_struktural"
-                                                        class="col-sm-5 col-form-label col-form-label-sm">4.
+                                                        class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan Jabatan Struktural</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -273,7 +273,7 @@
                                             <div class="col-6">
                                                 <div class="form-group row">
                                                     <label for="tunjangan_jabatan_fungsional"
-                                                        class="col-sm-5 col-form-label col-form-label-sm">5.
+                                                        class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan Jabatan Fungsional</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -288,7 +288,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="tunjangan_umum" class="col-sm-5 col-form-label col-form-label-sm">6.
+                                                    <label for="tunjangan_umum" class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan
                                                         Umum</label>
                                                     <div class="col-sm-1 text-center">
@@ -306,7 +306,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="tunjangan_beras" class="col-sm-5 col-form-label col-form-label-sm">7.
+                                                    <label for="tunjangan_beras" class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan Beras</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -320,7 +320,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="tunjangan_pph" class="col-sm-5 col-form-label col-form-label-sm">8.
+                                                    <label for="tunjangan_pph" class="col-sm-5 col-form-label col-form-label-sm">
                                                         Tunjangan
                                                         PPH</label>
                                                     <div class="col-sm-1 text-center">
@@ -338,7 +338,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="pembulatan" class="col-sm-5 col-form-label col-form-label-sm">9.
+                                                    <label for="pembulatan" class="col-sm-5 col-form-label col-form-label-sm">
                                                         Pembulatan</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -372,7 +372,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="iuran_wajib" class="col-sm-5 col-form-label col-form-label-sm">1. Iuran
+                                                    <label for="iuran_wajib" class="col-sm-5 col-form-label col-form-label-sm">Iuran
                                                         Wajib</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -386,7 +386,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="bpjs" class="col-sm-5 col-form-label col-form-label-sm"> 2. BPJS</label>
+                                                    <label for="bpjs" class="col-sm-5 col-form-label col-form-label-sm">BPJS</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
                                                     </div>
@@ -402,7 +402,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="sewa_rumah" class="col-sm-5 col-form-label col-form-label-sm">3. Sewa
+                                                    <label for="sewa_rumah" class="col-sm-5 col-form-label col-form-label-sm">Sewa
                                                         Rumah</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -416,7 +416,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group row">
-                                                    <label for="pph_pasal_21" class="col-sm-5 col-form-label col-form-label-sm"> 4. PPh
+                                                    <label for="pph_pasal_21" class="col-sm-5 col-form-label col-form-label-sm">PPh
                                                         Pasal 21</label>
                                                     <div class="col-sm-1 text-center">
                                                         <span> : </span>
@@ -429,7 +429,26 @@
                                                 </div>
                                             </div>
                                         </div>
-                
+
+                                        <div class="row">
+                                            @forelse ($item->Detailpotonganutama as $tes)
+                                                <div class="col-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-5 col-form-label col-form-label-sm">{{ $tes->nama_potongan_utama }}</label>
+                                                        <div class="col-sm-1 text-center">
+                                                            <span> : </span>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                value="{{ number_format($tes->jumlah_potongan_utama) ?? '0' }}" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            @empty
+                                                
+                                            @endforelse
+                                        </div>
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group row">
@@ -542,7 +561,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_absen_persen" class="col-sm-5 col-form-label col-form-label-sm">1. Absen (%)</label>
+                                                        <label for="potongan_absen_persen" class="col-sm-5 col-form-label col-form-label-sm">Absen (%)</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
                                                         </div>
@@ -555,7 +574,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_absen" class="col-sm-5 col-form-label col-form-label-sm">2. Absen (Rp)</label>
+                                                        <label for="potongan_absen" class="col-sm-5 col-form-label col-form-label-sm">Absen (Rp)</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
                                                         </div>
@@ -570,7 +589,7 @@
                                                     <div class="form-group row">
                                                         <label for="tunj_setelah_pot_absen"
                                                             class="col-sm-5 col-form-label col-form-label-sm">
-                                                            3. Tunjangan Setelah Pot. Absen</label>
+                                                            Tunjangan Setelah Pot. Absen</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
                                                         </div>
@@ -588,7 +607,7 @@
                                                 <div class="col-4">
                                                     <div class="form-group row">
                                                         <label for="potongan_dana_punia" class="col-sm-5 col-form-label col-form-label-sm">
-                                                            4. Dana Punia</label>
+                                                            Dana Punia</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
                                                         </div>
@@ -602,7 +621,7 @@
                                                 <div class="col-4">
                                                     <div class="form-group row">
                                                         <label for="potongan_mushola"
-                                                            class="col-sm-5 col-form-label col-form-label-sm">5.
+                                                            class="col-sm-5 col-form-label col-form-label-sm">
                                                             Mushola</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -618,7 +637,7 @@
                                                 <div class="col-4">
                                                     <div class="form-group row">
                                                         <label for="potongan_nasrani"
-                                                            class="col-sm-5 col-form-label col-form-label-sm">6.
+                                                            class="col-sm-5 col-form-label col-form-label-sm">
                                                             Nasrani</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -636,7 +655,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_ar" class="col-sm-5 col-form-label col-form-label-sm">7.
+                                                        <label for="potongan_ar" class="col-sm-5 col-form-label col-form-label-sm">
                                                             AR</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -650,7 +669,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_bpd" class="col-sm-5 col-form-label col-form-label-sm">8.
+                                                        <label for="potongan_bpd" class="col-sm-5 col-form-label col-form-label-sm">
                                                             BPD</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -664,7 +683,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_bjb" class="col-sm-5 col-form-label col-form-label-sm">9.
+                                                        <label for="potongan_bjb" class="col-sm-5 col-form-label col-form-label-sm">
                                                             BJB</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -681,7 +700,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_cakti_buddhi_bhakti" class="col-sm-5 col-form-label col-form-label-sm">10.
+                                                        <label for="potongan_cakti_buddhi_bhakti" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Cakti Buddhi</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -695,7 +714,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_anak_asuh" class="col-sm-5 col-form-label col-form-label-sm">11.
+                                                        <label for="potongan_anak_asuh" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Anak Asuh</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -709,7 +728,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_futsal" class="col-sm-5 col-form-label col-form-label-sm">12.
+                                                        <label for="potongan_futsal" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Futsal</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -726,7 +745,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_umum" class="col-sm-5 col-form-label col-form-label-sm">13.
+                                                        <label for="potongan_umum" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Umum</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -740,7 +759,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_paguyuban" class="col-sm-5 col-form-label col-form-label-sm">14.
+                                                        <label for="potongan_paguyuban" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Pot. Paguyuban</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -754,7 +773,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_pinjaman_cbb" class="col-sm-5 col-form-label col-form-label-sm">15.
+                                                        <label for="potongan_pinjaman_cbb" class="col-sm-5 col-form-label col-form-label-sm">
                                                             Pinjaman CBB</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -771,7 +790,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-group row">
-                                                        <label for="potongan_kop_bali_sedana" class="col-sm-5 col-form-label col-form-label-sm">16.
+                                                        <label for="potongan_kop_bali_sedana" class="col-sm-5 col-form-label col-form-label-sm">
                                                             KOP Bali Sedana</label>
                                                         <div class="col-sm-1 text-center">
                                                             <span> : </span>
@@ -783,7 +802,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @forelse ($item->Detailpotongantukin as $tes)
+                                                <div class="col-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-5 col-form-label col-form-label-sm">{{ $tes->nama_potongan_tukin }}</label>
+                                                        <div class="col-sm-1 text-center">
+                                                            <span> : </span>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                value="{{ number_format($tes->jumlah_potongan_tukin) ?? '0' }}" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            @empty
+                                                
+                                            @endforelse
+                                       
                                             </div>
+
+                                           
+                                               
                     
                                             {{-- POTONGAN --}}
                                             <hr>

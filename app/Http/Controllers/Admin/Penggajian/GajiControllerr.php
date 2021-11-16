@@ -189,8 +189,22 @@ class GajiControllerr extends Controller
         $gaji->tukin_dibayarkan = $request->tukin_dibayarkan;
         $gaji->save();
 
-        $gaji->detailpotongantukin()->insert($request->potongantukin);
-        $gaji->detailpotonganutama()->insert($request->potonganutama);
+        if(empty($request->potongantukin)){
+          
+        }else{
+            $gaji->detailpotongantukin()->delete();
+            $gaji->detailpotongantukin()->insert($request->potongantukin);
+        }
+
+        if(empty($request->potonganutama)){
+          
+        }else{
+            $gaji->detailpotonganutama()->delete();
+            $gaji->detailpotonganutama()->insert($request->potonganutama);
+        }
+       
+
+       
 
         return $request;
 

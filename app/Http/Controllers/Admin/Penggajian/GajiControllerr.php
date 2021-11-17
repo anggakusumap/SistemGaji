@@ -63,6 +63,7 @@ class GajiControllerr extends Controller
             $gaji = new Gajipegawai;
             $gaji->bulan_gaji = Carbon::create($request->bulan_gaji)->startOfMonth();
             $gaji->status_penerimaan_lain = 'Belum Ditambahkan';
+            $gaji->id = $request->id;
             $gaji->save();
     
             if ($request->hasFile('excel')!=null) {
@@ -127,7 +128,7 @@ class GajiControllerr extends Controller
      */
     public function show($id)
     {
-        $gaji = Gajipegawai::with('Detailgaji')->withCount('Detailgaji')->find($id);
+        $gaji = Gajipegawai::with('Detailgaji','Bendahara')->withCount('Detailgaji')->find($id);
         $sum = DetailGajipegawai::where('id_gaji_pegawai', $id)->sum('penerimaan_total');
         return view('pages.admin.gaji.detail', compact('gaji','sum'));
     }

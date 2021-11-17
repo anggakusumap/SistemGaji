@@ -15,6 +15,7 @@ class Gajipegawai extends Model
         'bulan_gaji',
         'grand_total_gaji',
         'status_penerimaan_lain',
+        'id'
     ];
 
     protected $hidden = [
@@ -37,5 +38,9 @@ class Gajipegawai extends Model
     }
     public function Detailgaji(){
         return $this->hasMany(DetailGajipegawai::class, 'id_gaji_pegawai');
+    }
+
+    public function Bendahara(){
+        return $this->belongsTo(User::class, 'id','id');
     }
 }

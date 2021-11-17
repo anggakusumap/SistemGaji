@@ -271,8 +271,14 @@ class GajiControllerr extends Controller
         $gaji = Gajipegawai::find($id_gaji_pegawai);
 
         $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->first();
-        Detailpotongan::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
-        Detailpotonganutama::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
+        if(empty($tes)){
+
+        }else{
+            Detailpotongan::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
+            Detailpotonganutama::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
+        }
+
+      
         DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
         $gaji->delete();
 

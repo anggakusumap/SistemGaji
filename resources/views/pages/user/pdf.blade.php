@@ -44,7 +44,7 @@
     <center>
         <table width="625" style="margin-top: 40px;">
             <tr>
-                <td><img src="{{ asset("logosurat.PNG") }}" width="105" height="105"></td>
+                <td><img src="{{ asset("logosurat.png") }}" width="105" height="105"></td>
                 <td>
                     <center>
                         <font size="4">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</font><br>

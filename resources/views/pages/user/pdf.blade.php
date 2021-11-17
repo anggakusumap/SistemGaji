@@ -35,6 +35,7 @@
 
         font {
             line-height: 1em;
+            font-family : Arial, Helvetica, sans-serif;
         }
 
     </style>

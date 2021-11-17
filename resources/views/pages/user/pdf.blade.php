@@ -112,7 +112,7 @@
             </tr>
             <tr>
                 <td>Pangkat/Golongan</td>
-                <td>:{{ $user->pangkat }}/{{ $user->golongan }}</td>
+                <td>: {{ $user->pangkat }}/{{ $user->golongan }}</td>
             </tr>
         </table>
         <br>

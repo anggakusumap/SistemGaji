@@ -32,6 +32,7 @@
 
         table tr td {
             font-size: 13px;
+            font-family : Arial, Helvetica, sans-serif;
         }
 
         font {
@@ -115,7 +116,7 @@
             </tr>
             <tr>
                 <td>Pangkat/Golongan</td>
-                <td>: {{ $user->golongan }}</td>
+                <td>:{{ $user->pangkat }}/{{ $user->golongan }}</td>
             </tr>
         </table>
         <br>

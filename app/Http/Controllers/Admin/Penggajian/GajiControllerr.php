@@ -31,11 +31,12 @@ class GajiControllerr extends Controller
         // $gaji = Gajipegawai::with('Detailgaji')->get();
 
         $gaji = Gajipegawai::withCount('Detailgaji')->get();
+        $pegawai = User::get();
       
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.admin.gaji.index', compact('today','tanggal','gaji'));
+        return view('pages.admin.gaji.index', compact('today','tanggal','gaji','pegawai'));
     }
 
     /**
@@ -130,7 +131,8 @@ class GajiControllerr extends Controller
     {
         $gaji = Gajipegawai::with('Detailgaji','Bendahara')->withCount('Detailgaji')->find($id);
         $sum = DetailGajipegawai::where('id_gaji_pegawai', $id)->sum('penerimaan_total');
-        return view('pages.admin.gaji.detail', compact('gaji','sum'));
+        $pegawai = User::get();
+        return view('pages.admin.gaji.detail', compact('gaji','sum','pegawai'));
     }
 
     public function showedit($id)
@@ -235,30 +237,12 @@ class GajiControllerr extends Controller
      */
     public function update(Request $request, $id_gaji_pegawai)
     {
-        // $gaji = Gajipegawai::findOrFail($id_gaji_pegawai);
-        
-        // $temp = 0;
-        // $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
-  
+        $gaji = Gajipegawai::find($id_gaji_pegawai);
+        $gaji->id = $request->id;
+        $gaji->update();
 
-        // foreach($request->detailgaji as $key=>$item){
-        //     $temp = $temp + $item['penerimaan_total'];
-        // }
-
-        // $gaji->grand_total_gaji = $temp;
-        // $gaji->status_penerimaan = 'Belum Diterima';
-        // $gaji->save();
-
-        // $gaji->Detailpegawai()->sync($request->detailgaji);
-      
-        // return $request;
+        return redirect()->back()->with('messageberhasil','Bendahara Berhasil diubah');
     }
-
-    public function update2(Request $request, $id_gaji_pegawai)
-    {
-       
-    }
-
     
 
     /**
@@ -271,16 +255,13 @@ class GajiControllerr extends Controller
     {
         $gaji = Gajipegawai::find($id_gaji_pegawai);
 
-        $tes = DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->first();
-        if(empty($tes)){
-
-        }else{
-            Detailpotongan::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
-            Detailpotonganutama::where('id_detail_gaji', $tes->id_detail_gaji)->delete();
-        }
-
-      
-        DetailGajipegawai::where('id_gaji_pegawai', $id_gaji_pegawai)->delete();
+        $tes = DetailGajipegawai::with('Detailpotonganutama')->where('id_gaji_pegawai', $id_gaji_pegawai)->first();
+        
+       
+        $tes->Detailpotonganutama()->delete();
+        $tes->Detailpotongantukin()->delete();
+        $gaji->Detailgaji()->delete();
+          
         $gaji->delete();
 
         return redirect()->back()->with('messagehapus','Berhasil Menghapus Data Gaji Pegawai');

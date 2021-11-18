@@ -20,6 +20,24 @@
     </div>
     @endif
 
+    @if(session('messageberhasil'))
+    <div class="container-fluid">
+        <div class="alert alert-success alert-icon" id="alertsukses" role="alert">
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="alert-icon-aside">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="alert-icon-content">
+                <h6 class="alert-heading">Update Success!</h6>
+                {{ session('messageberhasil') }}
+            </div>
+        </div>
+    </div>
+    @endif
+    
+
     <div class="container-fluid">
         <div class="card h-100 mb-4">
             <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
@@ -36,13 +54,19 @@
                         {{ date('Y', strtotime($gaji->bulan_gaji)) }} ·
                         <span class="font-weight-500 text-gray ml-2">Bulan </span>
                         {{ date('F', strtotime($gaji->bulan_gaji)) }} ·
-
-                        <p class="font-weight-500 text-gray">Jumlah Pegawai · <span
-                                class="font-weight-500 text-primary">{{ $gaji->detailgaji_count }} Orang</span> </p>
-
+                        <span class="font-weight-500 text-gray">Jumlah Pegawai · <span
+                            class="font-weight-500 text-primary">{{ $gaji->detailgaji_count }} Orang</span> </span>
+                            <p class="font-weight-500 text-gray">Total Penerimaan Keseluruhan · <span
+                                class="font-weight-500 text-primary">Rp. {{ number_format($sum,2,',','.') }}</span> </p>
+                        <p class="font-weight-500 text-gray mt-2">Bendahara · <span>
+                            {{ $gaji->Bendahara->nama_pegawai }}
+                        </span> <a href="" class="btn btn-xs btn-purple btn-icon" type="button" data-toggle="modal"
+                        data-target="#Modaledit">
+                        <i class="fas fa-edit"></i> 
+                        </a></p> 
+                       
                                 
-                        <p class="font-weight-500 text-gray">Total Penerimaan Keseluruhan · <span
-                            class="font-weight-500 text-primary">Rp. {{ number_format($sum,2,',','.') }}</span> </p>
+                      
                         <p class="small">Petunjuk: Klik button <b>detail</b> untuk melihat dan mengedit detail gaji
                             masing-masing
                             pegawai</p>
@@ -170,6 +194,39 @@
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="Modaledit" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Bendahara</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('gaji.update', $gaji->id_gaji_pegawai) }}" id="form" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id">Pilih Bendahara</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id" required>
+                            <option value="{{ $gaji->Bendahara->id }}">{{ $gaji->Bendahara->nama_pegawai }}</option>
+                            @foreach ($pegawai as $items)
+                            <option value="{{ $items->id }}">{{ $items->nama_pegawai }}</option>
+                            @endforeach
+                        </select>
+                        <p class="small text-muted">Note: Bendahara yang bertanda tangan pada Slip Gaji Pegawai</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" type="submit">Edit!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

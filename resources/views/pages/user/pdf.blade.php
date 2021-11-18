@@ -455,7 +455,7 @@
             <tr>
                 <td width="420"><br><br><br><br></td>
                 <td class="text" style="text-align: left">Gianyar, {{ $tanggal }}<br>Bendahara
-                    Pengeluaran<br><br><br><br>Rikko Juniardo<br>NIP 19910610 201411 1 002</td>
+                    Pengeluaran<br><br><br><br>{{ $gaji->Bendahara->nama_pegawai }}<br>NIP {{ $gaji->Bendahara->nip_pegawai }}</td>
             </tr>
         </table>
     </center>

@@ -177,6 +177,16 @@
                     <hr>
                     </hr>
                     <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id">Pilih Bendahara</label><span class="mr-4 mb-3" style="color: red">*</span>
+                        <select class="form-control" name="id" required>
+                            <option value="">Pilih Bendahara</option>
+                            @foreach ($pegawai as $items)
+                            <option value="{{ $items->id }}">{{ $items->nama_pegawai }}</option>
+                            @endforeach
+                        </select>
+                        <p class="small text-muted">Note: Bendahara yang bertanda tangan pada Slip Gaji Pegawai</p>
+                    </div>
+                    <div class="form-group">
                         <label class="small mb-1 mr-1" for="bulan_gaji">Bulan dan Tahun Bayar</label><span
                             class="mr-4 mb-3" style="color: red">*</span>
                         <input class="form-control" id="bulan_gaji" type="month" name="bulan_gaji" value="{{ old('bulan_gaji') }}" required>

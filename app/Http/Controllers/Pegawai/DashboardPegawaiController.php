@@ -54,7 +54,7 @@ class DashboardPegawaiController extends Controller
         //         })->get();
 
         
-        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Detailgaji' => function($query){
+        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Bendahara','Detailgaji' => function($query){
                 $query->where('id', Auth::user()->id);
             }))->where('bulan_gaji', $gaji)->first();
         // return $data;
@@ -80,7 +80,7 @@ class DashboardPegawaiController extends Controller
     {
         $months = array (1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'July',8=>'Augustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember');
         $user = User::where('id', Auth::user()->id)->first();
-        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Detailgaji' => function($query)
+        $data = Gajipegawai::with(array('Detailgaji.Detailpotonganutama','Bendahara','Detailgaji' => function($query)
             {
                 $query->where('id', Auth::user()->id);
             }))

@@ -48,7 +48,7 @@
                                         id="navbarDropdownUserImage" href="javascript:void(0);" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                             class="img-fluid" style="background-color: white"
-                                            src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
+                                            src="/frontend/src/assets/img/user.png" />
                                     </a>
                                   
 
@@ -56,7 +56,7 @@
                                         aria-labelledby="navbarDropdownUserImage">
                                         <h6 class="dropdown-header d-flex align-items-center">
                                             <img class="dropdown-user-img"
-                                                src="/frontend/src/assets/img/freepik/profiles/profile-1.png" />
+                                                src="/frontend/src/assets/img/user.png" />
                                             <div class="dropdown-user-details">
                                                 <div class="dropdown-user-details-name">{{ Auth::user()->nama_pegawai }}
                                                 </div>

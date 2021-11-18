@@ -28,7 +28,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardadmin')}}">
+        <a class="navbar-brand" href="{{ route('gaji.index')}}">
             <i class="fas fa-wallet mr-3"></i>
             Sistem Petikan Gaji
         </a>
